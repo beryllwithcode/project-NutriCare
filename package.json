@@ -1,0 +1,12 @@
+{
+  "name": "project-nutricare",
+  "version": "1.0.0",
+  "description": "Repository ini adalah Project Capstone MSIB Kampus Merdeka x Dicoding Indonesia",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "C523-PS079",
+  "license": "ISC"
+}
