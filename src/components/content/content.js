@@ -13,7 +13,7 @@ import ScrollCarousel from "scroll-carousel-react";
 
 const Description = () => {
   return (
-    <div className="relative flex gap-14 justify-center px-10 lg:px-24 py-14 text-green-800">
+    <div className="relative flex gap-14 justify-center px-10 lg:px-24 py-14 text-nutricare-green">
       <img
         src="illustration/pana.png"
         alt="Anatomy"
@@ -21,23 +21,24 @@ const Description = () => {
       ></img>
       <div className="max-w-2xl">
         <Typography variant="h1" className="mb-4">
-          What is Body-Mass Index
+          What is <span className="text-nutricare-orange">Body-Mass Index</span>
           <br />
           (BMI)?
         </Typography>
         <Typography variant="paragraph" className="text-lg">
-          <span className="text-orange-500">NutriCare</span> is your one-stop
-          destination for achieving a healthier lifestyle through proper
-          nutrition. Our platform is designed to empower you with the knowledge
-          and tools needed to make informed decisions about your diet and
-          overall well-being. Whether you're looking to manage your weight,
+          <span className="text-nutricare-orange">NutriCare</span> is your
+          one-stop destination for achieving a healthier lifestyle through
+          proper nutrition. Our platform is designed to empower you with the
+          knowledge and tools needed to make informed decisions about your diet
+          and overall well-being. Whether you're looking to manage your weight,
           improve your eating habits, or simply understand the nutritional
           content of your meals,{" "}
-          <span className="text-orange-500">NutriCare</span> has you covered.
+          <span className="text-nutricare-orange">NutriCare</span> has you
+          covered.
         </Typography>
         <div className="mt-4 gap-x-6">
           <a href="#">
-            <Button className="bg-green-800 hover:bg-green-500">
+            <Button className="bg-nutricare-green hover:bg-green-500">
               Read More
             </Button>
           </a>
@@ -65,21 +66,25 @@ const Description = () => {
 const Services = () => {
   return (
     <>
-      <div className="relative flex flex-col justify-center text-center my-16 text-green-800">
+      <div className="relative flex flex-col justify-center text-center my-16 text-nutricare-green">
         <div className="mb-4">
           <Typography variant="h1" className="mb-2">
-            Our <span className="text-orange-500">Services</span>
+            Our <span className="text-nutricare-orange">Services</span>
           </Typography>
           <Typography variant="paragraph" className="text-lg">
-            <span className="text-orange-500">NutriCare</span> provides several
-            services. Below is the details.
+            <span className="text-nutricare-orange">NutriCare</span> provides
+            several services. Below is the details.
           </Typography>
         </div>
         <ScrollCarousel
+          autoplay={true}
+          autoplaySpeed={5}
+          speed={7}
           onReady={() => console.log("I am ready")}
           className="h-full"
+          margin={100}
         >
-          <Card className="mx-auto w-64 shadow-lg">
+          <Card className="mx-auto w-64 shadow-none bg-nutricare-greenMudaFade">
             <CardBody>
               <img src="icons/body.svg" className="mx-auto mb-2"></img>
               <Typography variant="h5" color="blue-gray" className="mb-2">
@@ -92,7 +97,7 @@ const Services = () => {
               </Typography>
             </CardBody>
           </Card>
-          <Card className="mx-auto w-64 shadow-lg">
+          <Card className="mx-auto w-64 shadow-none bg-nutricare-greenMudaFade">
             <CardBody>
               <img src="icons/article.svg" className="mx-auto mb-2 mt-2"></img>
               <Typography variant="h5" color="blue-gray" className="mb-2">
@@ -101,13 +106,13 @@ const Services = () => {
               <Typography>
                 Our articles cover a wide range of topics to empower you with
                 knowledge and tips for making positive choices in your daily
-                life. Stay informed and inspired ...
+                life. Stay informed and inspired on your wellness journey.
               </Typography>
             </CardBody>
           </Card>
-          <Card className="mx-auto w-64 shadow-lg">
+          <Card className="mx-auto w-64 shadow-none bg-nutricare-greenMudaFade">
             <CardBody>
-              <img src="icons/chat.svg" className="mx-auto mb-2 mt-2 "></img>
+              <img src="icons/nutrient.svg" className="mx-auto mb-2"></img>
               <Typography variant="h5" color="blue-gray" className="mb-2">
                 Community Forum
               </Typography>
@@ -118,7 +123,7 @@ const Services = () => {
               </Typography>
             </CardBody>
           </Card>
-          <Card className="mx-auto w-64 shadow-lg">
+          <Card className="mx-auto w-64 shadow-none bg-nutricare-greenMudaFade">
             <CardBody>
               <img src="icons/nutrient.svg" className="mx-auto mb-2"></img>
               <Typography variant="h5" color="blue-gray" className="mb-2">
@@ -140,7 +145,7 @@ const Test = () => {
   return (
     <>
       <div className="relative bg-light-green-50 rounded-ss-full rounded-se-full px-10 lg:px-24 py-16 "></div>
-      <div className="relative flex bg-light-green-50 justify-center px-10 gap-14 lg:px-24 pb-14 text-green-800">
+      <div className="relative flex bg-light-green-50 justify-center px-10 gap-14 lg:px-24 pb-14 text-nutricare-green">
         <img
           src="illustration/Character.svg"
           alt="Illustration"
@@ -148,19 +153,19 @@ const Test = () => {
         ></img>
         <div className="max-w-xl">
           <Typography variant="h1" className="mb-4">
-            Calculate your <span className="text-orange-500">Body-Mass</span>{" "}
-            Index here.
+            Calculate your{" "}
+            <span className="text-nutricare-orange">Body-Mass</span> Index here.
           </Typography>
           <Typography variant="paragraph" className="text-lg">
             Unlock a deeper understanding of your body's health with our{" "}
-            <span className="text-orange-500">BMI Test</span>. Calculate your
-            Body Mass Index (BMI) effortlessly and receive insights into your
-            weight and overall health status. Take the first step toward a
+            <span className="text-nutricare-orange">BMI Test</span>. Calculate
+            your Body Mass Index (BMI) effortlessly and receive insights into
+            your weight and overall health status. Take the first step toward a
             healthier you by knowing your BMI.
           </Typography>
           <div className="mt-4 gap-x-6">
             <a href="#">
-              <Button className="bg-green-800 hover:bg-green-500">
+              <Button className="bg-nutricare-green hover:bg-green-500">
                 Test BMI
               </Button>
             </a>
@@ -172,19 +177,19 @@ const Test = () => {
 };
 const Articles = () => {
   return (
-    <div className="relative flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-green-800">
+    <div className="relative flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green">
       <div className="max-w-md lg:max-w-3xl mx-auto">
         <Typography variant="h1" className="mb-2">
-          <span className="text-orange-500">NutriCare</span> Articles
+          <span className="text-nutricare-orange">NutriCare</span> Articles
         </Typography>
         <Typography variant="paragraph" className="text-lg">
           Explore a wealth of knowledge on{" "}
-          <span className="text-orange-500">NutriCare's article</span> hub,
-          covering topics ranging from{" "}
-          <span className="text-orange-500">healthy lifestyles</span> to{" "}
-          <span className="text-orange-500">nutritious foods</span>. Enhance
-          your well-being by staying informed about the latest trends and tips
-          for a healthier life.
+          <span className="text-nutricare-orange">NutriCare's article</span>{" "}
+          hub, covering topics ranging from{" "}
+          <span className="text-nutricare-orange">healthy lifestyles</span> to{" "}
+          <span className="text-nutricare-orange">nutritious foods</span>.
+          Enhance your well-being by staying informed about the latest trends
+          and tips for a healthier life.
         </Typography>
       </div>
       <div className="flex justify-center max-w-xs lg:max-w-2xl mx-auto">
@@ -198,7 +203,7 @@ const Articles = () => {
               variant="text"
               size="lg"
               onClick={handlePrev}
-              className="!absolute top-2/4 left-4 text-green-800 hidden lg:block xl:block -translate-y-2/4"
+              className="!absolute top-2/4 left-4 text-nutricare-green hidden lg:block xl:block -translate-y-2/4"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -221,7 +226,7 @@ const Articles = () => {
               variant="text"
               size="lg"
               onClick={handleNext}
-              className="!absolute top-2/4 !right-4 text-green-800 hidden lg:block xl:block -translate-y-2/4"
+              className="!absolute top-2/4 !right-4 text-nutricare-green hidden lg:block xl:block -translate-y-2/4"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -260,7 +265,7 @@ const Articles = () => {
               <CardFooter className="pt-2">
                 <Button
                   size="lg"
-                  className="bg-green-800 hover:bg-green-500"
+                  className="bg-nutricare-green hover:bg-green-500"
                   fullWidth={true}
                 >
                   Read More
@@ -291,7 +296,7 @@ const Articles = () => {
               <CardFooter className="pt-2">
                 <Button
                   size="lg"
-                  className="bg-green-800 hover:bg-green-500"
+                  className="bg-nutricare-green hover:bg-green-500"
                   fullWidth={true}
                 >
                   Read More
@@ -319,7 +324,7 @@ const Articles = () => {
               <CardFooter className="pt-2">
                 <Button
                   size="lg"
-                  className="bg-green-800 hover:bg-green-500"
+                  className="bg-nutricare-green hover:bg-green-500"
                   fullWidth={true}
                 >
                   Read More
@@ -350,7 +355,7 @@ const Articles = () => {
               <CardFooter className="pt-2">
                 <Button
                   size="lg"
-                  className="bg-green-800 hover:bg-green-500"
+                  className="bg-nutricare-green hover:bg-green-500"
                   fullWidth={true}
                 >
                   Read More
@@ -378,7 +383,7 @@ const Articles = () => {
               <CardFooter className="pt-2">
                 <Button
                   size="lg"
-                  className="bg-green-800 hover:bg-green-500"
+                  className="bg-nutricare-green hover:bg-green-500"
                   fullWidth={true}
                 >
                   Read More
@@ -409,7 +414,7 @@ const Articles = () => {
               <CardFooter className="pt-2">
                 <Button
                   size="lg"
-                  className="bg-green-800 hover:bg-green-500"
+                  className="bg-nutricare-green hover:bg-green-500"
                   fullWidth={true}
                 >
                   Read More
@@ -424,7 +429,7 @@ const Articles = () => {
 };
 const Community = () => {
   return (
-    <div className="relative flex bg-light-green-50 justify-center px-10 gap-14 lg:px-24 py-14 text-green-800">
+    <div className="relative flex bg-light-green-50 justify-center px-10 gap-14 lg:px-24 py-14 text-nutricare-green">
       <img
         src="illustration/rafiki.svg"
         alt="Anatomy"
@@ -432,18 +437,18 @@ const Community = () => {
       ></img>
       <div className="max-w-xl">
         <Typography variant="h1" className="mb-4">
-          NutriCare <span className="text-orange-500">Community</span>
+          NutriCare <span className="text-nutricare-orange">Community</span>
         </Typography>
         <Typography variant="paragraph" className="text-lg">
           Join our vibrant{" "}
-          <span className="text-orange-500">community forum</span> and connect
-          with users who share their health and wellness journeys. Discuss your
-          experiences, seek advice, and provide support to others. Together, we
-          create a supportive space for achieving better health.
+          <span className="text-nutricare-orange">community forum</span> and
+          connect with users who share their health and wellness journeys.
+          Discuss your experiences, seek advice, and provide support to others.
+          Together, we create a supportive space for achieving better health.
         </Typography>
         <div className="mt-4 gap-x-6">
           <a href="#">
-            <Button className="bg-green-800 hover:bg-green-500">
+            <Button className="bg-nutricare-green hover:bg-green-500">
               Join Us!
             </Button>
           </a>
@@ -455,14 +460,14 @@ const Community = () => {
 const FoodNutrient = () => {
   return (
     <>
-      <div className="relative flex bg-light-green-50 text-right justify-center px-10 gap-14 lg:px-24 pt-14 text-green-800">
+      <div className="relative flex bg-light-green-50 text-right justify-center px-10 gap-14 lg:px-24 pt-14 text-nutricare-green">
         <div className="max-w-xl">
           <Typography variant="h1" className="mb-4">
-            <span className="text-orange-500">Food Nutrient</span> Details
+            <span className="text-nutricare-orange">Food Nutrient</span> Details
           </Typography>
           <Typography variant="paragraph" className="text-lg">
             Access a comprehensive database of food items with{" "}
-            <span className="text-orange-500">
+            <span className="text-nutricare-orange">
               detailed nutritional information
             </span>
             . Discover the nutrient content of various foods to make informed
@@ -472,7 +477,9 @@ const FoodNutrient = () => {
           </Typography>
           <div className="mt-4 gap-x-6">
             <a href="#">
-              <Button className="bg-green-800 hover:bg-green-500">More</Button>
+              <Button className="bg-nutricare-green hover:bg-green-500">
+                More
+              </Button>
             </a>
           </div>
         </div>
@@ -483,30 +490,6 @@ const FoodNutrient = () => {
         ></img>
       </div>
       <div className="relative bg-light-green-50 rounded-es-full rounded-ee-full px-10 lg:px-24 py-16"></div>
-    </>
-  );
-};
-
-const Geser = () => {
-  return (
-    <>
-      <h1>This is my component page</h1>
-      <p>Now i am showing my creation scroll carousel</p>
-      <ScrollCarousel
-        autoplay
-        autoplaySpeed={8}
-        speed={7}
-        onReady={() => console.log("I am ready")}
-      >
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((item) => (
-          <div
-            key={item}
-            className="bg-blue-300/20 border-2 border-blue-300/70 rounded h-36 w-48"
-          >
-            {item}
-          </div>
-        ))}
-      </ScrollCarousel>
     </>
   );
 };

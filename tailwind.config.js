@@ -10,13 +10,19 @@ module.exports = withMT({
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+      },
       colors: {
-        ungu: {
-          500: "#EA906C",
+        nutricare: {
+          green: "#619937",
+          greenTua: "#416F1F",
+          greenMuda: "#619937",
+          orange: "#F68831",
+          greenMudaFade: "#EDF5DB",
         },
       },
     },
   },
   plugins: [],
-})
-
+});
