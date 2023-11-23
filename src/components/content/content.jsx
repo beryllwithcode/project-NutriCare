@@ -8,18 +8,40 @@ import {
   Carousel,
   IconButton,
 } from "@material-tailwind/react";
-import React from "react";
+import React, { useRef } from "react";
 import ScrollCarousel from "scroll-carousel-react";
+import { motion } from "framer-motion";
 
 const Description = () => {
+  const scrollRef = useRef(null);
   return (
     <div className="relative flex gap-14 justify-center px-10 lg:px-24 py-14 text-nutricare-green">
-      <img
+      <motion.img
+        initial={{ opacity: 0, x: "-100px" }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ root: scrollRef }}
+        transition={{
+          delay: 0.25,
+          duration: 0.75,
+          type: "spring",
+          stiffness: 150,
+        }}
         src="illustration/pana.png"
         alt="Anatomy"
         className="h-72 hidden lg:block xl:block"
-      ></img>
-      <div className="max-w-2xl">
+      ></motion.img>
+      <motion.div
+        initial={{ opacity: 0, x: "100px" }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ root: scrollRef }}
+        transition={{
+          delay: 0.25,
+          duration: 0.75,
+          type: "spring",
+          stiffness: 150,
+        }}
+        className="max-w-2xl"
+      >
         <Typography variant="h1" className="mb-4">
           What is <span className="text-nutricare-orange">Body-Mass Index</span>
           <br />
@@ -43,31 +65,28 @@ const Description = () => {
             </Button>
           </a>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
-//   return (
-//     <Swiper
-//       spaceBetween={50}
-//       slidesPerView={3}
-//       onSlideChange={() => console.log("slide change")}
-//       onSwiper={(swiper) => console.log(swiper)}
-//     >
-//       <SwiperSlide>Slide 1</SwiperSlide>
-//       <SwiperSlide>Slide 2</SwiperSlide>
-//       <SwiperSlide>Slide 3</SwiperSlide>
-//       <SwiperSlide>Slide 4</SwiperSlide>
-//       ...
-//     </Swiper>
-//   );
-// };
 
 const Services = () => {
+  const scrollRef = useRef(null);
   return (
     <>
       <div className="relative flex flex-col justify-center text-center my-16 text-nutricare-green">
-        <div className="mb-4">
+        <motion.div
+          initial={{ opacity: 0, y: "-100px" }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ root: scrollRef }}
+          transition={{
+            delay: 0.25,
+            duration: 0.75,
+            type: "spring",
+            stiffness: 150,
+          }}
+          className="mb-4"
+        >
           <Typography variant="h1" className="mb-2">
             Our <span className="text-nutricare-orange">Services</span>
           </Typography>
@@ -75,68 +94,86 @@ const Services = () => {
             <span className="text-nutricare-orange">NutriCare</span> provides
             several services. Below is the details.
           </Typography>
-        </div>
-        <ScrollCarousel
-          autoplay={true}
-          autoplaySpeed={5}
-          speed={7}
-          onReady={() => console.log("I am ready")}
-          className="h-full"
-          margin={100}
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: "100px" }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ root: scrollRef }}
+          transition={{
+            delay: 0.25,
+            duration: 0.75,
+            type: "spring",
+            stiffness: 150,
+          }}
         >
-          <Card className="mx-auto w-64 shadow-none bg-nutricare-greenMudaFade">
-            <CardBody>
-              <img src="icons/body.svg" className="mx-auto mb-2"></img>
-              <Typography variant="h5" color="blue-gray" className="mb-2">
-                BMI Calculate
-              </Typography>
-              <Typography>
-                Calculate your Body Mass Index (BMI) effortlessly and receive
-                insights into your weight and overall health status. Take the
-                first step toward a healthier you ...
-              </Typography>
-            </CardBody>
-          </Card>
-          <Card className="mx-auto w-64 shadow-none bg-nutricare-greenMudaFade">
-            <CardBody>
-              <img src="icons/article.svg" className="mx-auto mb-2 mt-2"></img>
-              <Typography variant="h5" color="blue-gray" className="mb-2">
-                Article
-              </Typography>
-              <Typography>
-                Our articles cover a wide range of topics to empower you with
-                knowledge and tips for making positive choices in your daily
-                life. Stay informed and inspired on your wellness journey.
-              </Typography>
-            </CardBody>
-          </Card>
-          <Card className="mx-auto w-64 shadow-none bg-nutricare-greenMudaFade">
-            <CardBody>
-              <img src="icons/nutrient.svg" className="mx-auto mb-2"></img>
-              <Typography variant="h5" color="blue-gray" className="mb-2">
-                Community Forum
-              </Typography>
-              <Typography>
-                Discuss your experiences, seek advice, and provide support to
-                others. Together, we create a supportive space for achieving
-                better health.
-              </Typography>
-            </CardBody>
-          </Card>
-          <Card className="mx-auto w-64 shadow-none bg-nutricare-greenMudaFade">
-            <CardBody>
-              <img src="icons/nutrient.svg" className="mx-auto mb-2"></img>
-              <Typography variant="h5" color="blue-gray" className="mb-2">
-                Food Nutrient Details
-              </Typography>
-              <Typography>
-                Discover the nutrient content of various foods to make informed
-                dietary choices. Whether you're tracking calories,
-                macronutrients, or specific vitamins...
-              </Typography>
-            </CardBody>
-          </Card>
-        </ScrollCarousel>
+          <ScrollCarousel
+            autoplay={true}
+            autoplaySpeed={5}
+            speed={0}
+            onReady={() => console.log("I am ready")}
+            className="h-full mt-8"
+            margin={40}
+          >
+            <div className="flex flex-row gap-10 ">
+              <Card className="w-64 shadow-none bg-nutricare-greenMudaFade">
+                <CardBody>
+                  <img src="icons/body.svg" className="mx-auto mb-2"></img>
+                  <Typography variant="h5" color="blue-gray" className="mb-2">
+                    BMI Calculate
+                  </Typography>
+                  <Typography>
+                    Calculate your Body Mass Index (BMI) effortlessly and
+                    receive insights into your weight and overall health status.
+                    Take the first step toward a healthier you ...
+                  </Typography>
+                </CardBody>
+              </Card>
+              <Card className="mx-auto w-64 shadow-none bg-nutricare-greenMudaFade">
+                <CardBody>
+                  <img
+                    src="icons/article.svg"
+                    className="mx-auto mb-2 mt-2"
+                  ></img>
+                  <Typography variant="h5" color="blue-gray" className="mb-2">
+                    Article
+                  </Typography>
+                  <Typography>
+                    Our articles cover a wide range of topics to empower you
+                    with knowledge and tips for making positive choices in your
+                    daily life. Stay informed and inspired on your wellness
+                    journey.
+                  </Typography>
+                </CardBody>
+              </Card>
+              <Card className="mx-auto w-64 shadow-none bg-nutricare-greenMudaFade">
+                <CardBody>
+                  <img src="icons/nutrient.svg" className="mx-auto mb-2"></img>
+                  <Typography variant="h5" color="blue-gray" className="mb-2">
+                    Community Forum
+                  </Typography>
+                  <Typography>
+                    Discuss your experiences, seek advice, and provide support
+                    to others. Together, we create a supportive space for
+                    achieving better health.
+                  </Typography>
+                </CardBody>
+              </Card>
+              <Card className="mx-auto w-64 shadow-none bg-nutricare-greenMudaFade">
+                <CardBody>
+                  <img src="icons/nutrient.svg" className="mx-auto mb-2"></img>
+                  <Typography variant="h5" color="blue-gray" className="mb-2">
+                    Food Nutrient Details
+                  </Typography>
+                  <Typography>
+                    Discover the nutrient content of various foods to make
+                    informed dietary choices. Whether you're tracking calories,
+                    macronutrients, or specific vitamins...
+                  </Typography>
+                </CardBody>
+              </Card>
+            </div>
+          </ScrollCarousel>
+        </motion.div>
       </div>
     </>
   );
@@ -176,9 +213,21 @@ const Test = () => {
   );
 };
 const Articles = () => {
+  const scrollRef = useRef(null);
   return (
     <div className="relative flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green">
-      <div className="max-w-md lg:max-w-3xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: "-100px" }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ root: scrollRef }}
+        transition={{
+          delay: 0.25,
+          duration: 0.75,
+          type: "spring",
+          stiffness: 150,
+        }}
+        className="max-w-md lg:max-w-3xl mx-auto"
+      >
         <Typography variant="h1" className="mb-2">
           <span className="text-nutricare-orange">NutriCare</span> Articles
         </Typography>
@@ -191,7 +240,7 @@ const Articles = () => {
           Enhance your well-being by staying informed about the latest trends
           and tips for a healthier life.
         </Typography>
-      </div>
+      </motion.div>
       <div className="flex justify-center max-w-xs lg:max-w-2xl mx-auto">
         <Carousel
           className="rounded-xl mt-6"
@@ -428,31 +477,82 @@ const Articles = () => {
   );
 };
 const Community = () => {
+  const scrollRef = useRef(null);
   return (
     <div className="relative flex bg-light-green-50 justify-center px-10 gap-14 lg:px-24 py-14 text-nutricare-green">
-      <img
+      <motion.img
+        initial={{ opacity: 0, x: "-100px" }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ root: scrollRef }}
+        transition={{
+          delay: 0.25,
+          duration: 0.75,
+          type: "spring",
+          stiffness: 150,
+        }}
         src="illustration/rafiki.svg"
         alt="Anatomy"
         className="h-72 hidden lg:block xl:block"
-      ></img>
+      />
       <div className="max-w-xl">
-        <Typography variant="h1" className="mb-4">
-          NutriCare <span className="text-nutricare-orange">Community</span>
-        </Typography>
-        <Typography variant="paragraph" className="text-lg">
-          Join our vibrant{" "}
-          <span className="text-nutricare-orange">community forum</span> and
-          connect with users who share their health and wellness journeys.
-          Discuss your experiences, seek advice, and provide support to others.
-          Together, we create a supportive space for achieving better health.
-        </Typography>
-        <div className="mt-4 gap-x-6">
-          <a href="#">
-            <Button className="bg-nutricare-green hover:bg-green-500">
-              Join Us!
-            </Button>
-          </a>
-        </div>
+        <motion.div
+          initial={{ opacity: 0, x: "100px" }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ root: scrollRef }}
+          transition={{
+            delay: 0.25,
+            duration: 0.75,
+            type: "spring",
+            stiffness: 150,
+            delayChildren: 2,
+          }}
+        >
+          <motion.div
+            initial={{ opacity: 0, x: "100px" }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{
+              delay: 0.5,
+              delayChildren: 15,
+            }}
+          >
+            <Typography variant="h1" className="mb-4">
+              NutriCare <span className="text-nutricare-orange">Community</span>
+            </Typography>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: "100px" }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{
+              delay: 0.75,
+              delayChildren: 15,
+            }}
+          >
+            <Typography variant="paragraph" className="text-lg">
+              Join our vibrant{" "}
+              <span className="text-nutricare-orange">community forum</span> and
+              connect with users who share their health and wellness journeys.
+              Discuss your experiences, seek advice, and provide support to
+              others. Together, we create a supportive space for achieving
+              better health.
+            </Typography>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: "100px" }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{
+              delay: 1,
+              delayChildren: 15,
+            }}
+          >
+            <div className="mt-4 gap-x-6">
+              <a href="#">
+                <Button className="bg-nutricare-green hover:bg-green-500">
+                  Join Us!
+                </Button>
+              </a>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );
