@@ -4,6 +4,31 @@ import { motion } from "framer-motion";
 
 const Hero = () => {
   const scrollRef = useRef(null);
+  const variants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const item = {
+    hidden: {
+      opacity: 0,
+      x: -50,
+    },
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.75,
+        type: "spring",
+        stiffness: 150,
+      },
+    },
+  };
   return (
     <div className="relative isolate px-6 lg:px-8 bg-gradient-to-b from-white to-light-green-200">
       <div
@@ -12,23 +37,30 @@ const Hero = () => {
       ></div>
       <div className="flex justify-between placeholder: mx-auto max-w-6xl py-14">
         <motion.div
-          initial={{ opacity: 0, x: "-100px" }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial="hidden"
+          whileInView="show"
           viewport={{ root: scrollRef }}
-          transition={{
-            delay: 0.25,
-            duration: 0.75,
-            type: "spring",
-            stiffness: 150,
-          }}
+          variants={variants}
+          // transition={{
+          //   delay: 0.25,
+          //   duration: 0.75,
+          //   type: "spring",
+          //   stiffness: 150,
+          // }}
           className="max-w-2xl"
         >
-          <h1 className="text-3xl font-bold tracking-tight text-green-800 lg:text-6xl">
+          <motion.h1
+            variants={item}
+            className="text-3xl font-bold tracking-tight text-green-800 lg:text-6xl"
+          >
             NutriCare: Empowering Your{" "}
             <span className="text-orange-600">Health</span> Through{" "}
             <span className="text-orange-600">Nutrition</span>
-          </h1>
-          <p className="mt-6 text-md leading-8 text-green-800">
+          </motion.h1>
+          <motion.p
+            variants={item}
+            className="mt-6 text-md leading-8 text-green-800"
+          >
             <span className="text-orange-600">NutriCare</span> is your one-stop
             destination for achieving a healthier lifestyle through proper
             nutrition. Our platform is designed to empower you with the
@@ -37,14 +69,14 @@ const Hero = () => {
             weight, improve your eating habits, or simply understand the
             nutritional content of your meals,{" "}
             <span className="text-orange-600">NutriCare</span> has you covered.
-          </p>
-          <div className="mt-4 gap-x-6">
+          </motion.p>
+          <motion.div variants={item} className="mt-4 gap-x-6">
             <a href="#">
               <Button className="bg-green-800 hover:bg-green-500">
                 Read More
               </Button>
             </a>
-          </div>
+          </motion.div>
         </motion.div>
         <div>
           <motion.img
