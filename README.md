@@ -3,24 +3,24 @@
 [![GitHub Issues](https://img.shields.io/github/issues/BeryllPradanaRamadhan/capstone-NutriCare.svg)](https://github.com/BeryllPradanaRamadhan/capstone-NutriCare/issues)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/BeryllPradanaRamadhan/capstone-NutriCare.svg)](https://github.com/BeryllPradanaRamadhan/capstone-NutriCare/commits)
 
-<div align="center">
-  <img src="src/public/scale_icon.png" alt="Logo" width="200px">
-</div>
+<p align="center">
+  <img src="src/public/scale_icon.png" alt="Logo" width="150px">
+</p>
 
-## 🌱 Deskripsi Proyek
+## 🌱 Gambaran Proyek
 
-Proyek NutriCare bertujuan untuk menciptakan platform web yang fokus pada kesejahteraan penduduk melalui pemantauan Indeks Massa Tubuh (IMT). Dengan meningkatnya masalah kesehatan terkait berat badan, perlu adanya solusi yang dapat diakses secara mudah. Penelitian ini akan menjawab pertanyaan-pertanyaan kunci mengenai dampak IMT terhadap kesehatan dan memberikan rekomendasi kebutuhan nutrisi sesuai dengan perhitungan.
+NutriCare adalah platform web andalan Anda untuk manajemen kesehatan pribadi melalui pemantauan Indeks Massa Tubuh (IMT). Menghadapi meningkatnya masalah kesehatan terkait berat badan, diperlukan solusi yang mudah diakses. Proyek ini bertujuan untuk memberikan jawaban atas pertanyaan-pertanyaan kunci mengenai dampak IMT terhadap kesehatan dan menawarkan rekomendasi nutrisi yang dipersonalisasi berdasarkan perhitungan.
 
-Latar belakang proyek ini didorong oleh kebutuhan akan aksesibilitas informasi kesehatan yang akurat dan mudah dimengerti. Tujuan dari proyek ini adalah memberikan alat yang dapat membantu individu mengambil langkah-langkah proaktif dalam mempertahankan atau meningkatkan kesehatan fisik mereka melalui pemantauan IMT yang terinformasi.
+Latar belakang proyek ini didorong oleh kebutuhan akan informasi kesehatan yang akurat dan mudah dimengerti. Tujuannya adalah menyediakan alat yang membantu individu mengambil langkah proaktif untuk menjaga atau meningkatkan kesehatan fisik mereka melalui pemantauan IMT yang terinformasi.
 
 ## 🚀 Fitur Utama
 
 - Pemantauan Indeks Massa Tubuh (IMT)
 - Kalkulator IMT
-- Rekomendasi kebutuhan nutrisi
-- Forum komunitas untuk diskusi
-- Artikel kesehatan tentang IMT
-- Informasi nutrisi makanan
+- Rekomendasi Nutrisi yang Dipersonalisasi
+- Forum Komunitas untuk Diskusi
+- Artikel Kesehatan tentang IMT
+- Informasi Nutrisi pada Makanan
 
 ## 🛠️ Instalasi dan Penggunaan
 
@@ -38,7 +38,7 @@ Latar belakang proyek ini didorong oleh kebutuhan akan aksesibilitas informasi k
 
 ## 🤝 Kontribusi
 
-Kami sangat menghargai kontribusi dari semua pengembang. Jika Anda ingin berkontribusi pada proyek ini, silakan buat pull request dan kami akan memeriksa dan meninjau dengan senang hati.
+Kami menghargai kontribusi dari semua pengembang. Jika Anda ingin berkontribusi pada proyek ini, silakan buat pull request, dan kami akan meninjau dengan senang hati.
 
 ## 👨‍💻 Pengembang
 
@@ -50,8 +50,14 @@ Kami sangat menghargai kontribusi dari semua pengembang. Jika Anda ingin berkont
 
 ## 🚧 Status Proyek
 
-Proyek ini saat ini sedang dalam tahap pengembangan aktif. Kami berusaha untuk terus memperbarui dan meningkatkan fitur-fitur yang ada.
+Proyek ini sedang dalam pengembangan aktif. Kami berupaya terus memperbarui dan meningkatkan fitur-fitur yang ada.
 
 ## 📞 Dukungan
 
-Jika Anda mengalami masalah atau memiliki pertanyaan, jangan ragu untuk menghubungi CEO kami melalui [Beryll Pradana Ramadhan](https://www.linkedin.com/in/beryll-pradana-ramadhan-58044a212/).
+Jika Anda mengalami masalah atau memiliki pertanyaan, jangan ragu untuk menghubungi CEO kami melalui email di [Beryll Pradana Ramadhan](https://www.linkedin.com/in/beryll-pradana-ramadhan-58044a212/).
+
+## 🚀 Pembaruan Terbaru
+
+| Sedang Dikerjakan - 28 Hari Terakhir | Kontributor Aktif Teratas - 28 Hari Terakhir |
+| ----------- | ----------- |
+|<img src="https://next.ossinsight.io/widgets/official/compose-currently-working-on/thumbnail.png?repo_id=412545367&activity_type=all&user_id=12960671&image_size=auto" />|<img src="https://next.ossinsight.io/widgets/official/compose-recent-top-contributors/thumbnail.png?repo_id=412545367&image_size=auto" />|
