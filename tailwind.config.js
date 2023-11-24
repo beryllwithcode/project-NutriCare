@@ -20,6 +20,7 @@ module.exports = withMT({
           greenMuda: "#619937",
           orange: "#F68831",
           greenMudaFade: "#EDF5DB",
+          greenTuaFade: "#B9CC93",
         },
       },
     },
