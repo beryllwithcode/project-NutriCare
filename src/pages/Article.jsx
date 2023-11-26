@@ -67,7 +67,7 @@ const Articles = () => {
           and tips for a healthier life.
         </Typography>
       </div>
-      <div className="grid grid-cols-4 gap-y-4">
+      <div className="grid place-content-center lg:grid-cols-4 gap-y-4">
         <Card className="w-64 shadow-lg">
           <CardHeader floated={false} color="blue-gray">
             <img src="https://picsum.photos/500" alt="Article Thumbnail"></img>
