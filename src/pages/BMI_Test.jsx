@@ -23,7 +23,7 @@ function Guidance() {
           <span className="text-nutricare-orange">BMI Calculate</span>.
         </Typography>
       </div>
-      <div className="flex justify-center flex-row gap-8 mt-8">
+      <div className="flex flex-col mx-auto lg:flex-row justify-center gap-8 mt-8">
         <Card className="w-64 shadow-none bg-nutricare-greenMudaFade text-nutricare-green">
           <CardBody>
             <img src="icons/device.svg" className="mx-auto mb-2"></img>
@@ -111,7 +111,7 @@ function Test() {
           />
           <Radio name="gender" color="green" ripple={true} label="Female" />
         </div>
-        <div className="flex justify-center gap-6 my-4">
+        <div className="flex flex-col w-72 mx-auto lg:flex-row justify-center gap-6 my-4">
           <div className="flex flex-col gap-1">
             <Typography variant="paragraph" className="text-left text-medium">
               Age (years)
@@ -167,8 +167,12 @@ function Result() {
           The <span className="text-nutricare-orange">Result</span>
         </Typography>
       </div>
-      <div className="flex justify-center gap-32 mr-32">
-        <img src="illustration/pana.png" alt="Anatomy" />
+      <div className="flex justify-center gap-32 mr-0 lg:mr-32 ">
+        <img
+          src="illustration/pana.png"
+          alt="Anatomy"
+          className="hidden lg:block"
+        />
         <div className="flex flex-col gap-6">
           <div className="flex flex-col justify-start gap-2">
             <Typography>Your BMI Status</Typography>
