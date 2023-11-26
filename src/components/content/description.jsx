@@ -48,13 +48,6 @@ const Description = () => {
           <span className="text-nutricare-orange">NutriCare</span> has you
           covered.
         </Typography>
-        {/* <div className="mt-4 gap-x-6">
-          <a href="#">
-            <Button className="bg-nutricare-green hover:bg-green-500">
-              Read More
-            </Button>
-          </a>
-        </div> */}
       </motion.div>
     </div>
   );

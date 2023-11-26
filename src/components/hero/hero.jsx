@@ -41,12 +41,6 @@ const Hero = () => {
           whileInView="show"
           viewport={{ root: scrollRef }}
           variants={variants}
-          // transition={{
-          //   delay: 0.25,
-          //   duration: 0.75,
-          //   type: "spring",
-          //   stiffness: 150,
-          // }}
           className="max-w-2xl"
         >
           <motion.h1
@@ -59,7 +53,7 @@ const Hero = () => {
           </motion.h1>
           <motion.p
             variants={item}
-            className="mt-6 text-md leading-8 text-green-800"
+            className="mt-6 text-lg leading-8 text-green-800"
           >
             <span className="text-orange-600">NutriCare</span> is your one-stop
             destination for achieving a healthier lifestyle through proper
@@ -70,7 +64,7 @@ const Hero = () => {
             nutritional content of your meals,{" "}
             <span className="text-orange-600">NutriCare</span> has you covered.
           </motion.p>
-          <motion.div variants={item} className="mt-4 gap-x-6">
+          <motion.div variants={item} className="mt-8 gap-x-6">
             <a href="#content">
               <Button className="bg-green-800 hover:bg-green-500">
                 Read More
