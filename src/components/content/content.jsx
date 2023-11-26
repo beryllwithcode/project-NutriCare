@@ -394,7 +394,7 @@ const Articles = () => {
           </Card>
         </Carousel>
       </div>
-      <div className="flex gap-4 mt-8">
+      <div className="lg:flex gap-4 mt-8 hidden">
         <Card className="mx-auto w-64 shadow-none">
           <CardHeader floated={false} color="blue-gray">
             <img src="https://picsum.photos/500" alt="Article Thumbnail"></img>
