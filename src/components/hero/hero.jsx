@@ -71,7 +71,7 @@ const Hero = () => {
             <span className="text-orange-600">NutriCare</span> has you covered.
           </motion.p>
           <motion.div variants={item} className="mt-4 gap-x-6">
-            <a href="#">
+            <a href="#content">
               <Button className="bg-green-800 hover:bg-green-500">
                 Read More
               </Button>
