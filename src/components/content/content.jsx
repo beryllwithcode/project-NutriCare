@@ -10,6 +10,7 @@ import {
 } from "@material-tailwind/react";
 import React, { useRef } from "react";
 import ScrollCarousel from "scroll-carousel-react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Description from "./description";
 
@@ -144,11 +145,11 @@ const Test = () => {
             healthier you by knowing your BMI.
           </Typography>
           <div className="mt-4 gap-x-6">
-            <a href="#">
+            <Link to="/bmi-test">
               <Button className="bg-nutricare-green hover:bg-green-500">
-                Test BMI
+                Calculate BMI
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -186,7 +187,7 @@ const Articles = () => {
       </motion.div>
       <div className="flex justify-center max-w-xs lg:max-w-2xl mx-auto">
         <Carousel
-          className="rounded-xl mt-6"
+          className="rounded-xl mt-6 lg:hidden xl:hidden"
           loop={true}
           navigation={false}
           autoplay={true}
@@ -195,7 +196,7 @@ const Articles = () => {
               variant="text"
               size="lg"
               onClick={handlePrev}
-              className="!absolute top-2/4 left-4 text-nutricare-green hidden lg:block xl:block -translate-y-2/4"
+              className="!absolute top-2/4 left-4 text-nutricare-green hidden -translate-y-2/4"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -218,7 +219,7 @@ const Articles = () => {
               variant="text"
               size="lg"
               onClick={handleNext}
-              className="!absolute top-2/4 !right-4 text-nutricare-green hidden lg:block xl:block -translate-y-2/4"
+              className="!absolute top-2/4 !right-4 text-nutricare-green hidden -translate-y-2/4"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -237,184 +238,231 @@ const Articles = () => {
             </IconButton>
           )}
         >
-          <div className="flex gap-4 justify-center">
-            <Card className="w-64 shadow-lg">
-              <CardHeader floated={false} color="blue-gray">
-                <img
-                  src="https://picsum.photos/500"
-                  alt="Article Thumbnail"
-                ></img>
-                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-              </CardHeader>
-              <CardBody>
-                <Typography variant="h5" color="orange" className="mb-2">
-                  Lorem Ipsum
-                </Typography>
-                <Typography>
-                  Veniam veniam ullamco anim reprehenderit tempor.
-                </Typography>
-              </CardBody>
-              <CardFooter className="pt-2">
-                <Button
-                  size="lg"
-                  className="bg-nutricare-green hover:bg-green-500"
-                  fullWidth={true}
-                >
-                  Read More
-                </Button>
-              </CardFooter>
-            </Card>
-            <Card className="w-64 shadow-lg overflow-hidden">
-              <CardHeader
-                floated={false}
-                shadow={false}
-                color="transparent"
-                className="m-0 rounded-none"
+          <Card className="mx-auto w-64 shadow-none">
+            <CardHeader floated={false} color="blue-gray">
+              <img
+                src="https://picsum.photos/500"
+                alt="Article Thumbnail"
+              ></img>
+              <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
+            </CardHeader>
+            <CardBody>
+              <Typography variant="h5" color="orange" className="mb-2">
+                Lorem Ipsum
+              </Typography>
+              <Typography>
+                Veniam veniam ullamco anim reprehenderit tempor.
+              </Typography>
+            </CardBody>
+            <CardFooter className="pt-2">
+              <Button
+                size="lg"
+                className="bg-nutricare-green hover:bg-green-500"
+                fullWidth={true}
               >
-                <img
-                  src="https://picsum.photos/500"
-                  alt="Article Thumbnail"
-                ></img>
-                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-              </CardHeader>
-              <CardBody>
-                <Typography variant="h5" color="orange" className="mb-2">
-                  Lorem Ipsum
-                </Typography>
-                <Typography>
-                  Veniam veniam ullamco anim reprehenderit tempor.
-                </Typography>
-              </CardBody>
-              <CardFooter className="pt-2">
-                <Button
-                  size="lg"
-                  className="bg-nutricare-green hover:bg-green-500"
-                  fullWidth={true}
-                >
-                  Read More
-                </Button>
-              </CardFooter>
-            </Card>
-          </div>
-          <div className="flex gap-4 justify-center">
-            <Card className="w-64 shadow-lg">
-              <CardHeader floated={false} color="blue-gray">
-                <img
-                  src="https://picsum.photos/500"
-                  alt="Article Thumbnail"
-                ></img>
-                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-              </CardHeader>
-              <CardBody>
-                <Typography variant="h5" color="orange" className="mb-2">
-                  Lorem Ipsum
-                </Typography>
-                <Typography>
-                  Veniam veniam ullamco anim reprehenderit tempor.
-                </Typography>
-              </CardBody>
-              <CardFooter className="pt-2">
-                <Button
-                  size="lg"
-                  className="bg-nutricare-green hover:bg-green-500"
-                  fullWidth={true}
-                >
-                  Read More
-                </Button>
-              </CardFooter>
-            </Card>
-            <Card className="w-64 shadow-lg overflow-hidden">
-              <CardHeader
-                floated={false}
-                shadow={false}
-                color="transparent"
-                className="m-0 rounded-none"
+                Read More
+              </Button>
+            </CardFooter>
+          </Card>
+          <Card className="mx-auto w-64 shadow-none">
+            <CardHeader floated={false} color="blue-gray">
+              <img
+                src="https://picsum.photos/500"
+                alt="Article Thumbnail"
+              ></img>
+              <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
+            </CardHeader>
+            <CardBody>
+              <Typography variant="h5" color="orange" className="mb-2">
+                Lorem Ipsum
+              </Typography>
+              <Typography>
+                Veniam veniam ullamco anim reprehenderit tempor.
+              </Typography>
+            </CardBody>
+            <CardFooter className="pt-2">
+              <Button
+                size="lg"
+                className="bg-nutricare-green hover:bg-green-500"
+                fullWidth={true}
               >
-                <img
-                  src="https://picsum.photos/500"
-                  alt="Article Thumbnail"
-                ></img>
-                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-              </CardHeader>
-              <CardBody>
-                <Typography variant="h5" color="orange" className="mb-2">
-                  Lorem Ipsum
-                </Typography>
-                <Typography>
-                  Veniam veniam ullamco anim reprehenderit tempor.
-                </Typography>
-              </CardBody>
-              <CardFooter className="pt-2">
-                <Button
-                  size="lg"
-                  className="bg-nutricare-green hover:bg-green-500"
-                  fullWidth={true}
-                >
-                  Read More
-                </Button>
-              </CardFooter>
-            </Card>
-          </div>
-          <div className="flex gap-4 justify-center">
-            <Card className="w-64 shadow-lg">
-              <CardHeader floated={false} color="blue-gray">
-                <img
-                  src="https://picsum.photos/500"
-                  alt="Article Thumbnail"
-                ></img>
-                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-              </CardHeader>
-              <CardBody>
-                <Typography variant="h5" color="orange" className="mb-2">
-                  Lorem Ipsum
-                </Typography>
-                <Typography>
-                  Veniam veniam ullamco anim reprehenderit tempor.
-                </Typography>
-              </CardBody>
-              <CardFooter className="pt-2">
-                <Button
-                  size="lg"
-                  className="bg-nutricare-green hover:bg-green-500"
-                  fullWidth={true}
-                >
-                  Read More
-                </Button>
-              </CardFooter>
-            </Card>
-            <Card className="w-64 shadow-lg overflow-hidden">
-              <CardHeader
-                floated={false}
-                shadow={false}
-                color="transparent"
-                className="m-0 rounded-none"
+                Read More
+              </Button>
+            </CardFooter>
+          </Card>
+          <Card className="mx-auto w-64 shadow-none">
+            <CardHeader floated={false} color="blue-gray">
+              <img
+                src="https://picsum.photos/500"
+                alt="Article Thumbnail"
+              ></img>
+              <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
+            </CardHeader>
+            <CardBody>
+              <Typography variant="h5" color="orange" className="mb-2">
+                Lorem Ipsum
+              </Typography>
+              <Typography>
+                Veniam veniam ullamco anim reprehenderit tempor.
+              </Typography>
+            </CardBody>
+            <CardFooter className="pt-2">
+              <Button
+                size="lg"
+                className="bg-nutricare-green hover:bg-green-500"
+                fullWidth={true}
               >
-                <img
-                  src="https://picsum.photos/500"
-                  alt="Article Thumbnail"
-                ></img>
-                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-              </CardHeader>
-              <CardBody>
-                <Typography variant="h5" color="orange" className="mb-2">
-                  Lorem Ipsum
-                </Typography>
-                <Typography>
-                  Veniam veniam ullamco anim reprehenderit tempor.
-                </Typography>
-              </CardBody>
-              <CardFooter className="pt-2">
-                <Button
-                  size="lg"
-                  className="bg-nutricare-green hover:bg-green-500"
-                  fullWidth={true}
-                >
-                  Read More
-                </Button>
-              </CardFooter>
-            </Card>
-          </div>
+                Read More
+              </Button>
+            </CardFooter>
+          </Card>
+          <Card className="mx-auto w-64 shadow-none">
+            <CardHeader floated={false} color="blue-gray">
+              <img
+                src="https://picsum.photos/500"
+                alt="Article Thumbnail"
+              ></img>
+              <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
+            </CardHeader>
+            <CardBody>
+              <Typography variant="h5" color="orange" className="mb-2">
+                Lorem Ipsum
+              </Typography>
+              <Typography>
+                Veniam veniam ullamco anim reprehenderit tempor.
+              </Typography>
+            </CardBody>
+            <CardFooter className="pt-2">
+              <Button
+                size="lg"
+                className="bg-nutricare-green hover:bg-green-500"
+                fullWidth={true}
+              >
+                Read More
+              </Button>
+            </CardFooter>
+          </Card>
+          <Card className="mx-auto w-64 shadow-none">
+            <CardHeader floated={false} color="blue-gray">
+              <img
+                src="https://picsum.photos/500"
+                alt="Article Thumbnail"
+              ></img>
+              <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
+            </CardHeader>
+            <CardBody>
+              <Typography variant="h5" color="orange" className="mb-2">
+                Lorem Ipsum
+              </Typography>
+              <Typography>
+                Veniam veniam ullamco anim reprehenderit tempor.
+              </Typography>
+            </CardBody>
+            <CardFooter className="pt-2">
+              <Button
+                size="lg"
+                className="bg-nutricare-green hover:bg-green-500"
+                fullWidth={true}
+              >
+                Read More
+              </Button>
+            </CardFooter>
+          </Card>
         </Carousel>
+      </div>
+      <div className="flex gap-4 mt-8">
+        <Card className="mx-auto w-64 shadow-none">
+          <CardHeader floated={false} color="blue-gray">
+            <img src="https://picsum.photos/500" alt="Article Thumbnail"></img>
+            <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
+          </CardHeader>
+          <CardBody>
+            <Typography variant="h5" color="orange" className="mb-2">
+              Lorem Ipsum
+            </Typography>
+            <Typography>
+              Veniam veniam ullamco anim reprehenderit tempor.
+            </Typography>
+          </CardBody>
+          <CardFooter className="pt-2">
+            <Button
+              size="lg"
+              className="bg-nutricare-green hover:bg-green-500"
+              fullWidth={true}
+            >
+              Read More
+            </Button>
+          </CardFooter>
+        </Card>
+        <Card className="mx-auto w-64 shadow-none">
+          <CardHeader floated={false} color="blue-gray">
+            <img src="https://picsum.photos/500" alt="Article Thumbnail"></img>
+            <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
+          </CardHeader>
+          <CardBody>
+            <Typography variant="h5" color="orange" className="mb-2">
+              Lorem Ipsum
+            </Typography>
+            <Typography>
+              Veniam veniam ullamco anim reprehenderit tempor.
+            </Typography>
+          </CardBody>
+          <CardFooter className="pt-2">
+            <Button
+              size="lg"
+              className="bg-nutricare-green hover:bg-green-500"
+              fullWidth={true}
+            >
+              Read More
+            </Button>
+          </CardFooter>
+        </Card>
+        <Card className="mx-auto w-64 shadow-none">
+          <CardHeader floated={false} color="blue-gray">
+            <img src="https://picsum.photos/500" alt="Article Thumbnail"></img>
+            <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
+          </CardHeader>
+          <CardBody>
+            <Typography variant="h5" color="orange" className="mb-2">
+              Lorem Ipsum
+            </Typography>
+            <Typography>
+              Veniam veniam ullamco anim reprehenderit tempor.
+            </Typography>
+          </CardBody>
+          <CardFooter className="pt-2">
+            <Button
+              size="lg"
+              className="bg-nutricare-green hover:bg-green-500"
+              fullWidth={true}
+            >
+              Read More
+            </Button>
+          </CardFooter>
+        </Card>
+        <Card className="mx-auto w-64 shadow-none">
+          <CardHeader floated={false} color="blue-gray">
+            <img src="https://picsum.photos/500" alt="Article Thumbnail"></img>
+            <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
+          </CardHeader>
+          <CardBody>
+            <Typography variant="h5" color="orange" className="mb-2">
+              Lorem Ipsum
+            </Typography>
+            <Typography>
+              Veniam veniam ullamco anim reprehenderit tempor.
+            </Typography>
+          </CardBody>
+          <CardFooter className="pt-2">
+            <Button
+              size="lg"
+              className="bg-nutricare-green hover:bg-green-500"
+              fullWidth={true}
+            >
+              Read More
+            </Button>
+          </CardFooter>
+        </Card>
       </div>
     </div>
   );
@@ -488,11 +536,11 @@ const Community = () => {
             }}
           >
             <div className="mt-4 gap-x-6">
-              <a href="#">
+              <Link to="/community">
                 <Button className="bg-nutricare-green hover:bg-green-500">
                   Join Us!
                 </Button>
-              </a>
+              </Link>
             </div>
           </motion.div>
         </motion.div>
@@ -519,11 +567,11 @@ const FoodNutrient = () => {
             meal a healthier one with our Food Nutrient Details.
           </Typography>
           <div className="mt-4 gap-x-6">
-            <a href="#">
+            <Link to="/food-nutrient">
               <Button className="bg-nutricare-green hover:bg-green-500">
                 More
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
         <img
@@ -539,7 +587,7 @@ const FoodNutrient = () => {
 
 const Content = () => {
   return (
-    <div>
+    <div id="content">
       <Description />
       <Services />
       {/* <Geser /> */}
