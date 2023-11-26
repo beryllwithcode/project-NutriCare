@@ -122,17 +122,40 @@ const Services = () => {
     </>
   );
 };
+
 const Test = () => {
+  const scrollRef = useRef(null);
   return (
     <>
       <div className="relative bg-light-green-50 rounded-ss-full rounded-se-full px-10 lg:px-24 py-16 "></div>
+
       <div className="relative flex bg-light-green-50 justify-center px-10 gap-14 lg:px-24 pb-14 text-nutricare-green">
-        <img
+        <motion.img
+          initial={{ opacity: 0, x: "-100px" }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ root: scrollRef }}
+          transition={{
+            delay: 0.25,
+            duration: 0.75,
+            type: "spring",
+            stiffness: 150,
+          }}
           src="illustration/Character.svg"
           alt="Illustration"
           className="h-72 hidden lg:block xl:block"
-        ></img>
-        <div className="max-w-xl">
+        ></motion.img>
+        <motion.div
+          initial={{ opacity: 0, x: "100px" }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ root: scrollRef }}
+          transition={{
+            delay: 0.25,
+            duration: 0.75,
+            type: "spring",
+            stiffness: 150,
+          }}
+          className="max-w-xl"
+        >
           <Typography variant="h1" className="mb-4">
             Calculate your{" "}
             <span className="text-nutricare-orange">Body-Mass</span> Index here.
@@ -151,11 +174,12 @@ const Test = () => {
               </Button>
             </Link>
           </div>
-        </div>
+        </motion.div>
       </div>
     </>
   );
 };
+
 const Articles = () => {
   const scrollRef = useRef(null);
   return (

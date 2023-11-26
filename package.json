@@ -13,9 +13,7 @@
     "react-router-dom": "^6.20.0",
     "react-scripts": "5.0.1",
     "scroll-carousel": "^1.2.7",
-    "scroll-carousel-react": "^1.0.0",
-    "swiper": "^11.0.5",
-    "web-vitals": "^2.1.4"
+    "scroll-carousel-react": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
