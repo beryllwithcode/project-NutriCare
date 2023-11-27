@@ -33,7 +33,7 @@ Latar belakang proyek ini didorong oleh kebutuhan akan informasi kesehatan yang 
 1. Clone repositori ini: `git clone https://github.com/BeryllPradanaRamadhan/capstone-NutriCare.git`
 2. Masuk ke direktori proyek
 3. Instal dependensi: `npm install`
-4. Jalankan aplikasi: `npm start-dev`
+4. Jalankan aplikasi: `npm start`
 5. Pastikan koneksi internet aman
 
 ## 🤝 Kontribusi
