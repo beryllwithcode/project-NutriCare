@@ -1,6 +1,6 @@
+
 import React from "react";
 import {
-  Button,
   Card,
   CardBody,
   CardFooter,
@@ -61,14 +61,20 @@ const Developers = () => {
         <Card className="w-64">
           <CardHeader floated={false} className="">
             <img
-              src="https://docs.material-tailwind.com/img/team-3.jpg"
-              alt="profile-picture"
+              src="/assets/beryll.jpg"
+              alt=""
             />
           </CardHeader>
           <CardBody className="text-center">
-            <Typography variant="h4" className="text-nutricare-orange">
+            <Typography variant="h4" className="text-nutricare-orange pb-2 mb-1">
               Beryll Ramadhan
             </Typography>
+            <Typography 
+            variant="small"
+            className="font-medium text-nutricare-green m-1"
+            >
+              Hustler
+            </Typography>
             <Typography
               variant="small"
               className="font-medium text-nutricare-green"
@@ -76,31 +82,31 @@ const Developers = () => {
               Front-End Developer
             </Typography>
           </CardBody>
-          <CardFooter className="flex justify-center gap-7 pt-0 pb-4">
-            <Tooltip content="Like">
+          <CardFooter className="flex justify-center gap-7 pt-1 pb-4">
+            <Tooltip content="LinkedIn">
               <Typography
                 as="a"
-                href="#facebook"
+                href="https://www.linkedin.com/in/beryll-pradana-ramadhan-58044a212/"
                 variant="lead"
                 className="text-nutricare-green"
               >
                 <i className="fab fa-linkedin" />
               </Typography>
             </Tooltip>
-            <Tooltip content="Follow">
+            <Tooltip content="Instagram">
               <Typography
                 as="a"
-                href="#twitter"
+                href="https://www.instagram.com/beryllramadhan/"
                 variant="lead"
                 className="text-nutricare-green"
               >
                 <i className="fab fa-instagram" />
               </Typography>
             </Tooltip>
-            <Tooltip content="Follow">
+            <Tooltip content="Github">
               <Typography
                 as="a"
-                href="#instagram"
+                href="https://github.com/BeryllPradanaRamadhan"
                 variant="lead"
                 className="text-nutricare-green"
               >
@@ -113,12 +119,18 @@ const Developers = () => {
           <CardHeader floated={false} className="">
             <img
               src="https://docs.material-tailwind.com/img/team-3.jpg"
-              alt="profile-picture"
+              alt=""
             />
           </CardHeader>
           <CardBody className="text-center">
-            <Typography variant="h4" className="text-nutricare-orange">
+            <Typography variant="h4" className="text-nutricare-orange pb-2 mb-1">
               Bernard Sianturi
+            </Typography>
+            <Typography 
+            variant="small"
+            className="font-medium text-nutricare-green m-1"
+            >
+              Hacker
             </Typography>
             <Typography
               variant="small"
@@ -128,30 +140,30 @@ const Developers = () => {
             </Typography>
           </CardBody>
           <CardFooter className="flex justify-center gap-7 pt-0 pb-4">
-            <Tooltip content="Like">
+            <Tooltip content="LinkedIn">
               <Typography
                 as="a"
-                href="#facebook"
+                href="https://www.linkedin.com/in/bersianturi/"
                 variant="lead"
                 className="text-nutricare-green"
               >
                 <i className="fab fa-linkedin" />
               </Typography>
             </Tooltip>
-            <Tooltip content="Follow">
+            <Tooltip content="Instagram">
               <Typography
                 as="a"
-                href="#twitter"
+                href="https://www.instagram.com/bersianturi_/"
                 variant="lead"
                 className="text-nutricare-green"
               >
                 <i className="fab fa-instagram" />
               </Typography>
             </Tooltip>
-            <Tooltip content="Follow">
+            <Tooltip content="Github">
               <Typography
                 as="a"
-                href="#instagram"
+                href="https://github.com/bersianturi"
                 variant="lead"
                 className="text-nutricare-green"
               >
@@ -164,12 +176,18 @@ const Developers = () => {
           <CardHeader floated={false} className="">
             <img
               src="https://docs.material-tailwind.com/img/team-3.jpg"
-              alt="profile-picture"
+              alt=""
             />
           </CardHeader>
           <CardBody className="text-center px-0">
-            <Typography variant="h4" className="text-nutricare-orange">
+            <Typography variant="h4" className="text-nutricare-orange pb-2 mb-1">
               Agus Nanda
+            </Typography>
+            <Typography 
+            variant="small"
+            className="font-medium text-nutricare-green m-1"
+            >
+              Hipster
             </Typography>
             <Typography
               variant="small"
@@ -179,30 +197,30 @@ const Developers = () => {
             </Typography>
           </CardBody>
           <CardFooter className="flex justify-center gap-7 pt-0 pb-4">
-            <Tooltip content="Like">
+            <Tooltip content="LinkedIn">
               <Typography
                 as="a"
-                href="#facebook"
+                href="https://www.linkedin.com/in/ketutaguscahyadinanda/"
                 variant="lead"
                 className="text-nutricare-green"
               >
                 <i className="fab fa-linkedin" />
               </Typography>
             </Tooltip>
-            <Tooltip content="Follow">
+            <Tooltip content="Instagram">
               <Typography
                 as="a"
-                href="#twitter"
+                href="https://www.instagram.com/floa.tint117/"
                 variant="lead"
                 className="text-nutricare-green"
               >
                 <i className="fab fa-instagram" />
               </Typography>
             </Tooltip>
-            <Tooltip content="Follow">
+            <Tooltip content="Github">
               <Typography
                 as="a"
-                href="#instagram"
+                href="https://github.com/Gusnand"
                 variant="lead"
                 className="text-nutricare-green"
               >
@@ -214,64 +232,19 @@ const Developers = () => {
         <Card className="w-64">
           <CardHeader floated={false} className="">
             <img
-              src="https://docs.material-tailwind.com/img/team-3.jpg"
-              alt="profile-picture"
+              src="/assets/imam.jpg"
+              alt=""
             />
           </CardHeader>
           <CardBody className="text-center">
-            <Typography variant="h4" className="text-nutricare-orange">
+            <Typography variant="h4" className="text-nutricare-orange pb-2 mb-1">
               Imam Hidayat
             </Typography>
-            <Typography
-              variant="small"
-              className="font-medium text-nutricare-green"
+            <Typography 
+            variant="small"
+            className="font-medium text-nutricare-green m-1"
             >
-              Front-End Developer
-            </Typography>
-          </CardBody>
-          <CardFooter className="flex justify-center gap-7 pt-0 pb-4">
-            <Tooltip content="Like">
-              <Typography
-                as="a"
-                href="#facebook"
-                variant="lead"
-                className="text-nutricare-green"
-              >
-                <i className="fab fa-linkedin" />
-              </Typography>
-            </Tooltip>
-            <Tooltip content="Follow">
-              <Typography
-                as="a"
-                href="#twitter"
-                variant="lead"
-                className="text-nutricare-green"
-              >
-                <i className="fab fa-instagram" />
-              </Typography>
-            </Tooltip>
-            <Tooltip content="Follow">
-              <Typography
-                as="a"
-                href="#instagram"
-                variant="lead"
-                className="text-nutricare-green"
-              >
-                <i className="fab fa-github" />
-              </Typography>
-            </Tooltip>
-          </CardFooter>
-        </Card>
-        <Card className="w-64">
-          <CardHeader floated={false} className="">
-            <img
-              src="https://docs.material-tailwind.com/img/team-3.jpg"
-              alt="profile-picture"
-            />
-          </CardHeader>
-          <CardBody className="text-center">
-            <Typography variant="h4" className="text-nutricare-orange">
-              Husain Abdullah
+              Hacker
             </Typography>
             <Typography
               variant="small"
@@ -281,7 +254,7 @@ const Developers = () => {
             </Typography>
           </CardBody>
           <CardFooter className="flex justify-center gap-7 pt-0 pb-4">
-            <Tooltip content="Like">
+            <Tooltip content="LinkedIn">
               <Typography
                 as="a"
                 href="#facebook"
@@ -291,20 +264,77 @@ const Developers = () => {
                 <i className="fab fa-linkedin" />
               </Typography>
             </Tooltip>
-            <Tooltip content="Follow">
+            <Tooltip content="Instagram">
               <Typography
                 as="a"
-                href="#twitter"
+                href="https://www.instagram.com/imamsyiva.h/"
                 variant="lead"
                 className="text-nutricare-green"
               >
                 <i className="fab fa-instagram" />
               </Typography>
             </Tooltip>
-            <Tooltip content="Follow">
+            <Tooltip content="Github">
               <Typography
                 as="a"
-                href="#instagram"
+                href="https://github.com/imsyh"
+                variant="lead"
+                className="text-nutricare-green"
+              >
+                <i className="fab fa-github" />
+              </Typography>
+            </Tooltip>
+          </CardFooter>
+        </Card>
+        <Card className="w-64">
+          <CardHeader floated={false} className="">
+            <img
+              src="/assets/husain.jpg"
+              alt=""
+            />
+          </CardHeader>
+          <CardBody className="text-center">
+            <Typography variant="h4" className="text-nutricare-orange pb-2 mb-1">
+              Husain Abdullah
+            </Typography>
+            <Typography 
+            variant="small"
+            className="font-medium text-nutricare-green m-1"
+            >
+              Hacker
+            </Typography>
+            <Typography
+              variant="small"
+              className="font-medium text-nutricare-green"
+            >
+              Fullstack Developer
+            </Typography>
+          </CardBody>
+          <CardFooter className="flex justify-center gap-7 pt-0 pb-4">
+            <Tooltip content="LinkedIn">
+              <Typography
+                as="a"
+                href="https://www.linkedin.com/in/husain-abdullah-b986a2263/"
+                variant="lead"
+                className="text-nutricare-green"
+              >
+                <i className="fab fa-linkedin" />
+              </Typography>
+            </Tooltip>
+            <Tooltip content="Instagram">
+              <Typography
+                as="a"
+                href="https://www.instagram.com/hyuzhen_it/"
+                variant="lead"
+                className="text-nutricare-green"
+              >
+                <i className="fab fa-instagram" />
+              </Typography>
+            </Tooltip>
+            <Tooltip content="Github">
+              <Typography
+                as="a"
+                href="https://github.com/HyuZhen13"
                 variant="lead"
                 className="text-nutricare-green"
               >
@@ -339,16 +369,16 @@ const Advisor = () => {
           <CardHeader floated={false} className="">
             <img
               src="https://docs.material-tailwind.com/img/team-3.jpg"
-              alt="profile-picture"
+              alt=""
             />
           </CardHeader>
           <CardBody className="text-center px-0">
-            <Typography variant="h5" className="text-nutricare-orange">
+            <Typography variant="h5" className="text-nutricare-orange" >
               Shidqi Rifat Pangestu
             </Typography>
             <Typography
               variant="small"
-              className="font-medium text-nutricare-green"
+              className="font-medium text-nutricare-green pt-1"
             >
               Advisor
             </Typography>
