@@ -62,7 +62,7 @@ const Developers = () => {
           <CardHeader floated={false} className="">
             <img
               src="/assets/beryll.jpg"
-              alt=""
+              alt="Beryll Pradana Ramadhan"
             />
           </CardHeader>
           <CardBody className="text-center">
@@ -82,7 +82,7 @@ const Developers = () => {
               Front-End Developer
             </Typography>
           </CardBody>
-          <CardFooter className="flex justify-center gap-7 pt-1 pb-4">
+          <CardFooter className="flex justify-center gap-7 pt-0 pb-4">
             <Tooltip content="LinkedIn">
               <Typography
                 as="a"
@@ -119,7 +119,7 @@ const Developers = () => {
           <CardHeader floated={false} className="">
             <img
               src="https://docs.material-tailwind.com/img/team-3.jpg"
-              alt=""
+              alt="Bernard Andrean Sianturi"
             />
           </CardHeader>
           <CardBody className="text-center">
@@ -176,7 +176,7 @@ const Developers = () => {
           <CardHeader floated={false} className="">
             <img
               src="https://docs.material-tailwind.com/img/team-3.jpg"
-              alt=""
+              alt="Ketut Agus Cahyadi Nanda"
             />
           </CardHeader>
           <CardBody className="text-center px-0">
@@ -233,7 +233,7 @@ const Developers = () => {
           <CardHeader floated={false} className="">
             <img
               src="/assets/imam.jpg"
-              alt=""
+              alt="Imam Syiva Hidayat"
             />
           </CardHeader>
           <CardBody className="text-center">
@@ -290,7 +290,7 @@ const Developers = () => {
           <CardHeader floated={false} className="">
             <img
               src="/assets/husain.jpg"
-              alt=""
+              alt="Husain Abdullah"
             />
           </CardHeader>
           <CardBody className="text-center">
