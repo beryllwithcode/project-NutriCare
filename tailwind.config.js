@@ -21,6 +21,8 @@ module.exports = withMT({
           orange: "#F68831",
           greenMudaFade: "#EDF5DB",
           greenTuaFade: "#B9CC93",
+          linearStart: "#8FC666",
+          linearEnd: "#3A6C14",
         },
       },
     },
