@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   Card,
@@ -60,18 +59,18 @@ const Developers = () => {
       <div className="flex flex-wrap justify-center gap-y-6 gap-x-10">
         <Card className="w-64">
           <CardHeader floated={false} className="">
-            <img
-              src="/assets/beryll.jpg"
-              alt="Beryll Pradana Ramadhan"
-            />
+            <img src="/assets/beryll.jpg" alt="Beryll Pradana Ramadhan" />
           </CardHeader>
           <CardBody className="text-center">
-            <Typography variant="h4" className="text-nutricare-orange pb-2 mb-1">
+            <Typography
+              variant="h4"
+              className="text-nutricare-orange pb-2 mb-1"
+            >
               Beryll Ramadhan
             </Typography>
-            <Typography 
-            variant="small"
-            className="font-medium text-nutricare-green m-1"
+            <Typography
+              variant="small"
+              className="font-medium text-nutricare-green m-1"
             >
               Hustler
             </Typography>
@@ -123,18 +122,18 @@ const Developers = () => {
         </Card>
         <Card className="w-64">
           <CardHeader floated={false} className="">
-            <img
-              src="https://docs.material-tailwind.com/img/team-3.jpg"
-              alt="Bernard Andrean Sianturi"
-            />
+            <img src="/assets/BER.png" alt="Bernard Andrean Sianturi" />
           </CardHeader>
           <CardBody className="text-center">
-            <Typography variant="h4" className="text-nutricare-orange pb-2 mb-1">
+            <Typography
+              variant="h4"
+              className="text-nutricare-orange pb-2 mb-1"
+            >
               Bernard Sianturi
             </Typography>
-            <Typography 
-            variant="small"
-            className="font-medium text-nutricare-green m-1"
+            <Typography
+              variant="small"
+              className="font-medium text-nutricare-green m-1"
             >
               Hacker
             </Typography>
@@ -186,18 +185,18 @@ const Developers = () => {
         </Card>
         <Card className="w-64">
           <CardHeader floated={false} className="">
-            <img
-              src="https://docs.material-tailwind.com/img/team-3.jpg"
-              alt="Ketut Agus Cahyadi Nanda"
-            />
+            <img src="/assets/gusnan.png" alt="Ketut Agus Cahyadi Nanda" />
           </CardHeader>
           <CardBody className="text-center px-0">
-            <Typography variant="h4" className="text-nutricare-orange pb-2 mb-1">
+            <Typography
+              variant="h4"
+              className="text-nutricare-orange pb-2 mb-1"
+            >
               Agus Nanda
             </Typography>
-            <Typography 
-            variant="small"
-            className="font-medium text-nutricare-green m-1"
+            <Typography
+              variant="small"
+              className="font-medium text-nutricare-green m-1"
             >
               Hipster
             </Typography>
@@ -249,18 +248,18 @@ const Developers = () => {
         </Card>
         <Card className="w-64">
           <CardHeader floated={false} className="">
-            <img
-              src="/assets/imam.jpg"
-              alt="Imam Syiva Hidayat"
-            />
+            <img src="/assets/imam.jpg" alt="Imam Syiva Hidayat" />
           </CardHeader>
           <CardBody className="text-center">
-            <Typography variant="h4" className="text-nutricare-orange pb-2 mb-1">
+            <Typography
+              variant="h4"
+              className="text-nutricare-orange pb-2 mb-1"
+            >
               Imam Hidayat
             </Typography>
-            <Typography 
-            variant="small"
-            className="font-medium text-nutricare-green m-1"
+            <Typography
+              variant="small"
+              className="font-medium text-nutricare-green m-1"
             >
               Hacker
             </Typography>
@@ -312,18 +311,18 @@ const Developers = () => {
         </Card>
         <Card className="w-64">
           <CardHeader floated={false} className="">
-            <img
-              src="/assets/husain.jpg"
-              alt="Husain Abdullah"
-            />
+            <img src="/assets/husain.jpg" alt="Husain Abdullah" />
           </CardHeader>
           <CardBody className="text-center">
-            <Typography variant="h4" className="text-nutricare-orange pb-2 mb-1">
+            <Typography
+              variant="h4"
+              className="text-nutricare-orange pb-2 mb-1"
+            >
               Husain Abdullah
             </Typography>
-            <Typography 
-            variant="small"
-            className="font-medium text-nutricare-green m-1"
+            <Typography
+              variant="small"
+              className="font-medium text-nutricare-green m-1"
             >
               Hacker
             </Typography>
@@ -403,7 +402,7 @@ const Advisor = () => {
             />
           </CardHeader>
           <CardBody className="text-center px-0">
-            <Typography variant="h5" className="text-nutricare-orange" >
+            <Typography variant="h5" className="text-nutricare-orange">
               Shidqi Rifat Pangestu
             </Typography>
             <Typography
