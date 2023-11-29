@@ -1,7 +1,7 @@
 # Capstone Project - NutriCare
 
-[![GitHub Issues](https://img.shields.io/github/issues/BeryllPradanaRamadhan/capstone-NutriCare.svg)](https://github.com/BeryllPradanaRamadhan/capstone-NutriCare/issues)
-[![GitHub Last Commit](https://img.shields.io/github/last-commit/BeryllPradanaRamadhan/capstone-NutriCare.svg)](https://github.com/BeryllPradanaRamadhan/capstone-NutriCare/commits)
+[![GitHub Issues](https://img.shields.io/github/issues/BeryllPradanaRamadhan/capstone-NutriCare.svg)](https://github.com/BeryllPradanaRamadhan/project-NutriCare/issues)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/BeryllPradanaRamadhan/capstone-NutriCare.svg)](https://github.com/BeryllPradanaRamadhan/project-NutriCare/commits)
 
 <p align="center">
   <img src="public/logo/logo192.png" alt="Logo" width="150px">
@@ -55,10 +55,6 @@ Proyek ini sedang dalam pengembangan aktif. Kami berupaya terus memperbarui dan 
 ## 📞 Dukungan
 
 Jika Anda mengalami masalah atau memiliki pertanyaan, jangan ragu untuk menghubungi CEO kami melalui email di [Beryll Pradana Ramadhan](https://www.linkedin.com/in/beryll-pradana-ramadhan-58044a212/).
-
-## 📊 Statistik Kontribusi
-<!-- Aktivitas Commit -->
-[![Aktivitas Commit](https://img.shields.io/github/commit-activity/w/BeryllPradanaRamadhan/project-NutriCare?label=Commit%20Activity&style=flat-square)](https://github.com/BeryllPradanaRamadhan/project-NutriCare/commits)
 
 ## 👥 Kontributor Paling Aktif - 28 Hari Terakhir
 
