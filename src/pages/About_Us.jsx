@@ -89,6 +89,8 @@ const Developers = () => {
                 href="https://www.linkedin.com/in/beryll-pradana-ramadhan-58044a212/"
                 variant="lead"
                 className="text-nutricare-green"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-linkedin" />
               </Typography>
@@ -99,6 +101,8 @@ const Developers = () => {
                 href="https://www.instagram.com/beryllramadhan/"
                 variant="lead"
                 className="text-nutricare-green"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-instagram" />
               </Typography>
@@ -109,6 +113,8 @@ const Developers = () => {
                 href="https://github.com/BeryllPradanaRamadhan"
                 variant="lead"
                 className="text-nutricare-green"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-github" />
               </Typography>
@@ -146,6 +152,8 @@ const Developers = () => {
                 href="https://www.linkedin.com/in/bersianturi/"
                 variant="lead"
                 className="text-nutricare-green"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-linkedin" />
               </Typography>
@@ -156,6 +164,8 @@ const Developers = () => {
                 href="https://www.instagram.com/bersianturi_/"
                 variant="lead"
                 className="text-nutricare-green"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-instagram" />
               </Typography>
@@ -166,6 +176,8 @@ const Developers = () => {
                 href="https://github.com/bersianturi"
                 variant="lead"
                 className="text-nutricare-green"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-github" />
               </Typography>
@@ -203,6 +215,8 @@ const Developers = () => {
                 href="https://www.linkedin.com/in/ketutaguscahyadinanda/"
                 variant="lead"
                 className="text-nutricare-green"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-linkedin" />
               </Typography>
@@ -213,6 +227,8 @@ const Developers = () => {
                 href="https://www.instagram.com/floa.tint117/"
                 variant="lead"
                 className="text-nutricare-green"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-instagram" />
               </Typography>
@@ -223,6 +239,8 @@ const Developers = () => {
                 href="https://github.com/Gusnand"
                 variant="lead"
                 className="text-nutricare-green"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-github" />
               </Typography>
@@ -260,6 +278,8 @@ const Developers = () => {
                 href="#facebook"
                 variant="lead"
                 className="text-nutricare-green"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-linkedin" />
               </Typography>
@@ -270,6 +290,8 @@ const Developers = () => {
                 href="https://www.instagram.com/imamsyiva.h/"
                 variant="lead"
                 className="text-nutricare-green"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-instagram" />
               </Typography>
@@ -280,6 +302,8 @@ const Developers = () => {
                 href="https://github.com/imsyh"
                 variant="lead"
                 className="text-nutricare-green"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-github" />
               </Typography>
@@ -317,6 +341,8 @@ const Developers = () => {
                 href="https://www.linkedin.com/in/husain-abdullah-b986a2263/"
                 variant="lead"
                 className="text-nutricare-green"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-linkedin" />
               </Typography>
@@ -327,6 +353,8 @@ const Developers = () => {
                 href="https://www.instagram.com/hyuzhen_it/"
                 variant="lead"
                 className="text-nutricare-green"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-instagram" />
               </Typography>
@@ -337,6 +365,8 @@ const Developers = () => {
                 href="https://github.com/HyuZhen13"
                 variant="lead"
                 className="text-nutricare-green"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-github" />
               </Typography>
@@ -390,6 +420,8 @@ const Advisor = () => {
                 href="#facebook"
                 variant="lead"
                 className="text-nutricare-green"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-linkedin" />
               </Typography>
@@ -400,6 +432,8 @@ const Advisor = () => {
                 href="#twitter"
                 variant="lead"
                 className="text-nutricare-green"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-instagram" />
               </Typography>
@@ -410,6 +444,8 @@ const Advisor = () => {
                 href="#instagram"
                 variant="lead"
                 className="text-nutricare-green"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-github" />
               </Typography>
