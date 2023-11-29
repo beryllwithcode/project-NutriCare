@@ -61,7 +61,11 @@ const Services = () => {
             <div className="flex flex-row gap-10 ">
               <Card className="w-64 shadow-none bg-nutricare-greenMudaFade">
                 <CardBody>
-                  <img src="icons/body.svg" className="mx-auto mb-2"></img>
+                  <img
+                    src="icons/body.svg"
+                    className="mx-auto mb-2"
+                    alt="BMI Calculate"
+                  ></img>
                   <Typography variant="h5" color="blue-gray" className="mb-2">
                     BMI Calculate
                   </Typography>
@@ -77,6 +81,7 @@ const Services = () => {
                   <img
                     src="icons/article.svg"
                     className="mx-auto mb-2 mt-2"
+                    alt="Article"
                   ></img>
                   <Typography variant="h5" color="blue-gray" className="mb-2">
                     Article
@@ -91,7 +96,11 @@ const Services = () => {
               </Card>
               <Card className="mx-auto w-64 shadow-none bg-nutricare-greenMudaFade">
                 <CardBody>
-                  <img src="icons/nutrient.svg" className="mx-auto mb-2"></img>
+                  <img
+                    src="icons/chat.svg"
+                    className="mx-auto mb-2"
+                    alt="Community Forum"
+                  ></img>
                   <Typography variant="h5" color="blue-gray" className="mb-2">
                     Community Forum
                   </Typography>
@@ -104,7 +113,11 @@ const Services = () => {
               </Card>
               <Card className="mx-auto w-64 shadow-none bg-nutricare-greenMudaFade">
                 <CardBody>
-                  <img src="icons/nutrient.svg" className="mx-auto mb-2"></img>
+                  <img
+                    src="icons/nutrient.svg"
+                    className="mx-auto mb-2"
+                    alt="BMI Calculate"
+                  ></img>
                   <Typography variant="h5" color="blue-gray" className="mb-2">
                     Food Nutrient Details
                   </Typography>

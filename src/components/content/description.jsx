@@ -1,4 +1,4 @@
-import { Typography, Button } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
 
