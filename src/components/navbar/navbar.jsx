@@ -7,84 +7,89 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
- 
 
 function NavbarDefault() {
   const [openNav, setOpenNav] = React.useState(false);
- 
+
   React.useEffect(() => {
     window.addEventListener(
       "resize",
-      () => window.innerWidth >= 960 && setOpenNav(false),
+      () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
- 
+
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 pt-1">
-      <Typography
-        as="li"
-        variant="small"
-        className="flex items-center gap-x-2 p-1 font-semibold text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition-all duration-200"
-      > 
-        <Link to="/" className="flex items-center">
+      <Link to="/">
+        <Typography
+          as="li"
+          variant="small"
+          className="flex items-center gap-x-2 p-1 font-semibold text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition-all duration-200"
+        >
           Home
-        </Link>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        className="flex items-center gap-x-2 p-1 font-semibold text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition-all duration-200"
-      >
-        <Link to="/bmi-test" className="flex items-center">
+        </Typography>
+      </Link>
+      <Link to="/bmi-test">
+        <Typography
+          as="li"
+          variant="small"
+          className="flex items-center gap-x-2 p-1 font-semibold text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition-all duration-200"
+        >
           BMI Calculate
-        </Link>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        className="flex items-center gap-x-2 p-1 font-semibold text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition-all duration-200"
-      >
-        <Link to="/article" className="flex items-center">
+        </Typography>
+      </Link>
+      <Link to="/article">
+        <Typography
+          as="li"
+          variant="small"
+          className="flex items-center gap-x-2 p-1 font-semibold text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition-all duration-200"
+        >
           Article
-        </Link>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        className="flex items-center gap-x-2 p-1 font-semibold text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition-all duration-200"
-      >
-        <Link to="/community" className="flex items-center">
+        </Typography>
+      </Link>
+      <Link to="/community">
+        <Typography
+          as="li"
+          variant="small"
+          className="flex items-center gap-x-2 p-1 font-semibold text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition-all duration-200"
+        >
           Community
-        </Link>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        className="flex items-center gap-x-2 p-1 font-semibold text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition-all duration-200"
-      >
-        <Link to="/food-nutrient" className="flex items-center">
+        </Typography>
+      </Link>
+      <Link to="/food-nutrient">
+        <Typography
+          as="li"
+          variant="small"
+          className="flex items-center gap-x-2 p-1 font-semibold text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition-all duration-200"
+        >
           Food Nutrient
-        </Link>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        className="flex items-center gap-x-2 p-1 font-semibold text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition-all duration-200"
-      >
-        <Link to="/about-us" className="flex items-center">
+        </Typography>
+      </Link>
+      <Link to="/about-us">
+        <Typography
+          as="li"
+          variant="small"
+          className="flex items-center gap-x-2 p-1 font-semibold text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition-all duration-200"
+        >
           About Us
-        </Link>
-      </Typography>
+        </Typography>
+      </Link>
     </ul>
   );
- 
+
   return (
-    <Navbar fullWidth="true" className="mx-auto shadow-none sticky top-0 z-10 bg-white">
+    <Navbar
+      fullWidth="true"
+      className="mx-auto shadow-none sticky top-0 z-10 bg-white"
+    >
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <Link to="/" className="flex items-center gap-x-3">
-          <img src="./logo/logo192.png" className="h-12 w-auto" alt="NutriCare"/>
+          <img
+            src="./logo/logo192.png"
+            className="h-12 w-auto"
+            alt="NutriCare"
+          />
           <Typography
-            
             className="mr-4 cursor-pointer py-1.5 font-light text-orange-400 tracking-widest"
             variant="h3"
           >
@@ -150,22 +155,12 @@ function NavbarDefault() {
         <div className="container mx-auto">
           {navList}
           <div className="flex items-center gap-x-1">
-          <Button
-            variant="filled"
-            size="sm"
-            color="green"
-            fullWidth
-          >
-            <span>Login</span>
-          </Button>
-          <Button
-            variant="filled"
-            size="sm"
-            color="green"
-            fullWidth
-          >
-            <span>Signup</span>
-          </Button>
+            <Button variant="filled" size="sm" color="green" fullWidth>
+              <span>Login</span>
+            </Button>
+            <Button variant="filled" size="sm" color="green" fullWidth>
+              <span>Signup</span>
+            </Button>
           </div>
         </div>
       </MobileNav>
