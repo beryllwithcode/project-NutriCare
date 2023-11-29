@@ -4,7 +4,7 @@
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/BeryllPradanaRamadhan/capstone-NutriCare.svg)](https://github.com/BeryllPradanaRamadhan/capstone-NutriCare/commits)
 
 <p align="center">
-  <img src="src/public/scale_icon.png" alt="Logo" width="150px">
+  <img src="public/logo/logo192.png" alt="Logo" width="150px">
 </p>
 
 ## 🌱 Gambaran Proyek
