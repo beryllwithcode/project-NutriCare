@@ -43,11 +43,11 @@ const Hero = () => {
             meal a healthier one with our Food Nutrient Details.
           </Typography>
           <div className="mt-4 gap-x-6">
-            <Link to="/food-nutrient">
+            <a href="#foods">
               <Button className="bg-nutricare-green hover:bg-green-500">
                 More
               </Button>
-            </Link>
+            </a>
           </div>
         </motion.div>
         <motion.img
@@ -71,7 +71,10 @@ const Hero = () => {
 
 const Food = () => {
   return (
-    <div className="relative flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green">
+    <div
+      className="relative flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green"
+      id="foods"
+    >
       <Card className="lg:mx-7 mb-7 shadow-lg p-4">
         <Input
           placeholder="Search for food here"

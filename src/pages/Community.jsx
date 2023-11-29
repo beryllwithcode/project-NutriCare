@@ -30,7 +30,7 @@ const Hero = () => {
           </div>
           <div>
             <div className="mt-4 gap-x-6">
-              <a href="#">
+              <a href="#discussion">
                 <Button className="bg-nutricare-green hover:bg-green-500">
                   Join Us
                 </Button>
@@ -45,7 +45,10 @@ const Hero = () => {
 
 const Content = () => {
   return (
-    <div className="relative flex px-10 gap-14 lg:px-24 py-14 text-nutricare-green">
+    <div
+      className="relative flex px-10 gap-14 lg:px-24 py-14 text-nutricare-green"
+      id="discussion"
+    >
       <div className="lg:w-screen">
         <div className="flex justify-between items-center pb-4 border-b-4">
           <div className="w-40 lg:w-full">

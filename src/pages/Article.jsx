@@ -37,7 +37,7 @@ const Hero = () => {
           </div>
           <div>
             <div className="mt-4 gap-x-6">
-              <a href="#">
+              <a href="#articles">
                 <Button className="bg-nutricare-green hover:bg-green-500">
                   Scroll Down
                 </Button>
@@ -52,7 +52,10 @@ const Hero = () => {
 
 const Articles = () => {
   return (
-    <div className="relative flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green">
+    <div
+      className="relative flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green"
+      id="articles"
+    >
       <div className="max-w-md lg:max-w-3xl mx-auto my-8">
         <Typography variant="h1" className="mb-2">
           <span className="text-nutricare-orange">NutriCare</span> Articles
