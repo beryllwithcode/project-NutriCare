@@ -56,8 +56,10 @@ Proyek ini sedang dalam pengembangan aktif. Kami berupaya terus memperbarui dan 
 
 Jika Anda mengalami masalah atau memiliki pertanyaan, jangan ragu untuk menghubungi CEO kami melalui email di [Beryll Pradana Ramadhan](https://www.linkedin.com/in/beryll-pradana-ramadhan-58044a212/).
 
-## 🚀 Pembaruan Terbaru
+## 📊 Statistik Kontribusi
+<!-- Aktivitas Commit -->
+[![Aktivitas Commit](https://img.shields.io/github/commit-activity/w/BeryllPradanaRamadhan/project-NutriCare?label=Commit%20Activity&style=flat-square)](https://github.com/BeryllPradanaRamadhan/project-NutriCare/commits)
 
-| Sedang Dikerjakan - 28 Hari Terakhir | Kontributor Aktif Teratas - 28 Hari Terakhir |
-| ----------- | ----------- |
-|<img src="https://next.ossinsight.io/widgets/official/compose-currently-working-on/thumbnail.png?repo_id=412545367&activity_type=all&user_id=12960671&image_size=auto" />|<img src="https://next.ossinsight.io/widgets/official/compose-recent-top-contributors/thumbnail.png?repo_id=412545367&image_size=auto" />|
+## 👥 Kontributor Paling Aktif - 28 Hari Terakhir
+
+[![Kontributor Paling Aktif](https://img.shields.io/github/commit-activity/w/BeryllPradanaRamadhan/project-NutriCare?label=Top%20Contributors%20(28%20Days)&style=flat-square)](https://github.com/BeryllPradanaRamadhan/project-NutriCare/commits)
