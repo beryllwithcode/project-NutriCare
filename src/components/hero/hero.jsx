@@ -45,7 +45,7 @@ const Hero = () => {
         >
           <motion.h1
             variants={item}
-            className="text-3xl font-bold tracking-tight text-green-800 lg:text-6xl"
+            className="text-5xl font-bold tracking-tight text-green-800"
           >
             NutriCare: Empowering Your{" "}
             <span className="text-orange-600">Health</span> Through{" "}

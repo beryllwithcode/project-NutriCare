@@ -13,7 +13,7 @@ import Description from "../components/content/description";
 
 function Guidance() {
   return (
-    <div className="relative flex flex-col justify-center text-center my-16 text-nutricare-green">
+    <div className="relative flex flex-col justify-center px-10 lg:px-24 text-center my-16 text-nutricare-green">
       <div className="mb-4">
         <Typography variant="h1" className="mb-2">
           Guidance for{" "}
@@ -162,7 +162,7 @@ function Test() {
 
 function Result() {
   return (
-    <div className="relative mx-auto max-w-6xl rounded-3xl flex flex-col justify-center text-center my-32 py-8 text-nutricare-green border-2 border-nutricare-green">
+    <div className="relative mx-4 lg:mx-auto max-w-6xl rounded-3xl flex flex-col justify-center text-center my-32 py-8 text-nutricare-green border-2 border-nutricare-green">
       <div className="mb-4">
         <Typography variant="h1" className="mb-2">
           The <span className="text-nutricare-orange">Result</span>

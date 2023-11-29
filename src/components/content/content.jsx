@@ -183,7 +183,7 @@ const Test = () => {
 const Articles = () => {
   const scrollRef = useRef(null);
   return (
-    <div className="relative flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green">
+    <div className="relative flex flex-col justify-center bg-light-green-50 text-center px-8 lg:px-24 py-14 text-nutricare-green">
       <motion.div
         initial={{ opacity: 0, y: "-100px" }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -220,7 +220,7 @@ const Articles = () => {
           stiffness: 150,
         }}
       >
-        <div className="flex justify-center max-w-xs lg:max-w-2xl mx-auto">
+        <div className="flex justify-center max-w-2xl mx-auto">
           <Carousel
             className="rounded-xl mt-6 lg:hidden xl:hidden"
             loop={true}
@@ -230,8 +230,9 @@ const Articles = () => {
               <IconButton
                 variant="text"
                 size="lg"
+                ripple={false}
                 onClick={handlePrev}
-                className="!absolute top-2/4 left-4 text-nutricare-green hidden -translate-y-2/4"
+                className="!absolute top-2/4 -left-3 text-nutricare-green hover:bg-transparent active:bg-transparent -translate-y-2/4"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -253,8 +254,9 @@ const Articles = () => {
               <IconButton
                 variant="text"
                 size="lg"
+                ripple={false}
                 onClick={handleNext}
-                className="!absolute top-2/4 !right-4 text-nutricare-green hidden -translate-y-2/4"
+                className="!absolute top-2/4 !-right-3 text-nutricare-green hover:bg-transparent active:bg-transparent -translate-y-2/4"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

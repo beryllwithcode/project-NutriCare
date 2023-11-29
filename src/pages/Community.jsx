@@ -46,9 +46,9 @@ const Hero = () => {
 const Content = () => {
   return (
     <div className="relative flex px-10 gap-14 lg:px-24 py-14 text-nutricare-green">
-      <div className="w-screen">
+      <div className="lg:w-screen">
         <div className="flex justify-between items-center pb-4 border-b-4">
-          <div className="w-64 lg:w-full">
+          <div className="w-40 lg:w-full">
             <Typography variant="h3">Let's Discuss</Typography>
             <Typography variant="paragraph">
               Discuss anything, ask questions, find supports, and connect with
@@ -109,11 +109,11 @@ const Content = () => {
         </div>
         <div className="flex flex-col gap-4">
           <div className="p-5 border-2 rounded-lg flex items-center justify-between">
-            <div className="w-72 lg:w-full">
+            <div className="w-52 lg:w-full">
               <Typography variant="h5">
                 Apa yang akan terjadi ketika kamu diet tidak makan karbo?
               </Typography>
-              <div className="flex gap-8">
+              <div className="flex gap-4 lg:gap-8">
                 <Typography variant="paragraph" className="text-gray-500">
                   Post by <span className="text-nutricare-orange">Gusnand</span>
                 </Typography>
@@ -134,11 +134,11 @@ const Content = () => {
             </div>
           </div>
           <div className="p-5 border-2 rounded-lg flex items-center justify-between">
-            <div className="w-72 lg:w-full">
+            <div className="w-52 lg:w-full">
               <Typography variant="h5">
                 Apa yang akan terjadi ketika kamu diet tidak makan karbo?
               </Typography>
-              <div className="flex gap-8">
+              <div className="flex gap-4 lg:gap-8">
                 <Typography variant="paragraph" className="text-gray-500">
                   Post by <span className="text-nutricare-orange">Gusnand</span>
                 </Typography>
@@ -159,86 +159,11 @@ const Content = () => {
             </div>
           </div>
           <div className="p-5 border-2 rounded-lg flex items-center justify-between">
-            <div className="w-72 lg:w-full">
+            <div className="w-52 lg:w-full">
               <Typography variant="h5">
                 Apa yang akan terjadi ketika kamu diet tidak makan karbo?
               </Typography>
-              <div className="flex gap-8">
-                <Typography variant="paragraph" className="text-gray-500">
-                  Post by <span className="text-nutricare-orange">Gusnand</span>
-                </Typography>
-                <Typography variant="paragraph" className="text-gray-500">
-                  18 Nov
-                </Typography>
-              </div>
-            </div>
-            <div className="flex gap-2 lg:gap-6 flex-col lg:flex-row text-nutricare-greenTuaFade">
-              <div className="flex gap-2 items-center">
-                <img src="/icons/chat-fade.svg" alt="" className="w-5" />
-                <Typography>99</Typography>
-              </div>
-              <div className="flex gap-2 items-center">
-                <img src="/icons/thumb-fade.svg" alt="" className="w-5" />
-                <Typography>99</Typography>
-              </div>
-            </div>
-          </div>
-          <div className="p-5 border-2 rounded-lg flex items-center justify-between">
-            <div className="w-72 lg:w-full">
-              <Typography variant="h5">
-                Apa yang akan terjadi ketika kamu diet tidak makan karbo?
-              </Typography>
-              <div className="flex gap-8">
-                <Typography variant="paragraph" className="text-gray-500">
-                  Post by <span className="text-nutricare-orange">Gusnand</span>
-                </Typography>
-                <Typography variant="paragraph" className="text-gray-500">
-                  18 Nov
-                </Typography>
-              </div>
-            </div>
-            <div className="flex gap-2 lg:gap-6 flex-col lg:flex-row text-nutricare-greenTuaFade">
-              <div className="flex gap-2 items-center">
-                <img src="/icons/chat-fade.svg" alt="" className="w-5" />
-                <Typography>99</Typography>
-              </div>
-              <div className="flex gap-2 items-center">
-                <img src="/icons/thumb-fade.svg" alt="" className="w-5" />
-                <Typography>99</Typography>
-              </div>
-            </div>
-          </div>
-          <div className="p-5 border-2 rounded-lg flex items-center justify-between">
-            <div className="w-72 lg:w-full">
-              <Typography variant="h5">
-                Apa yang akan terjadi ketika kamu diet tidak makan karbo?
-              </Typography>
-              <div className="flex gap-8">
-                <Typography variant="paragraph" className="text-gray-500">
-                  Post by <span className="text-nutricare-orange">Gusnand</span>
-                </Typography>
-                <Typography variant="paragraph" className="text-gray-500">
-                  18 Nov
-                </Typography>
-              </div>
-            </div>
-            <div className="flex gap-2 lg:gap-6 flex-col lg:flex-row text-nutricare-greenTuaFade">
-              <div className="flex gap-2 items-center">
-                <img src="/icons/chat-fade.svg" alt="" className="w-5" />
-                <Typography>99</Typography>
-              </div>
-              <div className="flex gap-2 items-center">
-                <img src="/icons/thumb-fade.svg" alt="" className="w-5" />
-                <Typography>99</Typography>
-              </div>
-            </div>
-          </div>
-          <div className="p-5 border-2 rounded-lg flex items-center justify-between">
-            <div className="w-72 lg:w-full">
-              <Typography variant="h5">
-                Apa yang akan terjadi ketika kamu diet tidak makan karbo?
-              </Typography>
-              <div className="flex gap-8">
+              <div className="flex gap-4 lg:gap-8">
                 <Typography variant="paragraph" className="text-gray-500">
                   Post by <span className="text-nutricare-orange">Gusnand</span>
                 </Typography>
