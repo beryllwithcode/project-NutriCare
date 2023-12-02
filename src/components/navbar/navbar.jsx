@@ -79,7 +79,7 @@ function NavbarDefault() {
 
   return (
     <Navbar
-      fullWidth="true"
+      fullWidth={true}
       className="mx-auto shadow-none sticky top-0 z-10 bg-white"
     >
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
@@ -98,20 +98,24 @@ function NavbarDefault() {
         </Link>
         <div className="hidden lg:block">{navList}</div>
         <div className="flex items-center gap-x-3">
-          <Button
-            variant="filled"
-            size="sm"
-            className="hidden lg:inline-block bg-green-800 hover:bg-green-500"
-          >
-            <span>Login</span>
-          </Button>
-          <Button
-            variant="filled"
-            size="sm"
-            className="hidden lg:inline-block bg-green-800 hover:bg-green-500"
-          >
-            <span>Signup</span>
-          </Button>
+          <Link to="/log-in">
+            <Button
+              variant="filled"
+              size="sm"
+              className="hidden lg:inline-block bg-green-800 hover:bg-green-500"
+            >
+              <span>Login</span>
+            </Button>
+          </Link>
+          <Link to="/sign-up">
+            <Button
+              variant="filled"
+              size="sm"
+              className="hidden lg:inline-block bg-green-800 hover:bg-green-500"
+            >
+              <span>Signup</span>
+            </Button>
+          </Link>
         </div>
         <IconButton
           variant="text"
@@ -155,10 +159,10 @@ function NavbarDefault() {
         <div className="container mx-auto">
           {navList}
           <div className="flex items-center gap-x-1">
-            <Button variant="filled" size="sm" color="green" fullWidth>
+            <Button variant="filled" size="sm" color="green" fullWidth={true}>
               <span>Login</span>
             </Button>
-            <Button variant="filled" size="sm" color="green" fullWidth>
+            <Button variant="filled" size="sm" color="green" fullWidth={true}>
               <span>Signup</span>
             </Button>
           </div>
