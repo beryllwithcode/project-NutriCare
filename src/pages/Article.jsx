@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardBody,
   CardFooter,
-  CardHeader,
   Typography,
 } from "@material-tailwind/react";
 import { Button } from "@material-tailwind/react";
@@ -51,6 +50,23 @@ const Hero = () => {
 };
 
 const Articles = () => {
+  const [articles, setArticles] = useState([]);
+
+  const fetchArticlesData = () => {
+    fetch(
+      "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Body Mass Index&api-key=FYRej47F7peEopmAzuL72D3zkpUxkYxB"
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setArticles(data.response.docs);
+      });
+  };
+  useEffect(() => {
+    fetchArticlesData();
+  }, []);
+
   return (
     <div
       className="relative flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green"
@@ -70,122 +86,30 @@ const Articles = () => {
           and tips for a healthier life.
         </Typography>
       </div>
-      <div className="grid place-content-center lg:grid-cols-4 gap-y-4">
-        <Card className="w-64 shadow-lg">
-          <CardHeader floated={false} color="blue-gray">
-            <img src="https://picsum.photos/500" alt="Article Thumbnail"></img>
-            <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-          </CardHeader>
-          <CardBody>
-            <Typography variant="h5" color="orange" className="mb-2">
-              Lorem Ipsum
-            </Typography>
-            <Typography>
-              Veniam veniam ullamco anim reprehenderit tempor.
-            </Typography>
-          </CardBody>
-          <CardFooter className="pt-2">
-            <Button
-              size="lg"
-              className="bg-nutricare-green hover:bg-green-500"
-              fullWidth={true}
-            >
-              Read More
-            </Button>
-          </CardFooter>
-        </Card>
-        <Card className="w-64 shadow-lg">
-          <CardHeader floated={false} color="blue-gray">
-            <img src="https://picsum.photos/500" alt="Article Thumbnail"></img>
-            <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-          </CardHeader>
-          <CardBody>
-            <Typography variant="h5" color="orange" className="mb-2">
-              Lorem Ipsum
-            </Typography>
-            <Typography>
-              Veniam veniam ullamco anim reprehenderit tempor.
-            </Typography>
-          </CardBody>
-          <CardFooter className="pt-2">
-            <Button
-              size="lg"
-              className="bg-nutricare-green hover:bg-green-500"
-              fullWidth={true}
-            >
-              Read More
-            </Button>
-          </CardFooter>
-        </Card>
-        <Card className="w-64 shadow-lg">
-          <CardHeader floated={false} color="blue-gray">
-            <img src="https://picsum.photos/500" alt="Article Thumbnail"></img>
-            <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-          </CardHeader>
-          <CardBody>
-            <Typography variant="h5" color="orange" className="mb-2">
-              Lorem Ipsum
-            </Typography>
-            <Typography>
-              Veniam veniam ullamco anim reprehenderit tempor.
-            </Typography>
-          </CardBody>
-          <CardFooter className="pt-2">
-            <Button
-              size="lg"
-              className="bg-nutricare-green hover:bg-green-500"
-              fullWidth={true}
-            >
-              Read More
-            </Button>
-          </CardFooter>
-        </Card>
-        <Card className="w-64 shadow-lg">
-          <CardHeader floated={false} color="blue-gray">
-            <img src="https://picsum.photos/500" alt="Article Thumbnail"></img>
-            <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-          </CardHeader>
-          <CardBody>
-            <Typography variant="h5" color="orange" className="mb-2">
-              Lorem Ipsum
-            </Typography>
-            <Typography>
-              Veniam veniam ullamco anim reprehenderit tempor.
-            </Typography>
-          </CardBody>
-          <CardFooter className="pt-2">
-            <Button
-              size="lg"
-              className="bg-nutricare-green hover:bg-green-500"
-              fullWidth={true}
-            >
-              Read More
-            </Button>
-          </CardFooter>
-        </Card>
-        <Card className="w-64 shadow-lg">
-          <CardHeader floated={false} color="blue-gray">
-            <img src="https://picsum.photos/500" alt="Article Thumbnail"></img>
-            <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-          </CardHeader>
-          <CardBody>
-            <Typography variant="h5" color="orange" className="mb-2">
-              Lorem Ipsum
-            </Typography>
-            <Typography>
-              Veniam veniam ullamco anim reprehenderit tempor.
-            </Typography>
-          </CardBody>
-          <CardFooter className="pt-2">
-            <Button
-              size="lg"
-              className="bg-nutricare-green hover:bg-green-500"
-              fullWidth={true}
-            >
-              Read More
-            </Button>
-          </CardFooter>
-        </Card>
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-y-4">
+        {articles.map((article) => (
+          <Card key={article.headline.main} className="w-64 shadow-lg">
+            <CardBody>
+              <Typography variant="h5" color="orange" className="mb-2">
+                {article.headline.main}
+              </Typography>
+              <Typography>
+                {article.lead_paragraph?.slice(0, 100) + "..." || "-"}
+              </Typography>
+            </CardBody>
+            <CardFooter className="pt-2 bottom-0">
+              <a href={article.web_url}>
+                <Button
+                  size="lg"
+                  className="bg-nutricare-green hover:bg-green-500"
+                  fullWidth={true}
+                >
+                  Read More
+                </Button>
+              </a>
+            </CardFooter>
+          </Card>
+        ))}
       </div>
     </div>
   );
