@@ -73,7 +73,7 @@ function SignUp() {
           <div>
             <button
               type="submit"
-              className="flex w-full justify-center rounded-md bg-nutricare-green px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-nutricare-green"
+              className="flex w-full justify-center rounded-md bg-green-800 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-nutricare-green"
             >
               Sign up
             </button>
@@ -84,7 +84,7 @@ function SignUp() {
           Are you a member?{" "}
           <Link
             to="/log-in"
-            className="font-semibold leading-6 text-nutricare-green hover:text-indigo-500"
+            className="font-semibold leading-6 text-nutricare-green"
           >
             Sign In Here!
           </Link>
