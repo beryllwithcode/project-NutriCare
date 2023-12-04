@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   MobileNav,
   Typography,
   Button,
   IconButton,
+  Menu,
+  MenuHandler,
+  MenuItem,
+  MenuList,
+  Card,
+
 } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { supabase } from "../../supabaseClient";
 
 function NavbarDefault() {
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
+
+  console.log(session);
+
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -17,6 +38,20 @@ function NavbarDefault() {
       () => window.innerWidth >= 960 && setOpenNav(false)
     );
   }, []);
+
+  const navigate = useNavigate()
+
+  const handleLogout = async (event) => {
+    event.preventDefault();
+
+    const {error} = await supabase.auth.signOut();
+
+    if (error) {
+      alert(error.error_description || error.message);
+    } else {
+      navigate('/log-in');
+    }
+  }
 
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 pt-1">
@@ -98,24 +133,37 @@ function NavbarDefault() {
         </Link>
         <div className="hidden lg:block">{navList}</div>
         <div className="flex items-center gap-x-3">
-          <Link to="/log-in">
-            <Button
-              variant="filled"
-              size="sm"
-              className="hidden lg:inline-block bg-green-800 hover:bg-green-500"
-            >
-              <span>Login</span>
-            </Button>
-          </Link>
-          <Link to="/sign-up">
-            <Button
-              variant="filled"
-              size="sm"
-              className="hidden lg:inline-block bg-green-800 hover:bg-green-500"
-            >
-              <span>Signup</span>
-            </Button>
-          </Link>
+          {session ? (
+            <Menu>
+              <MenuHandler>
+                <Button className="bg-nutricare-green">{session.user.email}</Button>
+              </MenuHandler>
+              <MenuList>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              </MenuList>
+            </Menu>
+          ) : (
+            <>
+              <Link to="/log-in">
+                <Button
+                  variant="filled"
+                  size="sm"
+                  className="hidden lg:inline-block bg-green-800 hover:bg-green-500"
+                >
+                  <span>Login</span>
+                </Button>
+              </Link>
+              <Link to="/sign-up">
+                <Button
+                  variant="filled"
+                  size="sm"
+                  className="hidden lg:inline-block bg-green-800 hover:bg-green-500"
+                >
+                  <span>Signup</span>
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
         <IconButton
           variant="text"
@@ -159,12 +207,16 @@ function NavbarDefault() {
         <div className="container mx-auto">
           {navList}
           <div className="flex items-center gap-x-1">
+            <Link to='/log-in'>
             <Button variant="filled" size="sm" color="green" fullWidth={true}>
               <span>Login</span>
             </Button>
+            </Link>
+            <Link to='/sign-up'>
             <Button variant="filled" size="sm" color="green" fullWidth={true}>
               <span>Signup</span>
             </Button>
+            </Link>
           </div>
         </div>
       </MobileNav>
