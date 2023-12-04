@@ -45,7 +45,7 @@ const Hero = () => {
         >
           <motion.h1
             variants={item}
-            className="text-5xl font-bold tracking-tight text-green-800"
+            className="text-5xl lg:text-6xl tracking-tight font-bold text-green-800"
           >
             NutriCare: Empowering Your{" "}
             <span className="text-orange-600">Health</span> Through{" "}
@@ -64,7 +64,7 @@ const Hero = () => {
             nutritional content of your meals,{" "}
             <span className="text-orange-600">NutriCare</span> has you covered.
           </motion.p>
-          <motion.div variants={item} className="mt-8 gap-x-6">
+          <motion.div variants={item} className="mt-4 gap-x-6">
             <a href="#content">
               <Button className="bg-green-800 hover:bg-green-500">
                 Read More
