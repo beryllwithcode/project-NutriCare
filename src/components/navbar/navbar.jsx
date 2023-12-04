@@ -9,8 +9,6 @@ import {
   MenuHandler,
   MenuItem,
   MenuList,
-  Card,
-
 } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../../supabaseClient";
@@ -30,6 +28,26 @@ function NavbarDefault() {
 
   console.log(session);
 
+  const [username, setUsername] = useState(null);
+  useEffect(() => {
+    async function getProfile() {
+      const { user } = session;
+
+      const { data, error } = await supabase
+        .from("profiles")
+        .select(`username`)
+        .eq("id", user.id)
+        .single();
+
+      if (error) {
+        console.warn(error);
+      } else if (data) {
+        setUsername(data.username);
+      }
+    }
+    getProfile();
+  }, [session]);
+
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -39,19 +57,19 @@ function NavbarDefault() {
     );
   }, []);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogout = async (event) => {
     event.preventDefault();
 
-    const {error} = await supabase.auth.signOut();
+    const { error } = await supabase.auth.signOut();
 
     if (error) {
       alert(error.error_description || error.message);
     } else {
-      navigate('/log-in');
+      navigate("/log-in");
     }
-  }
+  };
 
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 pt-1">
@@ -136,7 +154,7 @@ function NavbarDefault() {
           {session ? (
             <Menu>
               <MenuHandler>
-                <Button className="bg-nutricare-green">{session.user.email}</Button>
+                <Button className="bg-nutricare-green">{username}</Button>
               </MenuHandler>
               <MenuList>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
@@ -207,15 +225,15 @@ function NavbarDefault() {
         <div className="container mx-auto">
           {navList}
           <div className="flex items-center gap-x-1">
-            <Link to='/log-in'>
-            <Button variant="filled" size="sm" color="green" fullWidth={true}>
-              <span>Login</span>
-            </Button>
+            <Link to="/log-in">
+              <Button variant="filled" size="sm" color="green" fullWidth={true}>
+                <span>Login</span>
+              </Button>
             </Link>
-            <Link to='/sign-up'>
-            <Button variant="filled" size="sm" color="green" fullWidth={true}>
-              <span>Signup</span>
-            </Button>
+            <Link to="/sign-up">
+              <Button variant="filled" size="sm" color="green" fullWidth={true}>
+                <span>Signup</span>
+              </Button>
             </Link>
           </div>
         </div>
