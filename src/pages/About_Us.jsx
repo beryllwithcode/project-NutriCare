@@ -61,7 +61,7 @@ const Developers = () => {
           <CardHeader floated={false} className="">
             <img src="/assets/beryll.jpg" alt="Beryll Pradana Ramadhan" />
           </CardHeader>
-          <CardBody className="text-center">
+          <CardBody className="pb-2 text-center">
             <Typography
               variant="h4"
               className="text-nutricare-orange pb-2 mb-1"
@@ -81,7 +81,7 @@ const Developers = () => {
               Front-End Developer
             </Typography>
           </CardBody>
-          <CardFooter className="flex justify-center gap-7 pt-0 pb-4">
+          <CardFooter className="flex justify-center gap-7 pt-2 pb-6">
             <Tooltip content="LinkedIn">
               <Typography
                 as="a"
@@ -124,7 +124,7 @@ const Developers = () => {
           <CardHeader floated={false} className="">
             <img src="/assets/BER.png" alt="Bernard Andrean Sianturi" />
           </CardHeader>
-          <CardBody className="text-center">
+          <CardBody className="pb-2 text-center">
             <Typography
               variant="h4"
               className="text-nutricare-orange pb-2 mb-1"
@@ -144,7 +144,7 @@ const Developers = () => {
               Front-End Developer
             </Typography>
           </CardBody>
-          <CardFooter className="flex justify-center gap-7 pt-0 pb-4">
+          <CardFooter className="flex justify-center gap-7 pt-2 pb-6">
             <Tooltip content="LinkedIn">
               <Typography
                 as="a"
@@ -187,7 +187,7 @@ const Developers = () => {
           <CardHeader floated={false} className="">
             <img src="/assets/gusnan.png" alt="Ketut Agus Cahyadi Nanda" />
           </CardHeader>
-          <CardBody className="text-center px-0">
+          <CardBody className="pb-2 text-center px-0">
             <Typography
               variant="h4"
               className="text-nutricare-orange pb-2 mb-1"
@@ -207,7 +207,7 @@ const Developers = () => {
               Designer & Front-End Developer
             </Typography>
           </CardBody>
-          <CardFooter className="flex justify-center gap-7 pt-0 pb-4">
+          <CardFooter className="flex justify-center gap-7 pt-2 pb-6">
             <Tooltip content="LinkedIn">
               <Typography
                 as="a"
@@ -250,7 +250,7 @@ const Developers = () => {
           <CardHeader floated={false} className="">
             <img src="/assets/imam.jpg" alt="Imam Syiva Hidayat" />
           </CardHeader>
-          <CardBody className="text-center">
+          <CardBody className="pb-2 text-center">
             <Typography
               variant="h4"
               className="text-nutricare-orange pb-2 mb-1"
@@ -270,7 +270,7 @@ const Developers = () => {
               Back-End Developer
             </Typography>
           </CardBody>
-          <CardFooter className="flex justify-center gap-7 pt-0 pb-4">
+          <CardFooter className="flex justify-center gap-7 pt-2 pb-6">
             <Tooltip content="LinkedIn">
               <Typography
                 as="a"
@@ -313,7 +313,7 @@ const Developers = () => {
           <CardHeader floated={false} className="">
             <img src="/assets/husain.jpg" alt="Husain Abdullah" />
           </CardHeader>
-          <CardBody className="text-center">
+          <CardBody className="pb-2 text-center">
             <Typography
               variant="h4"
               className="text-nutricare-orange pb-2 mb-1"
@@ -333,7 +333,7 @@ const Developers = () => {
               Fullstack Developer
             </Typography>
           </CardBody>
-          <CardFooter className="flex justify-center gap-7 pt-0 pb-4">
+          <CardFooter className="flex justify-center gap-7 pt-2 pb-6">
             <Tooltip content="LinkedIn">
               <Typography
                 as="a"
@@ -412,7 +412,7 @@ const Advisor = () => {
               Advisor
             </Typography>
           </CardBody>
-          <CardFooter className="flex justify-center gap-7 pt-0 pb-4">
+          <CardFooter className="flex justify-center gap-7 pt-2 pb-6">
             <Tooltip content="Like">
               <Typography
                 as="a"
