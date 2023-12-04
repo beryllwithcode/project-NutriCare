@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Button,
   Card,
@@ -69,6 +69,51 @@ const Hero = () => {
 };
 
 const Food = () => {
+  const [foodsData, setFoodsData] = useState([]);
+
+  useEffect(() => {
+    // Lakukan fetching API pertama untuk mendapatkan daftar makanan
+    fetchFoodsData()
+      .then((foodsResponse) => {
+        // Untuk setiap item makanan, lakukan fetching API kedua untuk mendapatkan nutrisi
+        const promises = foodsResponse.map((foodItem) =>
+          fetchNutritionData(foodItem.id)
+        );
+
+        // Tunggu semua fetching selesai dan gabungkan data nutrisi ke dalam setiap item makanan
+        Promise.all(promises)
+          .then((nutritionResponses) => {
+            const foodsWithNutrition = foodsResponse.map((foodItem, index) => ({
+              ...foodItem,
+              nutrition: nutritionResponses[index],
+            }));
+
+            // Setel state dengan data makanan yang telah digabungkan dengan nutrisi
+            setFoodsData(foodsWithNutrition);
+          })
+          .catch((error) =>
+            console.error("Error fetching nutrition data for foods:", error)
+          );
+      })
+      .catch((error) => console.error("Error fetching foods data:", error));
+  }, []);
+
+  const fetchFoodsData = async () => {
+    const response = await fetch(
+      "https://api.spoonacular.com/recipes/random?apiKey=2a0ac778c9e9427b874293f0f3f1aa4b&number=12"
+    );
+    const data = await response.json();
+    return data.recipes;
+  };
+
+  const fetchNutritionData = async (foodId) => {
+    const response = await fetch(
+      `https://api.spoonacular.com/recipes/${foodId}/nutritionWidget.json?apiKey=2a0ac778c9e9427b874293f0f3f1aa4b`
+    );
+    const data = await response.json();
+    return data;
+  };
+
   return (
     <div
       className="relative flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green"
@@ -84,314 +129,86 @@ const Food = () => {
           }}
         />
       </Card>
-      <div className="grid place-content-center lg:grid-cols-3 gap-y-4">
-        <Card className="lg:w-80 shadow-lg mx-auto">
-          <CardHeader floated={false} color="blue-gray">
-            <img src="https://picsum.photos/500" alt="Article Thumbnail"></img>
-            <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-          </CardHeader>
-          <CardBody className="pb-2">
-            <Typography variant="h4" color="orange" className="">
-              Kopi
-            </Typography>
-          </CardBody>
-          <CardFooter className="pt-2">
-            <div className="grid place-content-center grid-cols-2 gap-4">
-              <div>
-                <Typography className="text-nutricare-green">
-                  Calories
+      {foodsData.length > 0 && (
+        <div className="grid place-content-center lg:grid-cols-3 gap-y-4">
+          {foodsData.map((food) => (
+            <Card className="lg:w-80 shadow-lg mx-auto">
+              <CardHeader floated={false} color="blue-gray">
+                <img
+                  src={
+                    food.image
+                      ? food.image
+                      : "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square.webp"
+                  }
+                  alt="Article Thumbnail"
+                ></img>
+                <div className="absolute inset-0 h-full w-full" />
+              </CardHeader>
+              <CardBody className="pb-2">
+                <Typography variant="h4" color="orange" className="">
+                  {food.title}
                 </Typography>
-                <Chip
-                  size="lg"
-                  value="99 kcal"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-              <div>
-                <Typography className="text-nutricare-green">Carbs</Typography>
-                <Chip
-                  size="lg"
-                  value="34 g"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-              <div>
-                <Typography className="text-nutricare-green">Fat</Typography>
-                <Chip
-                  size="lg"
-                  value="35 g"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-              <div>
-                <Typography className="text-nutricare-green">
-                  Protein
-                </Typography>
-                <Chip
-                  size="lg"
-                  value="11 g"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-            </div>
-          </CardFooter>
-        </Card>
-        <Card className="lg:w-80 shadow-lg mx-auto">
-          <CardHeader floated={false} color="blue-gray">
-            <img src="https://picsum.photos/500" alt="Article Thumbnail"></img>
-            <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-          </CardHeader>
-          <CardBody className="pb-2">
-            <Typography variant="h4" color="orange" className="">
-              Kopi
-            </Typography>
-          </CardBody>
-          <CardFooter className="pt-2">
-            <div className="grid place-content-center grid-cols-2 gap-4">
-              <div>
-                <Typography className="text-nutricare-green">
-                  Calories
-                </Typography>
-                <Chip
-                  size="lg"
-                  value="99 kcal"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-              <div>
-                <Typography className="text-nutricare-green">Carbs</Typography>
-                <Chip
-                  size="lg"
-                  value="34 g"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-              <div>
-                <Typography className="text-nutricare-green">Fat</Typography>
-                <Chip
-                  size="lg"
-                  value="35 g"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-              <div>
-                <Typography className="text-nutricare-green">
-                  Protein
-                </Typography>
-                <Chip
-                  size="lg"
-                  value="11 g"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-            </div>
-          </CardFooter>
-        </Card>
-        <Card className="lg:w-80 shadow-lg mx-auto">
-          <CardHeader floated={false} color="blue-gray">
-            <img src="https://picsum.photos/500" alt="Article Thumbnail"></img>
-            <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-          </CardHeader>
-          <CardBody className="pb-2">
-            <Typography variant="h4" color="orange" className="">
-              Kopi
-            </Typography>
-          </CardBody>
-          <CardFooter className="pt-2">
-            <div className="grid place-content-center grid-cols-2 gap-4">
-              <div>
-                <Typography className="text-nutricare-green">
-                  Calories
-                </Typography>
-                <Chip
-                  size="lg"
-                  value="99 kcal"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-              <div>
-                <Typography className="text-nutricare-green">Carbs</Typography>
-                <Chip
-                  size="lg"
-                  value="34 g"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-              <div>
-                <Typography className="text-nutricare-green">Fat</Typography>
-                <Chip
-                  size="lg"
-                  value="35 g"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-              <div>
-                <Typography className="text-nutricare-green">
-                  Protein
-                </Typography>
-                <Chip
-                  size="lg"
-                  value="11 g"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-            </div>
-          </CardFooter>
-        </Card>
-        <Card className="lg:w-80 shadow-lg mx-auto">
-          <CardHeader floated={false} color="blue-gray">
-            <img src="https://picsum.photos/500" alt="Article Thumbnail"></img>
-            <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-          </CardHeader>
-          <CardBody className="pb-2">
-            <Typography variant="h4" color="orange" className="">
-              Kopi
-            </Typography>
-          </CardBody>
-          <CardFooter className="pt-2">
-            <div className="grid place-content-center grid-cols-2 gap-4">
-              <div>
-                <Typography className="text-nutricare-green">
-                  Calories
-                </Typography>
-                <Chip
-                  size="lg"
-                  value="99 kcal"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-              <div>
-                <Typography className="text-nutricare-green">Carbs</Typography>
-                <Chip
-                  size="lg"
-                  value="34 g"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-              <div>
-                <Typography className="text-nutricare-green">Fat</Typography>
-                <Chip
-                  size="lg"
-                  value="35 g"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-              <div>
-                <Typography className="text-nutricare-green">
-                  Protein
-                </Typography>
-                <Chip
-                  size="lg"
-                  value="11 g"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-            </div>
-          </CardFooter>
-        </Card>
-        <Card className="lg:w-80 shadow-lg mx-auto">
-          <CardHeader floated={false} color="blue-gray">
-            <img src="https://picsum.photos/500" alt="Article Thumbnail"></img>
-            <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-          </CardHeader>
-          <CardBody className="pb-2">
-            <Typography variant="h4" color="orange" className="">
-              Kopi
-            </Typography>
-          </CardBody>
-          <CardFooter className="pt-2">
-            <div className="grid place-content-center grid-cols-2 gap-4">
-              <div>
-                <Typography className="text-nutricare-green">
-                  Calories
-                </Typography>
-                <Chip
-                  size="lg"
-                  value="99 kcal"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-              <div>
-                <Typography className="text-nutricare-green">Carbs</Typography>
-                <Chip
-                  size="lg"
-                  value="34 g"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-              <div>
-                <Typography className="text-nutricare-green">Fat</Typography>
-                <Chip
-                  size="lg"
-                  value="35 g"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-              <div>
-                <Typography className="text-nutricare-green">
-                  Protein
-                </Typography>
-                <Chip
-                  size="lg"
-                  value="11 g"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-            </div>
-          </CardFooter>
-        </Card>
-        <Card className="lg:w-80 shadow-lg mx-auto">
-          <CardHeader floated={false} color="blue-gray">
-            <img src="https://picsum.photos/500" alt="Article Thumbnail"></img>
-            <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-          </CardHeader>
-          <CardBody className="pb-2">
-            <Typography variant="h4" color="orange" className="">
-              Kopi
-            </Typography>
-          </CardBody>
-          <CardFooter className="pt-2">
-            <div className="grid place-content-center grid-cols-2 gap-4">
-              <div>
-                <Typography className="text-nutricare-green">
-                  Calories
-                </Typography>
-                <Chip
-                  size="lg"
-                  value="99 kcal"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-              <div>
-                <Typography className="text-nutricare-green">Carbs</Typography>
-                <Chip
-                  size="lg"
-                  value="34 g"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-              <div>
-                <Typography className="text-nutricare-green">Fat</Typography>
-                <Chip
-                  size="lg"
-                  value="35 g"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-              <div>
-                <Typography className="text-nutricare-green">
-                  Protein
-                </Typography>
-                <Chip
-                  size="lg"
-                  value="11 g"
-                  className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
-                />
-              </div>
-            </div>
-          </CardFooter>
-        </Card>
-      </div>
+              </CardBody>
+              <CardFooter className="pt-2">
+                <div className="grid place-content-center grid-cols-2 gap-4">
+                  <div>
+                    <Typography className="text-nutricare-green">
+                      Calories
+                    </Typography>
+                    <Chip
+                      size="lg"
+                      value={
+                        food.nutrition.calories
+                          ? food.nutrition.calories + "kcal"
+                          : "UNKNOWN"
+                      }
+                      className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
+                    />
+                  </div>
+                  <div>
+                    <Typography className="text-nutricare-green">
+                      Carbs
+                    </Typography>
+                    <Chip
+                      size="lg"
+                      value={
+                        food.nutrition.carbs ? food.nutrition.carbs : "UNKNOWN"
+                      }
+                      className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
+                    />
+                  </div>
+                  <div>
+                    <Typography className="text-nutricare-green">
+                      Fat
+                    </Typography>
+                    <Chip
+                      size="lg"
+                      value={
+                        food.nutrition.fat ? food.nutrition.fat : "UNKNOWN"
+                      }
+                      className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
+                    />
+                  </div>
+                  <div>
+                    <Typography className="text-nutricare-green">
+                      Protein
+                    </Typography>
+                    <Chip
+                      size="lg"
+                      value={
+                        food.nutrition.protein
+                          ? food.nutrition.protein
+                          : "UNKNOWN"
+                      }
+                      className="bg-gradient-to-br from-nutricare-linearStart to-nutricare-linearEnd text-md -uppercase"
+                    />
+                  </div>
+                </div>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
