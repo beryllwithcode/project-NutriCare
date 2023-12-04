@@ -11,3 +11,8 @@
 main {
   overflow-x: hidden;
 }
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
