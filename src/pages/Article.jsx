@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   Card,
   CardBody,
@@ -6,17 +6,38 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { Button } from "@material-tailwind/react";
+import { motion } from "framer-motion";
 
 const Hero = () => {
+  const scrollRef = useRef(null);
   return (
     <div className="relative flex bg-gradient-to-b from-white to-light-green-200 justify-center px-10 gap-14 lg:px-24 py-14 text-nutricare-green">
-      <img
+      <motion.img
         src="illustration/article.svg"
         alt="Anatomy"
         className="h-72 hidden lg:block xl:block"
+        initial={{ opacity: 0, x: "-100px" }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ root: scrollRef }}
+        transition={{
+          delay: 0.25,
+          duration: 0.75,
+          type: "spring",
+          stiffness: 150,
+        }}
       />
       <div className="max-w-xl">
-        <div>
+        <motion.div
+          initial={{ opacity: 0, x: "100px" }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ root: scrollRef }}
+          transition={{
+            delay: 0.25,
+            duration: 0.75,
+            type: "spring",
+            stiffness: 150,
+          }}
+        >
           <div>
             <Typography variant="h1" className="mb-4 max-w-lg">
               Welcome to{" "}
@@ -37,13 +58,13 @@ const Hero = () => {
           <div>
             <div className="mt-4 gap-x-6">
               <a href="#articles">
-                <Button className="bg-nutricare-green hover:bg-green-500">
+                <Button className="bg-nutricare-green hover:bg-nutricare-orange">
                   Scroll Down
                 </Button>
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
@@ -66,13 +87,24 @@ const Articles = () => {
   useEffect(() => {
     fetchArticlesData();
   }, []);
-
+  const scrollRef = useRef(null);
   return (
     <div
       className="relative flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green"
       id="articles"
     >
-      <div className="max-w-md lg:max-w-3xl mx-auto my-8">
+      <motion.div
+        initial={{ opacity: 0, y: "-100px" }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ root: scrollRef }}
+        transition={{
+          delay: 0.25,
+          duration: 0.75,
+          type: "spring",
+          stiffness: 150,
+        }}
+        className="max-w-md lg:max-w-3xl mx-auto my-8"
+      >
         <Typography variant="h1" className="mb-2">
           <span className="text-nutricare-orange">NutriCare</span> Articles
         </Typography>
@@ -85,8 +117,19 @@ const Articles = () => {
           Enhance your well-being by staying informed about the latest trends
           and tips for a healthier life.
         </Typography>
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-y-4">
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: "100px" }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ root: scrollRef }}
+        transition={{
+          delay: 0.25,
+          duration: 0.75,
+          type: "spring",
+          stiffness: 150,
+        }}
+        className="grid grid-cols-1 lg:grid-cols-4 gap-y-4"
+      >
         {articles.map((article) => (
           <Card key={article.headline.main} className="w-64 shadow-lg">
             <CardBody>
@@ -101,7 +144,7 @@ const Articles = () => {
               <a href={article.web_url}>
                 <Button
                   size="lg"
-                  className="bg-nutricare-green hover:bg-green-500"
+                  className="bg-nutricare-green hover:bg-nutricare-orange"
                   fullWidth={true}
                 >
                   Read More
@@ -110,7 +153,7 @@ const Articles = () => {
             </CardFooter>
           </Card>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
@@ -7,7 +6,7 @@ import Community from "./pages/Community";
 import FoodNutrient from "./pages/Food_Nutrient";
 import AboutUs from "./pages/About_Us";
 import Article from "./pages/Article";
-import Layout from "./layout/Index";
+import Layout from "./layout/index";
 import SignIn from "./pages/Sign_in";
 import SignUp from "./pages/Sign_Up";
 

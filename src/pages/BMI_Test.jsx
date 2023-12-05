@@ -8,13 +8,26 @@ import {
   Button,
   Chip,
 } from "@material-tailwind/react";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Description from "../components/content/description";
+import { motion } from "framer-motion";
 
 function Guidance() {
+  const scrollRef = useRef(null);
   return (
     <div className="relative flex flex-col justify-center px-10 lg:px-24 text-center my-16 text-nutricare-green">
-      <div className="mb-4">
+      <motion.div
+        initial={{ opacity: 0, y: "-100px" }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ root: scrollRef }}
+        transition={{
+          delay: 0.25,
+          duration: 0.75,
+          type: "spring",
+          stiffness: 150,
+        }}
+        className="mb-4"
+      >
         <Typography variant="h1" className="mb-2">
           Guidance for{" "}
           <span className="text-nutricare-orange">BMI Calculate</span>
@@ -23,8 +36,19 @@ function Guidance() {
           Pay attention for the guidance below for doing{" "}
           <span className="text-nutricare-orange">BMI Calculate</span>.
         </Typography>
-      </div>
-      <div className="flex flex-col mx-auto lg:flex-row justify-center gap-8 mt-8">
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: "100px" }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ root: scrollRef }}
+        transition={{
+          delay: 0.25,
+          duration: 0.75,
+          type: "spring",
+          stiffness: 150,
+        }}
+        className="flex flex-col mx-auto lg:flex-row justify-center gap-8 mt-8"
+      >
         <Card className="w-64 shadow-none bg-nutricare-greenMudaFade text-nutricare-green">
           <CardBody>
             <img src="icons/device.svg" className="mx-auto mb-2"></img>
@@ -85,7 +109,7 @@ function Guidance() {
             </Typography>
           </CardBody>
         </Card>
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -246,7 +270,7 @@ function Test() {
           <div>
             <Button
               onClick={calculateBmi}
-              className="bg-nutricare-green hover:bg-green-500 mt-2"
+              className="bg-nutricare-green hover:bg-nutricare-orange mt-2"
             >
               Calculate!
             </Button>
@@ -324,12 +348,6 @@ function Test() {
     </>
   );
 }
-
-// function Result() {
-//   return (
-
-//   );
-// }
 
 function BMITest() {
   return (

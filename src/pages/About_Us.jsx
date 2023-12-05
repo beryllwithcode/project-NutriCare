@@ -8,16 +8,39 @@ import {
   Typography,
 } from "@material-tailwind/react";
 
+import { useRef } from "react";
+import { motion } from "framer-motion";
+
 const Hero = () => {
+  const scrollRef = useRef(null);
   return (
     <div className="relative flex bg-gradient-to-b from-white to-light-green-200 justify-center px-10 gap-14 lg:px-24 py-14 text-nutricare-green">
-      <img
+      <motion.img
+        initial={{ opacity: 0, x: "-100px" }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ root: scrollRef }}
+        transition={{
+          delay: 0.25,
+          duration: 0.75,
+          type: "spring",
+          stiffness: 150,
+        }}
         src="illustration/team.svg"
         alt="Anatomy"
         className="h-72 hidden lg:block xl:block"
       />
       <div className="max-w-xl">
-        <div>
+        <motion.div
+          initial={{ opacity: 0, x: "100px" }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ root: scrollRef }}
+          transition={{
+            delay: 0.25,
+            duration: 0.75,
+            type: "spring",
+            stiffness: 150,
+          }}
+        >
           <div>
             <Typography variant="h1" className="mb-4 max-w-lg">
               <span className="text-nutricare-orange">NutriCare</span>
@@ -35,16 +58,28 @@ const Hero = () => {
               health articles.
             </Typography>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
 };
 
 const Developers = () => {
+  const scrollRef = useRef(null);
   return (
     <div className="relative flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green">
-      <div className="max-w-md lg:max-w-3xl mx-auto my-8">
+      <motion.div
+        initial={{ opacity: 0, y: "-100px" }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ root: scrollRef }}
+        transition={{
+          delay: 0.25,
+          duration: 0.75,
+          type: "spring",
+          stiffness: 150,
+        }}
+        className="max-w-md lg:max-w-3xl mx-auto my-8"
+      >
         <Typography variant="h1" className="mb-2">
           <span className="text-nutricare-orange">Developer</span> Team
         </Typography>
@@ -55,8 +90,19 @@ const Developers = () => {
           healthier and happier you.{" "}
           <span className="text-nutricare-orange">Say Hi!</span>
         </Typography>
-      </div>
-      <div className="flex flex-wrap justify-center gap-y-6 gap-x-10">
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: "100px" }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ root: scrollRef }}
+        transition={{
+          delay: 0.25,
+          duration: 0.75,
+          type: "spring",
+          stiffness: 150,
+        }}
+        className="flex flex-wrap justify-center gap-y-6 gap-x-10"
+      >
         <Card className="w-64">
           <CardHeader floated={false} className="">
             <img src="/assets/beryll.jpg" alt="Beryll Pradana Ramadhan" />
@@ -372,15 +418,27 @@ const Developers = () => {
             </Tooltip>
           </CardFooter>
         </Card>
-      </div>
+      </motion.div>
     </div>
   );
 };
 
 const Advisor = () => {
+  const scrollRef = useRef(null);
   return (
     <div className="relative flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green">
-      <div className="max-w-md lg:max-w-3xl mx-auto my-8">
+      <motion.div
+        initial={{ opacity: 0, y: "-100px" }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ root: scrollRef }}
+        transition={{
+          delay: 0.25,
+          duration: 0.75,
+          type: "spring",
+          stiffness: 150,
+        }}
+        className="max-w-md lg:max-w-3xl mx-auto my-8"
+      >
         <Typography variant="h1" className="mb-2">
           Our <span className="text-nutricare-orange">Advisor</span>
         </Typography>
@@ -392,8 +450,19 @@ const Advisor = () => {
           <span className="text-nutricare-orange">NutriCare</span> as a
           comprehensive resource for health and wellness.
         </Typography>
-      </div>
-      <div className="flex flex-wrap justify-center gap-y-6 gap-x-10">
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: "100px" }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ root: scrollRef }}
+        transition={{
+          delay: 0.25,
+          duration: 0.75,
+          type: "spring",
+          stiffness: 150,
+        }}
+        className="flex flex-wrap justify-center gap-y-6 gap-x-10"
+      >
         <Card className="w-64">
           <CardHeader floated={false} className="">
             <img
@@ -451,7 +520,7 @@ const Advisor = () => {
             </Tooltip>
           </CardFooter>
         </Card>
-      </div>
+      </motion.div>
     </div>
   );
 };

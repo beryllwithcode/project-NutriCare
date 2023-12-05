@@ -6,7 +6,6 @@ import App from "./App";
 import { ThemeProvider } from "@material-tailwind/react";
 import { BrowserRouter } from "react-router-dom";
 
-// Menerapkan materi expert "Skip to Content" di luar root elemen
 const skipLink = document.createElement("a");
 skipLink.href = "#content";
 skipLink.className = "skip-link";
