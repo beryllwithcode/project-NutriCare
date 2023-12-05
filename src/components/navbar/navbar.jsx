@@ -28,25 +28,9 @@ function NavbarDefault() {
 
   console.log(session);
 
-  const [username, setUsername] = useState(null);
-  useEffect(() => {
-    async function getProfile() {
-      const { user } = session;
-
-      const { data, error } = await supabase
-        .from("profiles")
-        .select(`username`)
-        .eq("id", user.id)
-        .single();
-
-      if (error) {
-        console.warn(error);
-      } else if (data) {
-        setUsername(data.username);
-      }
-    }
-    getProfile();
-  }, [session]);
+  // var userEmail = session.user.email;
+  // var emailPos = userEmail.indexOf("@");
+  // var email = userEmail.slice(0, emailPos);
 
   const [openNav, setOpenNav] = React.useState(false);
 
@@ -154,7 +138,17 @@ function NavbarDefault() {
           {session ? (
             <Menu>
               <MenuHandler>
-                <Button className="bg-nutricare-green">{username}</Button>
+                <Button className="bg-nutricare-green">
+                  {session.user.email.slice(0, session.user.email.indexOf("@"))
+                    .length > 9
+                    ? session.user.email
+                        .slice(0, session.user.email.indexOf("@"))
+                        .slice(0, 9) + "..."
+                    : session.user.email.slice(
+                        0,
+                        session.user.email.indexOf("@")
+                      )}
+                </Button>
               </MenuHandler>
               <MenuList>
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
