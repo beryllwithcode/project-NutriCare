@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
 import BMITest from "./pages/BMI_Test";
@@ -11,9 +11,13 @@ import SignIn from "./pages/Sign_in";
 import SignUp from "./pages/Sign_Up";
 
 function App() {
+  const location = useLocation();
+  const isSignInOrSignUpPage =
+    location.pathname === "/log-in" || location.pathname === "/sign-up";
+
   return (
     <>
-      <Layout>
+      <Layout showNavbarAndFooter={!isSignInOrSignUpPage}>
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/bmi-test" element={<BMITest />}></Route>
