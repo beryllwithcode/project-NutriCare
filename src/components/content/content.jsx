@@ -237,7 +237,6 @@ const Articles = () => {
           <Carousel
             className="rounded-xl mt-6 lg:hidden xl:hidden"
             loop={true}
-            navigation={false}
             autoplay={true}
             prevArrow={({ handlePrev }) => (
               <IconButton
