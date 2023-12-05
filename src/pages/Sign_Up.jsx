@@ -1,7 +1,32 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { supabase } from "../supabaseClient";
 
 function SignUp() {
+  const navigate = useNavigate();
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignUp = async (event) => {
+    event.preventDefault();
+
+    try {
+      const { user, error } = await supabase.auth.signUp({
+        email, // Assuming username is used as the email for simplicity
+        password,
+      });
+
+      if (error) {
+        console.error(error);
+      } else {
+        navigate("/");
+        console.log("User registered:", user);
+      }
+    } catch (error) {
+      console.error("Error signing up:", error.message);
+    }
+  };
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -11,8 +36,8 @@ function SignUp() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" action="#" method="POST">
-          <div>
+        <form className="space-y-6" onSubmit={handleSignUp}>
+          {/* <div>
             <label
               htmlFor="Name"
               className="block text-sm font-medium leading-6 text-gray-900"
@@ -26,24 +51,26 @@ function SignUp() {
                 type="Name"
                 autoComplete="Name"
                 required
+                onChange={(e) => setFullName(e.target.value)}
                 className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-nutricare-green sm:text-sm sm:leading-6"
               />
             </div>
-          </div>
+          </div> */}
           <div>
             <label
-              htmlFor="username"
+              htmlFor="email"
               className="block text-sm font-medium leading-6 text-gray-900"
             >
-              Username
+              Email
             </label>
             <div className="mt-2">
               <input
-                id="username"
-                name="username"
-                type="username"
-                autoComplete="username"
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
                 required
+                onChange={(e) => setEmail(e.target.value)}
                 className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-nutricare-green sm:text-sm sm:leading-6"
               />
             </div>
@@ -65,6 +92,7 @@ function SignUp() {
                 type="password"
                 autoComplete="current-password"
                 required
+                onChange={(e) => setPassword(e.target.value)}
                 className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-nutricare-green sm:text-sm sm:leading-6"
               />
             </div>
