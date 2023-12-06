@@ -66,7 +66,10 @@ const Services = () => {
                     className="mx-auto mb-2"
                     alt="BMI Calculate"
                   ></img>
-                  <Typography variant="h5" color="blue-gray" className="mb-2">
+                  <Typography
+                    variant="h5"
+                    className="mb-2 text-nutricare-green"
+                  >
                     BMI Calculate
                   </Typography>
                   <Typography>
@@ -83,7 +86,10 @@ const Services = () => {
                     className="mx-auto mb-2 mt-2"
                     alt="Article"
                   ></img>
-                  <Typography variant="h5" color="blue-gray" className="mb-2">
+                  <Typography
+                    variant="h5"
+                    className="mb-2 text-nutricare-green"
+                  >
                     Article
                   </Typography>
                   <Typography>
@@ -101,7 +107,10 @@ const Services = () => {
                     className="mx-auto mb-2"
                     alt="Community Forum"
                   ></img>
-                  <Typography variant="h5" color="blue-gray" className="mb-2">
+                  <Typography
+                    variant="h5"
+                    className="mb-2 text-nutricare-green"
+                  >
                     Community Forum
                   </Typography>
                   <Typography>
@@ -118,7 +127,10 @@ const Services = () => {
                     className="mx-auto mb-2"
                     alt="BMI Calculate"
                   ></img>
-                  <Typography variant="h5" color="blue-gray" className="mb-2">
+                  <Typography
+                    variant="h5"
+                    className="mb-2 text-nutricare-green"
+                  >
                     Food Nutrient Details
                   </Typography>
                   <Typography>
@@ -182,7 +194,7 @@ const Test = () => {
           </Typography>
           <div className="mt-4 gap-x-6">
             <Link to="/bmi-test">
-              <Button className="bg-nutricare-green hover:bg-green-500">
+              <Button className="bg-nutricare-green hover:bg-nutricare-orange">
                 Calculate BMI
               </Button>
             </Link>
@@ -306,7 +318,7 @@ const Articles = () => {
               <CardFooter className="pt-2">
                 <Button
                   size="lg"
-                  className="bg-nutricare-green hover:bg-green-500"
+                  className="bg-nutricare-green hover:bg-nutricare-orange"
                   fullWidth={true}
                 >
                   Read More
@@ -332,7 +344,7 @@ const Articles = () => {
               <CardFooter className="pt-2">
                 <Button
                   size="lg"
-                  className="bg-nutricare-green hover:bg-green-500"
+                  className="bg-nutricare-green hover:bg-nutricare-orange"
                   fullWidth={true}
                 >
                   Read More
@@ -358,7 +370,7 @@ const Articles = () => {
               <CardFooter className="pt-2">
                 <Button
                   size="lg"
-                  className="bg-nutricare-green hover:bg-green-500"
+                  className="bg-nutricare-green hover:bg-nutricare-orange"
                   fullWidth={true}
                 >
                   Read More
@@ -384,7 +396,7 @@ const Articles = () => {
               <CardFooter className="pt-2">
                 <Button
                   size="lg"
-                  className="bg-nutricare-green hover:bg-green-500"
+                  className="bg-nutricare-green hover:bg-nutricare-orange"
                   fullWidth={true}
                 >
                   Read More
@@ -410,7 +422,7 @@ const Articles = () => {
               <CardFooter className="pt-2">
                 <Button
                   size="lg"
-                  className="bg-nutricare-green hover:bg-green-500"
+                  className="bg-nutricare-green hover:bg-nutricare-orange"
                   fullWidth={true}
                 >
                   Read More
@@ -439,7 +451,7 @@ const Articles = () => {
             <CardFooter className="pt-2">
               <Button
                 size="lg"
-                className="bg-nutricare-green hover:bg-green-500"
+                className="bg-nutricare-green hover:bg-nutricare-orange"
                 fullWidth={true}
               >
                 Read More
@@ -465,7 +477,7 @@ const Articles = () => {
             <CardFooter className="pt-2">
               <Button
                 size="lg"
-                className="bg-nutricare-green hover:bg-green-500"
+                className="bg-nutricare-green hover:bg-nutricare-orange"
                 fullWidth={true}
               >
                 Read More
@@ -491,7 +503,7 @@ const Articles = () => {
             <CardFooter className="pt-2">
               <Button
                 size="lg"
-                className="bg-nutricare-green hover:bg-green-500"
+                className="bg-nutricare-green hover:bg-nutricare-orange"
                 fullWidth={true}
               >
                 Read More
@@ -517,7 +529,7 @@ const Articles = () => {
             <CardFooter className="pt-2">
               <Button
                 size="lg"
-                className="bg-nutricare-green hover:bg-green-500"
+                className="bg-nutricare-green hover:bg-nutricare-orange"
                 fullWidth={true}
               >
                 Read More
@@ -571,7 +583,7 @@ const Community = () => {
         </Typography>
         <div className="mt-4 gap-x-6">
           <Link to="/community">
-            <Button className="bg-nutricare-green hover:bg-green-500">
+            <Button className="bg-nutricare-green hover:bg-nutricare-orange">
               Join Us!
             </Button>
           </Link>
@@ -612,7 +624,7 @@ const FoodNutrient = () => {
           </Typography>
           <div className="mt-4 gap-x-6">
             <Link to="/food-nutrient">
-              <Button className="bg-nutricare-green hover:bg-green-500">
+              <Button className="bg-nutricare-green hover:bg-nutricare-orange">
                 More
               </Button>
             </Link>

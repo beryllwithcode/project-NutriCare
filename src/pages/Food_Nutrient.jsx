@@ -43,7 +43,7 @@ const Hero = () => {
           </Typography>
           <div className="mt-4 gap-x-6">
             <a href="#foods">
-              <Button className="bg-nutricare-green hover:bg-green-500">
+              <Button className="bg-nutricare-green hover:bg-nutricare-orange">
                 More
               </Button>
             </a>
@@ -72,23 +72,17 @@ const Food = () => {
   const [foodsData, setFoodsData] = useState([]);
 
   useEffect(() => {
-    // Lakukan fetching API pertama untuk mendapatkan daftar makanan
     fetchFoodsData()
       .then((foodsResponse) => {
-        // Untuk setiap item makanan, lakukan fetching API kedua untuk mendapatkan nutrisi
         const promises = foodsResponse.map((foodItem) =>
           fetchNutritionData(foodItem.id)
         );
-
-        // Tunggu semua fetching selesai dan gabungkan data nutrisi ke dalam setiap item makanan
         Promise.all(promises)
           .then((nutritionResponses) => {
             const foodsWithNutrition = foodsResponse.map((foodItem, index) => ({
               ...foodItem,
               nutrition: nutritionResponses[index],
             }));
-
-            // Setel state dengan data makanan yang telah digabungkan dengan nutrisi
             setFoodsData(foodsWithNutrition);
           })
           .catch((error) =>

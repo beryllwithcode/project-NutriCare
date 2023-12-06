@@ -7,7 +7,7 @@ function Home() {
       <Hero />
       <Content />
     </>
-  )
+  );
 }
 
 export default Home;

@@ -10,7 +10,7 @@ import {
   MenuItem,
   MenuList,
 } from "@material-tailwind/react";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { supabase } from "../../supabaseClient";
 
 function NavbarDefault() {
@@ -27,11 +27,6 @@ function NavbarDefault() {
   }, []);
 
   console.log(session);
-
-  // var userEmail = session.user.email;
-  // var emailPos = userEmail.indexOf("@");
-  // var email = userEmail.slice(0, emailPos);
-
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -57,60 +52,82 @@ function NavbarDefault() {
 
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 pt-1">
-      <Link to="/">
+      <NavLink to="/" activeClassName="active">
         <Typography
           as="li"
           variant="small"
-          className="flex items-center gap-x-2 p-1 font-semibold text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition-all duration-200"
+          className={`flex items-center gap-x-2 p-1 font-semibold text-nutricare-green hover:text-nutricare-orange border-b-2 border-transparent hover:border-nutricare-orange transition-all duration-200 ${
+            window.location.pathname === "/" ? "nav-item active" : "nav-item"
+          }`}
         >
           Home
         </Typography>
-      </Link>
-      <Link to="/bmi-test">
+      </NavLink>
+      <NavLink to="/bmi-test" activeClassName="active">
         <Typography
           as="li"
           variant="small"
-          className="flex items-center gap-x-2 p-1 font-semibold text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition-all duration-200"
+          className={`flex items-center gap-x-2 p-1 font-semibold text-nutricare-green hover:text-nutricare-orange border-b-2 border-transparent hover:border-nutricare-orange transition-all duration-200 ${
+            window.location.pathname === "/bmi-test"
+              ? "nav-item active"
+              : "nav-item"
+          }`}
         >
           BMI Calculate
         </Typography>
-      </Link>
-      <Link to="/article">
+      </NavLink>
+      <NavLink to="/article" activeClassName="active">
         <Typography
           as="li"
           variant="small"
-          className="flex items-center gap-x-2 p-1 font-semibold text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition-all duration-200"
+          className={`flex items-center gap-x-2 p-1 font-semibold text-nutricare-green hover:text-nutricare-orange border-b-2 border-transparent hover:border-nutricare-orange transition-all duration-200 ${
+            window.location.pathname === "/article"
+              ? "nav-item active"
+              : "nav-item"
+          }`}
         >
           Article
         </Typography>
-      </Link>
-      <Link to="/community">
+      </NavLink>
+      <NavLink to="/community" activeClassName="active">
         <Typography
           as="li"
           variant="small"
-          className="flex items-center gap-x-2 p-1 font-semibold text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition-all duration-200"
+          className={`flex items-center gap-x-2 p-1 font-semibold text-nutricare-green hover:text-nutricare-orange border-b-2 border-transparent hover:border-nutricare-orange transition-all duration-200 ${
+            window.location.pathname === "/community"
+              ? "nav-item active"
+              : "nav-item"
+          }`}
         >
           Community
         </Typography>
-      </Link>
-      <Link to="/food-nutrient">
+      </NavLink>
+      <NavLink to="/food-nutrient" activeClassName="active">
         <Typography
           as="li"
           variant="small"
-          className="flex items-center gap-x-2 p-1 font-semibold text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition-all duration-200"
+          className={`flex items-center gap-x-2 p-1 font-semibold text-nutricare-green hover:text-nutricare-orange border-b-2 border-transparent hover:border-nutricare-orange transition-all duration-200 ${
+            window.location.pathname === "/food-nutrient"
+              ? "nav-item active"
+              : "nav-item"
+          }`}
         >
           Food Nutrient
         </Typography>
-      </Link>
-      <Link to="/about-us">
+      </NavLink>
+      <NavLink to="/about-us" activeClassName="active">
         <Typography
           as="li"
           variant="small"
-          className="flex items-center gap-x-2 p-1 font-semibold text-gray-600 hover:text-green-800 border-b-2 border-transparent hover:border-green-800 transition-all duration-200"
+          className={`flex items-center gap-x-2 p-1 font-semibold text-nutricare-green hover:text-nutricare-orange border-b-2 border-transparent hover:border-nutricare-orange transition-all duration-200 ${
+            window.location.pathname === "/about-us"
+              ? "nav-item active"
+              : "nav-item"
+          }`}
         >
           About Us
         </Typography>
-      </Link>
+      </NavLink>
     </ul>
   );
 
@@ -130,7 +147,8 @@ function NavbarDefault() {
             className="mr-4 cursor-pointer py-1.5 font-light text-orange-400 tracking-widest"
             variant="h3"
           >
-            Nutri<span className="font-semibold text-green-500">Care</span>
+            Nutri
+            <span className="font-semibold text-nutricare-green">Care</span>
           </Typography>
         </Link>
         <div className="hidden lg:block">{navList}</div>
@@ -160,7 +178,7 @@ function NavbarDefault() {
                 <Button
                   variant="filled"
                   size="sm"
-                  className="hidden lg:inline-block bg-green-800 hover:bg-green-500"
+                  className="hidden lg:inline-block bg-nutricare-green hover:bg-nutricare-orange"
                 >
                   <span>Login</span>
                 </Button>
@@ -169,7 +187,7 @@ function NavbarDefault() {
                 <Button
                   variant="filled"
                   size="sm"
-                  className="hidden lg:inline-block bg-green-800 hover:bg-green-500"
+                  className="hidden lg:inline-block bg-nutricare-green hover:bg-nutricare-orange"
                 >
                   <span>Signup</span>
                 </Button>

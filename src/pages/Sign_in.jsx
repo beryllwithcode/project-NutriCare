@@ -1,28 +1,31 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { supabase } from '../supabaseClient'
+import { supabase } from "../supabaseClient";
 
 function SignIn() {
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     event.preventDefault();
 
     setLoading(true);
-    const {error} = await supabase.auth.signInWithPassword({email, password});
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
     if (error) {
       alert(error.error_description || error.message);
     } else {
-      alert('Login Success!');
-      navigate('/');
+      alert("Login Success!");
+      navigate("/");
     }
-    setLoading(false)
-  }
-  
+    setLoading(false);
+  };
+
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -36,7 +39,7 @@ function SignIn() {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium leading-6 text-gray-900"
+              className="block text-sm font-medium leading-6 text-nutricare-green"
             >
               Email
             </label>
@@ -58,15 +61,12 @@ function SignIn() {
             <div className="flex items-center justify-between">
               <label
                 htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 text-nutricare-green"
               >
                 Password
               </label>
               <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-semibold text-nutricare-green"
-                >
+                <a href="#" className="font-semibold text-nutricare-green">
                   Forgot password?
                 </a>
               </div>
@@ -88,7 +88,7 @@ function SignIn() {
           <div>
             <button
               disabled={loading}
-              className="flex w-full justify-center rounded-md bg-green-800 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              className="flex w-full justify-center rounded-md bg-nutricare-green px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-nutricare-orange focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               Sign In
             </button>

@@ -1,16 +1,37 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Button, Typography } from "@material-tailwind/react";
+import { motion } from "framer-motion";
 
 const Hero = () => {
+  const scrollRef = useRef(null);
   return (
     <div className="relative flex bg-gradient-to-b from-white to-light-green-200 justify-center px-10 gap-14 lg:px-24 py-14 text-nutricare-green">
-      <img
+      <motion.img
+        initial={{ opacity: 0, x: "-100px" }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ root: scrollRef }}
+        transition={{
+          delay: 0.25,
+          duration: 0.75,
+          type: "spring",
+          stiffness: 150,
+        }}
         src="illustration/rafiki.svg"
         alt="Anatomy"
         className="h-72 hidden lg:block xl:block"
       />
       <div className="max-w-xl">
-        <div>
+        <motion.div
+          initial={{ opacity: 0, x: "100px" }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ root: scrollRef }}
+          transition={{
+            delay: 0.25,
+            duration: 0.75,
+            type: "spring",
+            stiffness: 150,
+          }}
+        >
           <div>
             <Typography variant="h1" className="mb-4">
               Welcome to NutriCare's{" "}
@@ -31,25 +52,37 @@ const Hero = () => {
           <div>
             <div className="mt-4 gap-x-6">
               <a href="#discussion">
-                <Button className="bg-nutricare-green hover:bg-green-500">
+                <Button className="bg-nutricare-green hover:bg-nutricare-orange">
                   Join Us
                 </Button>
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
 };
 
 const Content = () => {
+  const scrollRef = useRef(null);
   return (
     <div
       className="relative flex px-10 gap-14 lg:px-24 py-14 text-nutricare-green"
       id="discussion"
     >
-      <div className="lg:w-screen">
+      <motion.div
+        initial={{ opacity: 0, y: "-100px" }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ root: scrollRef }}
+        transition={{
+          delay: 0.25,
+          duration: 0.75,
+          type: "spring",
+          stiffness: 150,
+        }}
+        className="lg:w-screen"
+      >
         <div className="flex justify-between items-center pb-4 border-b-4">
           <div className="w-40 lg:w-full">
             <Typography variant="h3">Let's Discuss</Typography>
@@ -58,59 +91,11 @@ const Content = () => {
               others.
             </Typography>
           </div>
-          <Button className="bg-nutricare-green w-32 lg:w-100 h-full">
+          <Button className="bg-nutricare-green hover:bg-nutricare-orange w-32 lg:w-100 h-full">
             New Discussion
           </Button>
         </div>
-        <div className="flex gap-4 my-4">
-          <div>
-            <input
-              class="sr-only peer"
-              type="radio"
-              value="yes"
-              name="sort"
-              id="all"
-              defaultChecked
-            />
-            <label
-              class="flex py-3 px-6 uppercase font-bold text-xs bg-white border border-nutricare-green rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:bg-nutricare-green peer-checked:text-white"
-              for="all"
-            >
-              All
-            </label>
-          </div>
-          <div>
-            <input
-              class="sr-only peer"
-              type="radio"
-              value="no"
-              name="sort"
-              id="Latest"
-            />
-            <label
-              class="flex py-3 px-6 uppercase font-bold text-xs bg-white border border-nutricare-green rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:bg-nutricare-green peer-checked:text-white"
-              for="Latest"
-            >
-              Latest
-            </label>
-          </div>
-          <div>
-            <input
-              class="sr-only peer"
-              type="radio"
-              value="no"
-              name="sort"
-              id="Popular"
-            />
-            <label
-              class="flex py-3 px-6 uppercase font-bold text-xs bg-white border border-nutricare-green rounded-lg cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:bg-nutricare-green peer-checked:text-white"
-              for="Popular"
-            >
-              Popular
-            </label>
-          </div>
-        </div>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 mt-8">
           <div className="p-5 border-2 rounded-lg flex items-center justify-between">
             <div className="w-52 lg:w-full">
               <Typography variant="h5">
@@ -187,7 +172,7 @@ const Content = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

@@ -1,5 +1,4 @@
-// import logo from './logo.svg';
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
 import BMITest from "./pages/BMI_Test";
@@ -7,14 +6,18 @@ import Community from "./pages/Community";
 import FoodNutrient from "./pages/Food_Nutrient";
 import AboutUs from "./pages/About_Us";
 import Article from "./pages/Article";
-import Layout from "./layout/Index";
+import Layout from "./layout/index";
 import SignIn from "./pages/Sign_in";
 import SignUp from "./pages/Sign_Up";
 
 function App() {
+  const location = useLocation();
+  const isSignInOrSignUpPage =
+    location.pathname === "/log-in" || location.pathname === "/sign-up";
+
   return (
     <>
-      <Layout>
+      <Layout showNavbarAndFooter={!isSignInOrSignUpPage}>
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/bmi-test" element={<BMITest />}></Route>
