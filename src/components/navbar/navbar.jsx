@@ -27,6 +27,31 @@ function NavbarDefault() {
   }, []);
 
   console.log(session);
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("profiles") // Assuming you have a table named 'profiles'
+          .select("full_name")
+          .eq("id", session?.user.id)
+          .single();
+
+        if (error) {
+          console.error("Error fetching user profile:", error.message);
+        } else {
+          setSession({ ...session, profile: data });
+        }
+      } catch (error) {
+        console.error("Error fetching user profile:", error.message);
+      }
+    };
+
+    if (session) {
+      fetchUserProfile();
+    }
+  }, [session]);
+
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -156,7 +181,7 @@ function NavbarDefault() {
           {session ? (
             <Menu>
               <MenuHandler>
-                <Button className="bg-nutricare-green hover:bg-nutricare-orange">
+                {/* <Button className="bg-nutricare-green hover:bg-nutricare-orange">
                   {session.user.email.slice(0, session.user.email.indexOf("@"))
                     .length > 9
                     ? session.user.email
@@ -166,6 +191,12 @@ function NavbarDefault() {
                         0,
                         session.user.email.indexOf("@")
                       )}
+                </Button> */}
+                <Button className="bg-nutricare-green hover:bg-nutricare-orange">
+                  {session.profile?.full_name.length > 9
+                    ? session.profile?.full_name.slice(0, 9) + "..." ||
+                      "Loading..."
+                    : session.profile?.full_name || "Loading..."}
                 </Button>
               </MenuHandler>
               <MenuList>
