@@ -24,10 +24,7 @@ function App() {
           <Route path="/bmi-test" element={<BMITest />}></Route>
           <Route path="/article" element={<Article />}></Route>
           <Route path="/community" element={<Community />}></Route>
-          <Route
-            path="/discussion-detail"
-            element={<DiscussionDetail />}
-          ></Route>
+          <Route path="/discussion/:id" element={<DiscussionDetail />}></Route>
           <Route path="/food-nutrient" element={<FoodNutrient />}></Route>
           <Route path="/about-us" element={<AboutUs />}></Route>
           <Route path="/log-in" element={<SignIn />}></Route>
