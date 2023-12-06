@@ -129,9 +129,14 @@ const Articles = () => {
           stiffness: 150,
         }}
         className="grid grid-cols-1 lg:grid-cols-4 gap-y-4"
+        role="article"
       >
         {articles.map((article) => (
-          <Card key={article.headline.main} className="w-64 shadow-lg">
+          <Card
+            key={article.headline.main}
+            className="w-64 shadow-lg"
+            role="article"
+          >
             <CardBody>
               <Typography variant="h5" color="orange" className="mb-2">
                 {article.headline.main}
