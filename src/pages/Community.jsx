@@ -1,5 +1,16 @@
 import React, { useRef } from "react";
-import { Button, Typography } from "@material-tailwind/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  Checkbox,
+  Dialog,
+  Input,
+  Textarea,
+  Typography,
+} from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Hero = () => {
@@ -65,6 +76,47 @@ const Hero = () => {
 };
 
 const Content = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen((cur) => !cur);
+
+  const NewDiscussion = () => {
+    return (
+      <Dialog
+        size="md"
+        open={open}
+        handler={handleOpen}
+        className="bg-transparent shadow-none"
+      >
+        <Card className="mx-auto w-full">
+          <CardBody className="flex flex-col gap-4">
+            <div>
+              <Typography variant="h4" className="text-nutricare-green">
+                Create{" "}
+                <span className="text-nutricare-orange">New Discussion</span>
+              </Typography>
+              <Typography
+                className="mb-3 font-normal text-nutricare-green"
+                variant="paragraph"
+              >
+                Enter details for the discussion.
+              </Typography>
+            </div>
+            <Input label="Title" color="green" size="lg" />
+            <Textarea label="Description" color="green"></Textarea>
+          </CardBody>
+          <CardFooter className="pt-0">
+            <Button
+              className="bg-nutricare-green"
+              onClick={handleOpen}
+              fullWidth
+            >
+              Create
+            </Button>
+          </CardFooter>
+        </Card>
+      </Dialog>
+    );
+  };
   const scrollRef = useRef(null);
   return (
     <div
@@ -83,7 +135,7 @@ const Content = () => {
         }}
         className="lg:w-screen"
       >
-        <div className="flex justify-between items-center pb-4 border-b-4">
+        <div className="flex justify-between items-center mb-5 pb-4 border-b-4">
           <div className="w-40 lg:w-full">
             <Typography variant="h3">Let's Discuss</Typography>
             <Typography variant="paragraph">
@@ -91,16 +143,22 @@ const Content = () => {
               others.
             </Typography>
           </div>
-          <Button className="bg-nutricare-green hover:bg-nutricare-orange w-32 lg:w-100 h-full">
+          <Button
+            onClick={handleOpen}
+            className="bg-nutricare-green w-32 lg:w-100 h-full"
+          >
             New Discussion
           </Button>
+          <NewDiscussion />
         </div>
         <div className="flex flex-col gap-4 mt-8">
           <div className="p-5 border-2 rounded-lg flex items-center justify-between">
             <div className="w-52 lg:w-full">
-              <Typography variant="h5">
-                Apa yang akan terjadi ketika kamu diet tidak makan karbo?
-              </Typography>
+              <Link to="/discussion-detail">
+                <Typography variant="h5">
+                  Apa yang akan terjadi ketika kamu diet tidak makan karbo?
+                </Typography>
+              </Link>
               <div className="flex gap-4 lg:gap-8">
                 <Typography variant="paragraph" className="text-gray-500">
                   Post by <span className="text-nutricare-orange">Gusnand</span>
