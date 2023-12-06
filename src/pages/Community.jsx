@@ -3,7 +3,6 @@ import {
   Button,
   Dialog,
   DialogBody,
-  DialogFooter,
   DialogHeader,
   Input,
   Textarea,
@@ -162,7 +161,7 @@ const Content = () => {
 
   useEffect(() => {
     fetchDiscussions();
-  }, []);
+  });
 
   const [open, setOpen] = React.useState(false);
 

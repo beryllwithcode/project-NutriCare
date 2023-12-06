@@ -103,7 +103,7 @@ const DiscussionDetail = () => {
 
   useEffect(() => {
     fetchDiscussions();
-  }, []);
+  });
 
   if (!discussion) {
     return <div>Loading...</div>;
