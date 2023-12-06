@@ -5,7 +5,6 @@ import { Button, Typography } from "@material-tailwind/react";
 
 function SignUp() {
   const navigate = useNavigate();
-  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,7 +12,7 @@ function SignUp() {
     event.preventDefault();
 
     try {
-      const { data, error } = await supabase.auth.signUp({
+      const { user, error } = await supabase.auth.signUp({
         email,
         password,
       });
@@ -21,15 +20,8 @@ function SignUp() {
       if (error) {
         console.error(error);
       } else {
-        await supabase.from("profiles").upsert([
-          {
-            id: data.user.id,
-            full_name: fullName,
-          },
-        ]);
         navigate("/");
-        console.log("User registered:", data.user.id);
-        alert("Sign Up Success!");
+        console.log("User registered:", user);
       }
     } catch (error) {
       console.error("Error signing up:", error.message);
@@ -45,25 +37,6 @@ function SignUp() {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-6" onSubmit={handleSignUp}>
-          <div>
-            <label
-              htmlFor="fullName"
-              className="block text-sm font-medium leading-6 text-nutricare-green"
-            >
-              Name
-            </label>
-            <div className="mt-2">
-              <input
-                id="name"
-                name="name"
-                type="name"
-                autoComplete="name"
-                required
-                onChange={(e) => setFullName(e.target.value)}
-                className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-nutricare-green sm:text-sm sm:leading-6"
-              />
-            </div>
-          </div>
           <div>
             <label
               htmlFor="email"
@@ -108,7 +81,6 @@ function SignUp() {
 
           <div>
             <Button
-              type="submit"
               className="bg-nutricare-green hover:bg-nutricare-orange"
               fullWidth={true}
             >
