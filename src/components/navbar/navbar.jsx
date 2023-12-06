@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   Navbar,
-  MobileNav,
   Typography,
   Button,
   IconButton,
@@ -9,6 +8,7 @@ import {
   MenuHandler,
   MenuItem,
   MenuList,
+  Collapse,
 } from "@material-tailwind/react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { supabase } from "../../supabaseClient";
@@ -25,8 +25,6 @@ function NavbarDefault() {
       setSession(session);
     });
   }, []);
-
-  console.log(session);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -264,7 +262,7 @@ function NavbarDefault() {
           )}
         </IconButton>
       </div>
-      <MobileNav open={openNav}>
+      <Collapse open={openNav}>
         <div className="container mx-auto">
           {navList}
           <div className="flex items-center gap-x-1">
@@ -280,7 +278,7 @@ function NavbarDefault() {
             </Link>
           </div>
         </div>
-      </MobileNav>
+      </Collapse>
     </Navbar>
   );
 }
