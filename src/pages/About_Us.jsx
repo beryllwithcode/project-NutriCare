@@ -426,7 +426,7 @@ const Developers = () => {
 const Advisor = () => {
   const scrollRef = useRef(null);
   return (
-    <div className="relative flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green">
+    <div className="relative overflow-y-hidden flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green">
       <motion.div
         initial={{ opacity: 0, y: "-100px" }}
         whileInView={{ opacity: 1, y: 0 }}
