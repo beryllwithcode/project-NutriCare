@@ -156,7 +156,7 @@ function NavbarDefault() {
           {session ? (
             <Menu>
               <MenuHandler>
-                <Button className="bg-nutricare-green">
+                <Button className="bg-nutricare-green hover:bg-nutricare-orange">
                   {session.user.email.slice(0, session.user.email.indexOf("@"))
                     .length > 9
                     ? session.user.email
