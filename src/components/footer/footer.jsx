@@ -11,7 +11,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center gap-x-3 mb-4">
               <img
-                src="logo/logo192.png"
+                src="/logo/logo192.png"
                 className="h-12 w-auto"
                 alt="NutriCare"
               />

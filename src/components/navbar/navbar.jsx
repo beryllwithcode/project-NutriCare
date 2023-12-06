@@ -162,7 +162,7 @@ function NavbarDefault() {
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <Link to="/" className="flex items-center gap-x-3">
           <img
-            src="./logo/logo192.png"
+            src="/logo/logo192.png"
             className="h-12 w-auto"
             alt="NutriCare"
           />
@@ -179,17 +179,6 @@ function NavbarDefault() {
           {session ? (
             <Menu>
               <MenuHandler>
-                {/* <Button className="bg-nutricare-green hover:bg-nutricare-orange">
-                  {session.user.email.slice(0, session.user.email.indexOf("@"))
-                    .length > 9
-                    ? session.user.email
-                        .slice(0, session.user.email.indexOf("@"))
-                        .slice(0, 9) + "..."
-                    : session.user.email.slice(
-                        0,
-                        session.user.email.indexOf("@")
-                      )}
-                </Button> */}
                 <Button className="bg-nutricare-green hover:bg-nutricare-orange">
                   {session.profile?.full_name.length > 9
                     ? session.profile?.full_name.slice(0, 9) + "..." ||
