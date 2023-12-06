@@ -6,7 +6,7 @@ import Community from "./pages/Community";
 import FoodNutrient from "./pages/Food_Nutrient";
 import AboutUs from "./pages/About_Us";
 import Article from "./pages/Article";
-import Layout from "./layout/index";
+import Layout from "./layout/Index";
 import SignIn from "./pages/Sign_in";
 import SignUp from "./pages/Sign_Up";
 import DiscussionDetail from "./pages/Disscusion_Detail";
