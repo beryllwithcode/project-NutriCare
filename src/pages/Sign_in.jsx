@@ -94,6 +94,7 @@ function SignIn() {
               Sign In
             </button> */}
             <Button
+              type="submit"
               className="bg-nutricare-green hover:bg-nutricare-orange"
               fullWidth={true}
               disabled={loading}
