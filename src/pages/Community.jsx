@@ -1,16 +1,17 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Button,
-  Card,
-  CardBody,
-  CardFooter,
   Dialog,
+  DialogBody,
+  DialogFooter,
+  DialogHeader,
   Input,
   Textarea,
   Typography,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { supabase } from "../supabaseClient";
 
 const Hero = () => {
   const scrollRef = useRef(null);
@@ -75,47 +76,106 @@ const Hero = () => {
 };
 
 const Content = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen((cur) => !cur);
+  const [session, setSession] = useState(null);
 
-  const NewDiscussion = () => {
-    return (
-      <Dialog
-        size="md"
-        open={open}
-        handler={handleOpen}
-        className="bg-transparent shadow-none"
-      >
-        <Card className="mx-auto w-full">
-          <CardBody className="flex flex-col gap-4">
-            <div>
-              <Typography variant="h4" className="text-nutricare-green">
-                Create{" "}
-                <span className="text-nutricare-orange">New Discussion</span>
-              </Typography>
-              <Typography
-                className="mb-3 font-normal text-nutricare-green"
-                variant="paragraph"
-              >
-                Enter details for the discussion.
-              </Typography>
-            </div>
-            <Input label="Title" color="green" size="lg" />
-            <Textarea label="Description" color="green"></Textarea>
-          </CardBody>
-          <CardFooter className="pt-0">
-            <Button
-              className="bg-nutricare-green"
-              onClick={handleOpen}
-              fullWidth
-            >
-              Create
-            </Button>
-          </CardFooter>
-        </Card>
-      </Dialog>
-    );
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const handleNewDiscussion = async (event) => {
+    event.preventDefault();
+    console.log("start");
+
+    try {
+      const { error } = await supabase.from("discussion").insert({
+        id_user: session.user.id,
+        title,
+        description,
+      });
+      console.log("insert");
+
+      if (error) {
+        console.log("error");
+
+        console.error(error);
+      } else {
+        console.log("success");
+
+        alert("Discussion created!");
+        setOpen(false);
+        fetchDiscussions();
+      }
+    } catch (error) {
+      console.error("Error creating discussion:", error.message);
+    }
   };
+
+  function formatDiscussionDate(created_at) {
+    const options = { day: "2-digit", month: "short", year: "numeric" };
+    return new Date(created_at).toLocaleDateString("en-US", options);
+  }
+
+  const [discussions, setDiscussions] = useState([]);
+
+  const fetchDiscussions = async () => {
+    try {
+      const { data: discussionsData, error: discussionsError } =
+        await supabase.from("discussion").select(`
+            id,
+            created_at,
+            id_user,
+            profiles (id, full_name),
+            title,
+            description
+          `);
+
+      if (discussionsError) {
+        throw discussionsError;
+      }
+
+      const discussionsWithCounts = await Promise.all(
+        discussionsData.map(async (discussion) => {
+          // Fetch the count of comments for each discussion using a separate query
+          const { data: commentsData, error: commentsError } = await supabase
+            .from("discussion_replies")
+            .select("id")
+            .eq("id_discussion", discussion.id);
+
+          if (commentsError) {
+            throw commentsError;
+          }
+
+          // Add the count to the discussion object
+          return {
+            ...discussion,
+            created_at: formatDiscussionDate(discussion.created_at),
+            commentCount: commentsData ? commentsData.length : 0,
+          };
+        })
+      );
+
+      setDiscussions(discussionsWithCounts || []);
+    } catch (error) {
+      console.error("Error fetching discussions:", error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchDiscussions();
+  }, []);
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => setOpen(!open);
+
   const scrollRef = useRef(null);
   return (
     <div
@@ -144,92 +204,77 @@ const Content = () => {
           </div>
           <Button
             onClick={handleOpen}
+            disabled={session ? false : true}
             className="bg-nutricare-green w-32 lg:w-100 h-full"
           >
             New Discussion
           </Button>
-          <NewDiscussion />
         </div>
         <div className="flex flex-col gap-4 mt-8">
-          <div className="p-5 border-2 rounded-lg flex items-center justify-between">
-            <div className="w-52 lg:w-full">
-              <Link to="/discussion-detail">
-                <Typography variant="h5">
-                  Apa yang akan terjadi ketika kamu diet tidak makan karbo?
-                </Typography>
-              </Link>
-              <div className="flex gap-4 lg:gap-8">
-                <Typography variant="paragraph" className="text-gray-500">
-                  Post by <span className="text-nutricare-orange">Gusnand</span>
-                </Typography>
-                <Typography variant="paragraph" className="text-gray-500">
-                  18 Nov
-                </Typography>
+          {discussions.map((discussion) => (
+            <div className="p-5 border-2 rounded-lg flex items-center justify-between">
+              <div className="w-52 lg:w-full">
+                <Link to="/discussion-detail">
+                  <Typography variant="h5">{discussion.title}</Typography>
+                </Link>
+                <div className="flex gap-4 lg:gap-8">
+                  <Typography variant="paragraph" className="text-gray-500">
+                    Post by{" "}
+                    <span className="text-nutricare-orange">
+                      {discussion.profiles.full_name}
+                    </span>
+                  </Typography>
+                  <Typography variant="paragraph" className="text-gray-500">
+                    {discussion.created_at}
+                  </Typography>
+                </div>
+              </div>
+              <div className="flex gap-2 lg:gap-6 flex-col lg:flex-row text-nutricare-greenTuaFade">
+                <div className="flex gap-2 items-center">
+                  <img src="/icons/chat-fade.svg" alt="" className="w-5" />
+                  <Typography>{discussion.commentCount}</Typography>
+                </div>
               </div>
             </div>
-            <div className="flex gap-2 lg:gap-6 flex-col lg:flex-row text-nutricare-greenTuaFade">
-              <div className="flex gap-2 items-center">
-                <img src="/icons/chat-fade.svg" alt="" className="w-5" />
-                <Typography>99</Typography>
-              </div>
-              <div className="flex gap-2 items-center">
-                <img src="/icons/thumb-fade.svg" alt="" className="w-5" />
-                <Typography>99</Typography>
-              </div>
-            </div>
-          </div>
-          <div className="p-5 border-2 rounded-lg flex items-center justify-between">
-            <div className="w-52 lg:w-full">
-              <Typography variant="h5">
-                Apa yang akan terjadi ketika kamu diet tidak makan karbo?
-              </Typography>
-              <div className="flex gap-4 lg:gap-8">
-                <Typography variant="paragraph" className="text-gray-500">
-                  Post by <span className="text-nutricare-orange">Gusnand</span>
-                </Typography>
-                <Typography variant="paragraph" className="text-gray-500">
-                  18 Nov
-                </Typography>
-              </div>
-            </div>
-            <div className="flex gap-2 lg:gap-6 flex-col lg:flex-row text-nutricare-greenTuaFade">
-              <div className="flex gap-2 items-center">
-                <img src="/icons/chat-fade.svg" alt="" className="w-5" />
-                <Typography>99</Typography>
-              </div>
-              <div className="flex gap-2 items-center">
-                <img src="/icons/thumb-fade.svg" alt="" className="w-5" />
-                <Typography>99</Typography>
-              </div>
-            </div>
-          </div>
-          <div className="p-5 border-2 rounded-lg flex items-center justify-between">
-            <div className="w-52 lg:w-full">
-              <Typography variant="h5">
-                Apa yang akan terjadi ketika kamu diet tidak makan karbo?
-              </Typography>
-              <div className="flex gap-4 lg:gap-8">
-                <Typography variant="paragraph" className="text-gray-500">
-                  Post by <span className="text-nutricare-orange">Gusnand</span>
-                </Typography>
-                <Typography variant="paragraph" className="text-gray-500">
-                  18 Nov
-                </Typography>
-              </div>
-            </div>
-            <div className="flex gap-2 lg:gap-6 flex-col lg:flex-row text-nutricare-greenTuaFade">
-              <div className="flex gap-2 items-center">
-                <img src="/icons/chat-fade.svg" alt="" className="w-5" />
-                <Typography>99</Typography>
-              </div>
-              <div className="flex gap-2 items-center">
-                <img src="/icons/thumb-fade.svg" alt="" className="w-5" />
-                <Typography>99</Typography>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </motion.div>
+      <Dialog open={open} handler={handleOpen}>
+        <DialogHeader className="pb-0">
+          <div>
+            <Typography variant="h4" className="text-nutricare-green">
+              Create{" "}
+              <span className="text-nutricare-orange">New Discussion</span>
+            </Typography>
+            <Typography
+              className=" font-normal text-nutricare-green"
+              variant="paragraph"
+            >
+              Enter details for the discussion.
+            </Typography>
+          </div>
+        </DialogHeader>
+        <DialogBody>
+          <form onSubmit={handleNewDiscussion} className="flex flex-col gap-4">
+            <Input
+              label="Title"
+              color="green"
+              required
+              onChange={(e) => setTitle(e.target.value)}
+              size="lg"
+            />
+            <Textarea
+              label="Description"
+              required
+              onChange={(e) => setDescription(e.target.value)}
+              color="green"
+            ></Textarea>
+            <Button type="submit" className="bg-nutricare-green" fullWidth>
+              Create
+            </Button>
+          </form>
+        </DialogBody>
+      </Dialog>
     </div>
   );
 };
