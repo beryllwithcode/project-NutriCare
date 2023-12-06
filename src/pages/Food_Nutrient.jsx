@@ -94,7 +94,7 @@ const Food = () => {
 
   const fetchFoodsData = async () => {
     const response = await fetch(
-      "https://api.spoonacular.com/recipes/random?apiKey=2a0ac778c9e9427b874293f0f3f1aa4b&number=12"
+      "https://api.spoonacular.com/recipes/random?apiKey=2a0ac778c9e9427b874293f0f3f1aa4b&number=6"
     );
     const data = await response.json();
     return data.recipes;
