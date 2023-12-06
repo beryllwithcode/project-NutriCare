@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
+import { Button, Typography } from "@material-tailwind/react";
 
 function SignUp() {
   const navigate = useNavigate();
-  const [fullName, setFullName] = useState("");
+  // const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -80,12 +81,12 @@ function SignUp() {
           </div>
 
           <div>
-            <button
-              type="submit"
-              className="flex w-full justify-center rounded-md bg-nutricare-green px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-nutricare-orange focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-nutricare-green"
+            <Button
+              className="bg-nutricare-green hover:bg-nutricare-orange"
+              fullWidth={true}
             >
-              Sign up
-            </button>
+              Sign Up
+            </Button>
           </div>
         </form>
 
@@ -98,6 +99,14 @@ function SignUp() {
             Sign In Here!
           </Link>
         </p>
+        <Link to="/">
+          <Typography
+            variant="small"
+            className="mt-2 text-center font-semibold text-nutricare-green"
+          >
+            {"<"} Back To Home
+          </Typography>
+        </Link>
       </div>
     </div>
   );

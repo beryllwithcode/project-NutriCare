@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
+import { Button, Typography } from "@material-tailwind/react";
 
 function SignIn() {
   const [loading, setLoading] = useState(false);
@@ -86,12 +87,19 @@ function SignIn() {
           </div>
 
           <div>
-            <button
+            {/* <button
               disabled={loading}
               className="flex w-full justify-center rounded-md bg-nutricare-green px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-nutricare-orange focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               Sign In
-            </button>
+            </button> */}
+            <Button
+              className="bg-nutricare-green hover:bg-nutricare-orange"
+              fullWidth={true}
+              disabled={loading}
+            >
+              Sign In
+            </Button>
           </div>
         </form>
 
@@ -104,6 +112,14 @@ function SignIn() {
             Sign Up Here!
           </Link>
         </p>
+        <Link to="/">
+          <Typography
+            variant="small"
+            className="mt-2 text-center font-semibold text-nutricare-green"
+          >
+            {"<"} Back To Home
+          </Typography>
+        </Link>
       </div>
     </div>
   );
