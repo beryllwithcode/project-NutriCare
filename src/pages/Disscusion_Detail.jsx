@@ -45,6 +45,7 @@ const DiscussionDetail = () => {
       } else {
         alert("Comment posted!");
         fetchDiscussions();
+        setComment("");
       }
     } catch (error) {
       console.error("Error posting comment:", error.message);
@@ -151,8 +152,10 @@ const DiscussionDetail = () => {
           <form onSubmit={newCommentHandler}>
             <div className="w-100">
               <Textarea
+                color="green"
                 disabled={session ? false : true}
                 onChange={(e) => setComment(e.target.value)}
+                value={comment}
                 label="Comment"
               />
             </div>
