@@ -92,7 +92,6 @@ const Content = () => {
   const [description, setDescription] = useState("");
   const handleNewDiscussion = async (event) => {
     event.preventDefault();
-    console.log("start");
 
     try {
       const { error } = await supabase.from("discussion").insert({
@@ -100,15 +99,10 @@ const Content = () => {
         title,
         description,
       });
-      console.log("insert");
 
       if (error) {
-        console.log("error");
-
         console.error(error);
       } else {
-        console.log("success");
-
         alert("Discussion created!");
         setOpen(false);
         fetchDiscussions();
@@ -143,7 +137,6 @@ const Content = () => {
 
       const discussionsWithCounts = await Promise.all(
         discussionsData.map(async (discussion) => {
-          // Fetch the count of comments for each discussion using a separate query
           const { data: commentsData, error: commentsError } = await supabase
             .from("discussion_replies")
             .select("id")
@@ -153,7 +146,6 @@ const Content = () => {
             throw commentsError;
           }
 
-          // Add the count to the discussion object
           return {
             ...discussion,
             created_at: formatDiscussionDate(discussion.created_at),
@@ -212,9 +204,12 @@ const Content = () => {
         </div>
         <div className="flex flex-col gap-4 mt-8">
           {discussions.map((discussion) => (
-            <div className="p-5 border-2 rounded-lg flex items-center justify-between">
+            <div
+              key={discussion.id}
+              className="p-5 border-2 rounded-lg flex items-center justify-between"
+            >
               <div className="w-52 lg:w-full">
-                <Link to="/discussion-detail">
+                <Link to={`/discussion/${discussion.id}`}>
                   <Typography variant="h5">{discussion.title}</Typography>
                 </Link>
                 <div className="flex gap-4 lg:gap-8">
