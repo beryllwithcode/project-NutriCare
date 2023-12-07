@@ -183,7 +183,7 @@ const Content = () => {
           type: "spring",
           stiffness: 150,
         }}
-        className="lg:w-screen"
+        className="w-screen"
       >
         <div className="flex justify-between items-center mb-5 pb-4 border-b-4">
           <div className="w-40 lg:w-full">

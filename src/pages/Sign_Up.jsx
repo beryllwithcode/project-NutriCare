@@ -28,22 +28,21 @@ function SignUp() {
           },
         ]);
         navigate("/");
-        alert("Sign Up Success!");
       }
     } catch (error) {
       console.error("Error signing up:", error.message);
     }
   };
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <div className="flex h-screen lg:h-100 flex-1 flex-col justify-center px-10 py-12 pt-0 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-nutricare-green">
+        <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-nutricare-green">
           <span className="text-nutricare-orange">Register</span> your account
         </h2>
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" onSubmit={handleSignUp}>
+        <form className="space-y-4" onSubmit={handleSignUp}>
           <div>
             <label
               htmlFor="fullName"
@@ -51,7 +50,7 @@ function SignUp() {
             >
               Name
             </label>
-            <div className="mt-2">
+            <div className="mt-1">
               <input
                 id="name"
                 name="name"
@@ -70,7 +69,7 @@ function SignUp() {
             >
               Email
             </label>
-            <div className="mt-2">
+            <div className="mt-1">
               <input
                 id="email"
                 name="email"
@@ -92,7 +91,7 @@ function SignUp() {
                 Password
               </label>
             </div>
-            <div className="mt-2">
+            <div className="mt-1">
               <input
                 id="password"
                 name="password"
@@ -108,7 +107,7 @@ function SignUp() {
           <div>
             <Button
               type="submit"
-              className="bg-nutricare-green hover:bg-nutricare-orange"
+              className="bg-nutricare-green hover:bg-nutricare-orange mt-8"
               fullWidth={true}
             >
               Sign Up
