@@ -8,7 +8,7 @@ import {
   Carousel,
   IconButton,
 } from "@material-tailwind/react";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ScrollCarousel from "scroll-carousel-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -206,6 +206,23 @@ const Test = () => {
 };
 
 const Articles = () => {
+  const [articles, setArticles] = useState([]);
+  const fetchArticlesData = () => {
+    fetch(
+      "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Body Mass Index&api-key=FYRej47F7peEopmAzuL72D3zkpUxkYxB"
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setArticles(data.response.docs);
+      });
+  };
+  useEffect(() => {
+    fetchArticlesData();
+  }, []);
+
+  console.log(articles);
   const scrollRef = useRef(null);
   return (
     <div className="relative flex flex-col justify-center bg-light-green-50 text-center px-8 lg:px-24 py-14 text-nutricare-green">
@@ -248,6 +265,7 @@ const Articles = () => {
         <div className="flex justify-center max-w-2xl mx-auto">
           <Carousel
             className="rounded-xl mt-6 lg:hidden xl:hidden"
+            navigation={false}
             loop={true}
             autoplay={true}
             prevArrow={({ handlePrev }) => (
@@ -299,243 +317,68 @@ const Articles = () => {
               </IconButton>
             )}
           >
-            <Card className="mx-auto w-64 shadow-none">
-              <CardHeader floated={false} color="blue-gray">
-                <img
-                  src="https://picsum.photos/500"
-                  alt="Article Thumbnail"
-                ></img>
-                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-              </CardHeader>
-              <CardBody>
-                <Typography variant="h5" color="orange" className="mb-2">
-                  Lorem Ipsum
-                </Typography>
-                <Typography>
-                  Veniam veniam ullamco anim reprehenderit tempor.
-                </Typography>
-              </CardBody>
-              <CardFooter className="pt-2">
-                <Button
-                  size="lg"
-                  className="bg-nutricare-green hover:bg-nutricare-orange"
-                  fullWidth={true}
-                >
-                  Read More
-                </Button>
-              </CardFooter>
-            </Card>
-            <Card className="mx-auto w-64 shadow-none">
-              <CardHeader floated={false} color="blue-gray">
-                <img
-                  src="https://picsum.photos/500"
-                  alt="Article Thumbnail"
-                ></img>
-                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-              </CardHeader>
-              <CardBody>
-                <Typography variant="h5" color="orange" className="mb-2">
-                  Lorem Ipsum
-                </Typography>
-                <Typography>
-                  Veniam veniam ullamco anim reprehenderit tempor.
-                </Typography>
-              </CardBody>
-              <CardFooter className="pt-2">
-                <Button
-                  size="lg"
-                  className="bg-nutricare-green hover:bg-nutricare-orange"
-                  fullWidth={true}
-                >
-                  Read More
-                </Button>
-              </CardFooter>
-            </Card>
-            <Card className="mx-auto w-64 shadow-none">
-              <CardHeader floated={false} color="blue-gray">
-                <img
-                  src="https://picsum.photos/500"
-                  alt="Article Thumbnail"
-                ></img>
-                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-              </CardHeader>
-              <CardBody>
-                <Typography variant="h5" color="orange" className="mb-2">
-                  Lorem Ipsum
-                </Typography>
-                <Typography>
-                  Veniam veniam ullamco anim reprehenderit tempor.
-                </Typography>
-              </CardBody>
-              <CardFooter className="pt-2">
-                <Button
-                  size="lg"
-                  className="bg-nutricare-green hover:bg-nutricare-orange"
-                  fullWidth={true}
-                >
-                  Read More
-                </Button>
-              </CardFooter>
-            </Card>
-            <Card className="mx-auto w-64 shadow-none">
-              <CardHeader floated={false} color="blue-gray">
-                <img
-                  src="https://picsum.photos/500"
-                  alt="Article Thumbnail"
-                ></img>
-                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-              </CardHeader>
-              <CardBody>
-                <Typography variant="h5" color="orange" className="mb-2">
-                  Lorem Ipsum
-                </Typography>
-                <Typography>
-                  Veniam veniam ullamco anim reprehenderit tempor.
-                </Typography>
-              </CardBody>
-              <CardFooter className="pt-2">
-                <Button
-                  size="lg"
-                  className="bg-nutricare-green hover:bg-nutricare-orange"
-                  fullWidth={true}
-                >
-                  Read More
-                </Button>
-              </CardFooter>
-            </Card>
-            <Card className="mx-auto w-64 shadow-none">
-              <CardHeader floated={false} color="blue-gray">
-                <img
-                  src="https://picsum.photos/500"
-                  alt="Article Thumbnail"
-                ></img>
-                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-              </CardHeader>
-              <CardBody>
-                <Typography variant="h5" color="orange" className="mb-2">
-                  Lorem Ipsum
-                </Typography>
-                <Typography>
-                  Veniam veniam ullamco anim reprehenderit tempor.
-                </Typography>
-              </CardBody>
-              <CardFooter className="pt-2">
-                <Button
-                  size="lg"
-                  className="bg-nutricare-green hover:bg-nutricare-orange"
-                  fullWidth={true}
-                >
-                  Read More
-                </Button>
-              </CardFooter>
-            </Card>
+            {articles.slice(0, 4).map((article) => (
+              <Card
+                key={article.headline.main}
+                className="mx-auto w-64 shadow-none"
+              >
+                <CardBody>
+                  <Typography variant="h5" color="orange" className="mb-2">
+                    {article.headline.main}
+                  </Typography>
+                  <Typography>
+                    {article.lead_paragraph?.slice(0, 50) + "..." || "-"}
+                  </Typography>
+                </CardBody>
+                <CardFooter className="pt-2">
+                  <a href={article.web_url} target="blank">
+                    <Button
+                      size="lg"
+                      className="bg-nutricare-green hover:bg-nutricare-orange"
+                      fullWidth={true}
+                    >
+                      Read More
+                    </Button>
+                  </a>
+                </CardFooter>
+              </Card>
+            ))}
           </Carousel>
         </div>
         <div className="lg:flex gap-4 mt-8 hidden">
-          <Card className="mx-auto w-64 shadow-none">
-            <CardHeader floated={false} color="blue-gray">
-              <img
-                src="https://picsum.photos/500"
-                alt="Article Thumbnail"
-              ></img>
-              <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-            </CardHeader>
-            <CardBody>
-              <Typography variant="h5" color="orange" className="mb-2">
-                Lorem Ipsum
-              </Typography>
-              <Typography>
-                Veniam veniam ullamco anim reprehenderit tempor.
-              </Typography>
-            </CardBody>
-            <CardFooter className="pt-2">
-              <Button
-                size="lg"
-                className="bg-nutricare-green hover:bg-nutricare-orange"
-                fullWidth={true}
-              >
-                Read More
-              </Button>
-            </CardFooter>
-          </Card>
-          <Card className="mx-auto w-64 shadow-none">
-            <CardHeader floated={false} color="blue-gray">
-              <img
-                src="https://picsum.photos/500"
-                alt="Article Thumbnail"
-              ></img>
-              <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-            </CardHeader>
-            <CardBody>
-              <Typography variant="h5" color="orange" className="mb-2">
-                Lorem Ipsum
-              </Typography>
-              <Typography>
-                Veniam veniam ullamco anim reprehenderit tempor.
-              </Typography>
-            </CardBody>
-            <CardFooter className="pt-2">
-              <Button
-                size="lg"
-                className="bg-nutricare-green hover:bg-nutricare-orange"
-                fullWidth={true}
-              >
-                Read More
-              </Button>
-            </CardFooter>
-          </Card>
-          <Card className="mx-auto w-64 shadow-none">
-            <CardHeader floated={false} color="blue-gray">
-              <img
-                src="https://picsum.photos/500"
-                alt="Article Thumbnail"
-              ></img>
-              <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-            </CardHeader>
-            <CardBody>
-              <Typography variant="h5" color="orange" className="mb-2">
-                Lorem Ipsum
-              </Typography>
-              <Typography>
-                Veniam veniam ullamco anim reprehenderit tempor.
-              </Typography>
-            </CardBody>
-            <CardFooter className="pt-2">
-              <Button
-                size="lg"
-                className="bg-nutricare-green hover:bg-nutricare-orange"
-                fullWidth={true}
-              >
-                Read More
-              </Button>
-            </CardFooter>
-          </Card>
-          <Card className="mx-auto w-64 shadow-none">
-            <CardHeader floated={false} color="blue-gray">
-              <img
-                src="https://picsum.photos/500"
-                alt="Article Thumbnail"
-              ></img>
-              <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-            </CardHeader>
-            <CardBody>
-              <Typography variant="h5" color="orange" className="mb-2">
-                Lorem Ipsum
-              </Typography>
-              <Typography>
-                Veniam veniam ullamco anim reprehenderit tempor.
-              </Typography>
-            </CardBody>
-            <CardFooter className="pt-2">
-              <Button
-                size="lg"
-                className="bg-nutricare-green hover:bg-nutricare-orange"
-                fullWidth={true}
-              >
-                Read More
-              </Button>
-            </CardFooter>
-          </Card>
+          {articles.slice(0, 4).map((article) => (
+            <Card
+              key={article.headline.main}
+              className="mx-auto w-64 shadow-none"
+            >
+              {/* <CardHeader floated={false} color="blue-gray">
+                <img
+                  src="https://picsum.photos/500"
+                  alt="Article Thumbnail"
+                ></img>
+                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
+              </CardHeader> */}
+              <CardBody>
+                <Typography variant="h5" color="orange" className="mb-2">
+                  {article.headline.main}
+                </Typography>
+                <Typography>
+                  {article.lead_paragraph?.slice(0, 100) + "..." || "-"}
+                </Typography>
+              </CardBody>
+              <CardFooter className="pt-2">
+                <a href={article.web_url} target="blank">
+                  <Button
+                    size="lg"
+                    className="bg-nutricare-green hover:bg-nutricare-orange"
+                    fullWidth={true}
+                  >
+                    Read More
+                  </Button>
+                </a>
+              </CardFooter>
+            </Card>
+          ))}
         </div>
       </motion.div>
     </div>
