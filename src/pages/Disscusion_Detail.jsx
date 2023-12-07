@@ -118,7 +118,7 @@ const DiscussionDetail = () => {
         <div className="flex justify-between items-center pb-4">
           <div className="w-40 lg:w-full">
             <Typography variant="h3">{discussion.title}</Typography>
-            <Typography variant="paragraph" className="mb-2">
+            <Typography variant="paragraph" className="mb-4">
               {discussion.description}
             </Typography>
             <div className="flex gap-4 lg:gap-8">
