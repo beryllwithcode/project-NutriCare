@@ -66,11 +66,6 @@ function SignIn() {
               >
                 Password
               </label>
-              <div className="text-sm">
-                <a href="#" className="font-semibold text-nutricare-green">
-                  Forgot password?
-                </a>
-              </div>
             </div>
             <div className="mt-2">
               <input
@@ -87,12 +82,6 @@ function SignIn() {
           </div>
 
           <div>
-            {/* <button
-              disabled={loading}
-              className="flex w-full justify-center rounded-md bg-nutricare-green px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-nutricare-orange focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-            >
-              Sign In
-            </button> */}
             <Button
               type="submit"
               className="bg-nutricare-green hover:bg-nutricare-orange"
