@@ -119,7 +119,7 @@ const DiscussionDetail = () => {
           <div className="w-40 lg:w-full">
             <Typography variant="h3">{discussion.title}</Typography>
             <Typography variant="paragraph" className="mb-2">
-              {discussion.detail}
+              {discussion.description}
             </Typography>
             <div className="flex gap-4 lg:gap-8">
               <Typography

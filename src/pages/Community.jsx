@@ -259,9 +259,9 @@ const Content = () => {
             />
             <Textarea
               label="Description"
+              color="green"
               required
               onChange={(e) => setDescription(e.target.value)}
-              color="green"
             ></Textarea>
             <Button type="submit" className="bg-nutricare-green" fullWidth>
               Create
