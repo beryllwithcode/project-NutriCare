@@ -146,7 +146,7 @@ const Articles = () => {
               </Typography>
             </CardBody>
             <CardFooter className="pt-2 bottom-0">
-              <a href={article.web_url}>
+              <a href={article.web_url} target="blank">
                 <Button
                   size="lg"
                   className="bg-nutricare-green hover:bg-nutricare-orange"
