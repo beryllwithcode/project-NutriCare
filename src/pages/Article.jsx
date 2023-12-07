@@ -72,6 +72,7 @@ const Hero = () => {
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchArticlesData = () => {
     fetch(
@@ -81,7 +82,23 @@ const Articles = () => {
         return response.json();
       })
       .then((data) => {
-        setArticles(data.response.docs);
+        if (data.response && data.response.docs) {
+          setArticles(data.response.docs);
+        } else {
+          // Handle the case where docs is undefined or null
+          console.error("Error fetching articles data:", data);
+          // You might want to set articles to an empty array or show an error message
+          setArticles([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching articles data:", error);
+        // Handle the error, for example, set articles to an empty array or show an error message
+        setArticles([]);
+      })
+      .finally(() => {
+        // Set loading to false when the API call is complete
+        setLoading(false);
       });
   };
   useEffect(() => {
@@ -118,47 +135,51 @@ const Articles = () => {
           and tips for a healthier life.
         </Typography>
       </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: "100px" }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ root: scrollRef }}
-        transition={{
-          delay: 0.25,
-          duration: 0.75,
-          type: "spring",
-          stiffness: 150,
-        }}
-        className="grid grid-cols-1 lg:grid-cols-4 gap-y-4"
-        role="article"
-      >
-        {articles.map((article) => (
-          <Card
-            key={article.headline.main}
-            className="w-64 shadow-lg"
-            role="article"
-          >
-            <CardBody>
-              <Typography variant="h5" color="orange" className="mb-2">
-                {article.headline.main}
-              </Typography>
-              <Typography>
-                {article.lead_paragraph?.slice(0, 100) + "..." || "-"}
-              </Typography>
-            </CardBody>
-            <CardFooter className="pt-2 bottom-0">
-              <a href={article.web_url} target="blank">
-                <Button
-                  size="lg"
-                  className="bg-nutricare-green hover:bg-nutricare-orange"
-                  fullWidth={true}
-                >
-                  Read More
-                </Button>
-              </a>
-            </CardFooter>
-          </Card>
-        ))}
-      </motion.div>
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <motion.div
+          initial={{ opacity: 0, y: "100px" }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ root: scrollRef }}
+          transition={{
+            delay: 0.25,
+            duration: 0.75,
+            type: "spring",
+            stiffness: 150,
+          }}
+          className="grid grid-cols-1 lg:grid-cols-4 gap-y-4"
+          role="article"
+        >
+          {articles.map((article) => (
+            <Card
+              key={article.headline.main}
+              className="w-64 shadow-lg"
+              role="article"
+            >
+              <CardBody>
+                <Typography variant="h5" color="orange" className="mb-2">
+                  {article.headline.main}
+                </Typography>
+                <Typography>
+                  {article.lead_paragraph?.slice(0, 100) + "..." || "-"}
+                </Typography>
+              </CardBody>
+              <CardFooter className="pt-2 bottom-0">
+                <a href={article.web_url} target="blank">
+                  <Button
+                    size="lg"
+                    className="bg-nutricare-green hover:bg-nutricare-orange"
+                    fullWidth={true}
+                  >
+                    Read More
+                  </Button>
+                </a>
+              </CardFooter>
+            </Card>
+          ))}
+        </motion.div>
+      )}
     </div>
   );
 };

@@ -207,6 +207,7 @@ const Test = () => {
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
   const fetchArticlesData = () => {
     fetch(
       "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Body Mass Index&api-key=FYRej47F7peEopmAzuL72D3zkpUxkYxB"
@@ -215,7 +216,23 @@ const Articles = () => {
         return response.json();
       })
       .then((data) => {
-        setArticles(data.response.docs);
+        if (data.response && data.response.docs) {
+          setArticles(data.response.docs);
+        } else {
+          // Handle the case where docs is undefined or null
+          console.error("Error fetching articles data:", data);
+          // You might want to set articles to an empty array or show an error message
+          setArticles([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching articles data:", error);
+        // Handle the error, for example, set articles to an empty array or show an error message
+        setArticles([]);
+      })
+      .finally(() => {
+        // Set loading to false when the API call is complete
+        setLoading(false);
       });
   };
   useEffect(() => {
@@ -263,60 +280,96 @@ const Articles = () => {
         }}
       >
         <div className="flex justify-center max-w-2xl mx-auto">
-          <Carousel
-            className="rounded-xl mt-6 lg:hidden xl:hidden"
-            navigation={false}
-            loop={true}
-            autoplay={true}
-            prevArrow={({ handlePrev }) => (
-              <IconButton
-                variant="text"
-                size="lg"
-                ripple={false}
-                onClick={handlePrev}
-                className="!absolute top-2/4 -left-3 text-nutricare-green hover:bg-transparent active:bg-transparent -translate-y-2/4"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="h-6 w-6"
+          {loading ? (
+            <div>Loading...</div>
+          ) : (
+            <Carousel
+              className="rounded-xl mt-6 lg:hidden xl:hidden"
+              navigation={false}
+              loop={true}
+              autoplay={true}
+              prevArrow={({ handlePrev }) => (
+                <IconButton
+                  variant="text"
+                  size="lg"
+                  ripple={false}
+                  onClick={handlePrev}
+                  className="!absolute top-2/4 -left-3 text-nutricare-green hover:bg-transparent active:bg-transparent -translate-y-2/4"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-                  />
-                </svg>
-              </IconButton>
-            )}
-            nextArrow={({ handleNext }) => (
-              <IconButton
-                variant="text"
-                size="lg"
-                ripple={false}
-                onClick={handleNext}
-                className="!absolute top-2/4 !-right-3 text-nutricare-green hover:bg-transparent active:bg-transparent -translate-y-2/4"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="h-6 w-6"
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    className="h-6 w-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                    />
+                  </svg>
+                </IconButton>
+              )}
+              nextArrow={({ handleNext }) => (
+                <IconButton
+                  variant="text"
+                  size="lg"
+                  ripple={false}
+                  onClick={handleNext}
+                  className="!absolute top-2/4 !-right-3 text-nutricare-green hover:bg-transparent active:bg-transparent -translate-y-2/4"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                  />
-                </svg>
-              </IconButton>
-            )}
-          >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    className="h-6 w-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                    />
+                  </svg>
+                </IconButton>
+              )}
+            >
+              {articles.slice(0, 4).map((article) => (
+                <Card
+                  key={article.headline.main}
+                  className="mx-auto w-64 shadow-none"
+                >
+                  <CardBody>
+                    <Typography variant="h5" color="orange" className="mb-2">
+                      {article.headline.main}
+                    </Typography>
+                    <Typography>
+                      {article.lead_paragraph?.slice(0, 50) + "..." || "-"}
+                    </Typography>
+                  </CardBody>
+                  <CardFooter className="pt-2">
+                    <a href={article.web_url} target="blank">
+                      <Button
+                        size="lg"
+                        className="bg-nutricare-green hover:bg-nutricare-orange"
+                        fullWidth={true}
+                      >
+                        Read More
+                      </Button>
+                    </a>
+                  </CardFooter>
+                </Card>
+              ))}
+            </Carousel>
+          )}
+        </div>
+        {loading ? (
+          <div className="hidden lg:block">Loading...</div>
+        ) : (
+          <div className="lg:flex gap-4 mt-8 hidden">
             {articles.slice(0, 4).map((article) => (
               <Card
                 key={article.headline.main}
@@ -327,7 +380,7 @@ const Articles = () => {
                     {article.headline.main}
                   </Typography>
                   <Typography>
-                    {article.lead_paragraph?.slice(0, 50) + "..." || "-"}
+                    {article.lead_paragraph?.slice(0, 100) + "..." || "-"}
                   </Typography>
                 </CardBody>
                 <CardFooter className="pt-2">
@@ -343,43 +396,8 @@ const Articles = () => {
                 </CardFooter>
               </Card>
             ))}
-          </Carousel>
-        </div>
-        <div className="lg:flex gap-4 mt-8 hidden">
-          {articles.slice(0, 4).map((article) => (
-            <Card
-              key={article.headline.main}
-              className="mx-auto w-64 shadow-none"
-            >
-              {/* <CardHeader floated={false} color="blue-gray">
-                <img
-                  src="https://picsum.photos/500"
-                  alt="Article Thumbnail"
-                ></img>
-                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-              </CardHeader> */}
-              <CardBody>
-                <Typography variant="h5" color="orange" className="mb-2">
-                  {article.headline.main}
-                </Typography>
-                <Typography>
-                  {article.lead_paragraph?.slice(0, 100) + "..." || "-"}
-                </Typography>
-              </CardBody>
-              <CardFooter className="pt-2">
-                <a href={article.web_url} target="blank">
-                  <Button
-                    size="lg"
-                    className="bg-nutricare-green hover:bg-nutricare-orange"
-                    fullWidth={true}
-                  >
-                    Read More
-                  </Button>
-                </a>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
+          </div>
+        )}
       </motion.div>
     </div>
   );
