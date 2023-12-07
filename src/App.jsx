@@ -10,6 +10,8 @@ import Layout from "./layout/Index";
 import SignIn from "./pages/Sign_in";
 import SignUp from "./pages/Sign_Up";
 import DiscussionDetail from "./pages/Disscusion_Detail";
+import AutoScrollTop from "./components/autoScrollTop";
+import ScrollToTop from "react-scroll-to-top";
 
 function App() {
   const location = useLocation();
@@ -19,6 +21,7 @@ function App() {
   return (
     <>
       <Layout showNavbarAndFooter={!isSignInOrSignUpPage}>
+        <AutoScrollTop />
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/bmi-test" element={<BMITest />}></Route>
