@@ -73,9 +73,13 @@ function NavbarDefault() {
     }
   };
 
+  const closeNav = () => {
+    setOpenNav(false);
+  };
+
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 pt-1">
-      <NavLink to="/" activeClassName="active">
+      <NavLink to="/" activeClassName="active" onClick={closeNav}>
         <Typography
           as="li"
           variant="small"
@@ -86,7 +90,7 @@ function NavbarDefault() {
           Home
         </Typography>
       </NavLink>
-      <NavLink to="/bmi-test" activeClassName="active">
+      <NavLink to="/bmi-test" activeClassName="active" onClick={closeNav}>
         <Typography
           as="li"
           variant="small"
@@ -99,7 +103,7 @@ function NavbarDefault() {
           BMI Calculate
         </Typography>
       </NavLink>
-      <NavLink to="/article" activeClassName="active">
+      <NavLink to="/article" activeClassName="active" onClick={closeNav}>
         <Typography
           as="li"
           variant="small"
@@ -112,7 +116,7 @@ function NavbarDefault() {
           Article
         </Typography>
       </NavLink>
-      <NavLink to="/community" activeClassName="active">
+      <NavLink to="/community" activeClassName="active" onClick={closeNav}>
         <Typography
           as="li"
           variant="small"
@@ -125,7 +129,7 @@ function NavbarDefault() {
           Community
         </Typography>
       </NavLink>
-      <NavLink to="/food-nutrient" activeClassName="active">
+      <NavLink to="/food-nutrient" activeClassName="active" onClick={closeNav}>
         <Typography
           as="li"
           variant="small"
@@ -138,7 +142,7 @@ function NavbarDefault() {
           Food Nutrient
         </Typography>
       </NavLink>
-      <NavLink to="/about-us" activeClassName="active">
+      <NavLink to="/about-us" activeClassName="active" onClick={closeNav}>
         <Typography
           as="li"
           variant="small"
@@ -151,6 +155,19 @@ function NavbarDefault() {
           About Us
         </Typography>
       </NavLink>
+      {session ? (
+        <NavLink onClick={handleLogout}>
+          <Typography
+            as="li"
+            variant="small"
+            className="flex lg:hidden items-center gap-x-2 p-1 font-semibold text-red-500 hover:text-red-500 border-b-2 border-transparent hover:border-red-500 transition-all duration-200"
+          >
+            Logout
+          </Typography>
+        </NavLink>
+      ) : (
+        ""
+      )}
     </ul>
   );
 
@@ -179,7 +196,7 @@ function NavbarDefault() {
           {session ? (
             <Menu>
               <MenuHandler>
-                <Button className="bg-nutricare-green hover:bg-nutricare-orange">
+                <Button className="hidden lg:inline-block bg-nutricare-green hover:bg-nutricare-orange">
                   {session.profile?.full_name.length > 9
                     ? session.profile?.full_name.slice(0, 9) + "..." ||
                       "Loading..."
@@ -254,18 +271,38 @@ function NavbarDefault() {
       <Collapse open={openNav}>
         <div className="container mx-auto">
           {navList}
-          <div className="flex items-center gap-x-1">
-            <Link to="/log-in">
-              <Button variant="filled" size="sm" color="green" fullWidth={true}>
-                <span>Login</span>
-              </Button>
-            </Link>
-            <Link to="/sign-up">
-              <Button variant="filled" size="sm" color="green" fullWidth={true}>
-                <span>Signup</span>
-              </Button>
-            </Link>
-          </div>
+          {session ? (
+            <Button className="bg-nutricare-green hover:bg-nutricare-orange">
+              {session.profile?.full_name.length > 9
+                ? session.profile?.full_name.slice(0, 9) + "..." || "Loading..."
+                : session.profile?.full_name || "Loading..."}
+            </Button>
+          ) : (
+            <>
+              <div className="flex items-center gap-x-1">
+                <Link to="/log-in">
+                  <Button
+                    variant="filled"
+                    className="bg-nutricare-green hover:bg-nutricare-orange"
+                    size="sm"
+                    fullWidth={true}
+                  >
+                    <span>Login</span>
+                  </Button>
+                </Link>
+                <Link to="/sign-up">
+                  <Button
+                    variant="filled"
+                    className="bg-nutricare-green hover:bg-nutricare-orange"
+                    size="sm"
+                    fullWidth={true}
+                  >
+                    <span>Signup</span>
+                  </Button>
+                </Link>
+              </div>
+            </>
+          )}
         </div>
       </Collapse>
     </Navbar>
