@@ -113,16 +113,6 @@ const Food = () => {
       className="relative flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green"
       id="foods"
     >
-      <Card className="lg:mx-7 mb-7 shadow-lg p-4">
-        <Input
-          placeholder="Search for food here"
-          icon={<i className="fas fa-search" />}
-          className="!border-nutricare-green focus:!border-nutricare-green text-nutricare-green"
-          labelProps={{
-            className: "before:content-none after:content-none",
-          }}
-        />
-      </Card>
       {foodsData.length > 0 && (
         <div className="grid place-content-center lg:grid-cols-3 gap-y-4">
           {foodsData.map((food) => (

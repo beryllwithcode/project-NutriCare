@@ -14,7 +14,7 @@ import { motion } from "framer-motion";
 const Hero = () => {
   const scrollRef = useRef(null);
   return (
-    <div className="relative flex bg-gradient-to-b from-white to-light-green-200 justify-center px-10 gap-14 lg:px-24 py-14 text-nutricare-green">
+    <div className="relative flex bg-gradient-to-b from-white to-light-green-200  justify-center px-10 gap-14 lg:px-24 py-14 text-nutricare-green">
       <motion.img
         initial={{ opacity: 0, x: "-100px" }}
         whileInView={{ opacity: 1, x: 0 }}
