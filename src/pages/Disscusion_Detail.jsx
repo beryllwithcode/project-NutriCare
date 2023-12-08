@@ -1,11 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import { Button, Textarea, Typography } from "@material-tailwind/react";
+import {
+  Button,
+  Menu,
+  MenuHandler,
+  MenuItem,
+  MenuList,
+  Textarea,
+  Typography,
+} from "@material-tailwind/react";
 import { useParams } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 
 const DiscussionDetail = () => {
   const { id } = useParams();
+  const [dataFetched, setDataFetched] = useState(false);
 
   function formatDiscussionDate(created_at) {
     const options = { day: "2-digit", month: "short", year: "numeric" };
@@ -53,7 +62,7 @@ const DiscussionDetail = () => {
         console.error(error);
       } else {
         alert("Your comment posted!");
-        setWarning(""); 
+        setWarning("");
         fetchDiscussions();
         setComment("");
       }
@@ -107,28 +116,39 @@ const DiscussionDetail = () => {
       });
 
       setReplies(formatRepliesDate(repliesData || []));
+      setDataFetched(true);
     } catch (error) {
       console.error("Error fetching discussions:", error.message);
     }
   };
 
   useEffect(() => {
-    fetchDiscussions();
-  }, [fetchDiscussions, id]);
+    if (!dataFetched) {
+      fetchDiscussions();
+    }
+  }, [dataFetched, fetchDiscussions, id]);
 
   const deleteDiscussionHandler = async () => {
     try {
       const { error } = await supabase
-        .from("discussion")
+        .from("discussion_replies")
         .delete()
-        .eq("id", id);
+        .eq("id_discussion", id);
 
       if (error) {
         console.error("Error deleting discussion:", error.message);
       } else {
-        alert("Discussion deleted!");
+        const { error } = await supabase
+          .from("discussion")
+          .delete()
+          .eq("id", id);
+        if (error) {
+          console.error("Error deleting discussion:", error.message);
+        } else {
+          window.location.href = "/community";
+          alert("Discussion deleted!");
+        }
         // Redirect to community page after deletion
-        window.location.href = "/community";
       }
     } catch (error) {
       console.error("Error handling delete discussion:", error.message);
@@ -140,14 +160,48 @@ const DiscussionDetail = () => {
   }
 
   return (
-    <div className="relative flex px-10 gap-14 lg:px-24 py-14 text-nutricare-green" id="discussion">
+    <div
+      className="relative flex px-10 gap-14 lg:px-24 py-14 text-nutricare-green"
+      id="discussion"
+    >
       <div className="lg:w-screen">
         <div className="flex justify-between items-center pb-4">
-          <div className="w-40 lg:w-full">
-            <Typography variant="h3">{discussion.title}</Typography>
-            <Typography variant="paragraph" className="mb-4">
-              {discussion.description}
-            </Typography>
+          <div className="w-full">
+            <div className="flex items-center justify-between">
+              <div>
+                <Typography variant="h3">{discussion.title}</Typography>
+                <Typography variant="paragraph" className="mb-4">
+                  {discussion.description}
+                </Typography>
+              </div>
+              {session &&
+                session.user &&
+                session.user.id === discussion.id_user && (
+                  <>
+                    <div className="hidden lg:block">
+                      <Button
+                        onClick={deleteDiscussionHandler}
+                        className="bg-nutricare-orange hover:bg-red-500"
+                      >
+                        Delete Discussion
+                      </Button>
+                    </div>
+                    <Menu className="lg:hidden" placement="bottom-end">
+                      <MenuHandler>
+                        <i className="fas fa-ellipsis-v px-2 lg:hidden"></i>
+                      </MenuHandler>
+                      <MenuList>
+                        <MenuItem
+                          className="text-red-500"
+                          onClick={deleteDiscussionHandler}
+                        >
+                          Delete
+                        </MenuItem>
+                      </MenuList>
+                    </Menu>
+                  </>
+                )}
+            </div>
             <div className="flex gap-4 lg:gap-8">
               <Typography
                 variant="paragraph"
@@ -155,7 +209,9 @@ const DiscussionDetail = () => {
               >
                 by{" "}
                 <span className="text-nutricare-orange">
-                  {discussion.profiles?.full_name ? discussion.profiles.full_name : "-"}
+                  {discussion.profiles?.full_name
+                    ? discussion.profiles.full_name
+                    : "-"}
                 </span>
               </Typography>
               <Typography
@@ -172,22 +228,10 @@ const DiscussionDetail = () => {
               </Typography>
             </div>
           </div>
-          {session && session.user && session.user.id === discussion.id_user && (
-            <div>
-              <Button
-                onClick={deleteDiscussionHandler}
-                className="bg-nutricare-orange hover:bg-red-500"
-              >
-                Delete Discussion
-              </Button>
-            </div>
-          )}
         </div>
         <div className="mb-8">
           {/* Menampilkan pesan warning */}
-          {warning && (
-            <div className="text-red-600 mb-2">{warning}</div>
-          )}
+          {warning && <div className="text-red-600 mb-2">{warning}</div>}
 
           <form onSubmit={newCommentHandler}>
             <div className="w-100">

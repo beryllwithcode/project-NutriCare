@@ -75,15 +75,14 @@ const Articles = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchArticlesData = () => {
-    fetch(
-      "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Body Mass Index&api-key=FYRej47F7peEopmAzuL72D3zkpUxkYxB"
-    )
+    fetch(process.env.REACT_APP_ARTICLE_API)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         if (data.response && data.response.docs) {
           setArticles(data.response.docs);
+          localStorage.setItem("article", JSON.stringify(data.response.docs));
         } else {
           // Handle the case where docs is undefined or null
           console.error("Error fetching articles data:", data);
@@ -102,12 +101,30 @@ const Articles = () => {
       });
   };
   useEffect(() => {
-    fetchArticlesData();
+    window.addEventListener("beforeunload", clearLocalStorage);
+
+    const storedArticles = localStorage.getItem("article");
+    if (storedArticles) {
+      setArticles(JSON.parse(storedArticles));
+      setLoading(false);
+    } else {
+      fetchArticlesData();
+    }
+
+    return () => {
+      window.removeEventListener("beforeunload", clearLocalStorage);
+    };
   }, []);
+
+  const clearLocalStorage = () => {
+    // Clear localStorage on page refresh
+    localStorage.clear();
+  };
+
   const scrollRef = useRef(null);
   return (
     <div
-      className="relative flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green"
+      className="relative flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green overflow-y-hidden"
       id="articles"
     >
       <motion.div
@@ -166,10 +183,19 @@ const Articles = () => {
                 </Typography>
               </CardBody>
               <CardFooter className="pt-2 bottom-0">
-                <a href={article.web_url} target="blank" rel="noopener noreferrer" 
-                onClick={(e) => {e.preventDefault();
-                window.open(article.web_url, "_blank", "noopener,noreferrer");
-                }}>
+                <a
+                  href={article.web_url}
+                  target="blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.open(
+                      article.web_url,
+                      "_blank",
+                      "noopener,noreferrer"
+                    );
+                  }}
+                >
                   <Button
                     size="lg"
                     className="bg-nutricare-green hover:bg-nutricare-orange"
