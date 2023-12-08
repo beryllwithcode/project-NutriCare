@@ -114,17 +114,33 @@ const DiscussionDetail = () => {
 
   useEffect(() => {
     fetchDiscussions();
-  }, [fetchDiscussions, id]); // Tadependency
+  }, [fetchDiscussions, id]);
+
+  const deleteDiscussionHandler = async () => {
+    try {
+      const { error } = await supabase
+        .from("discussion")
+        .delete()
+        .eq("id", id);
+
+      if (error) {
+        console.error("Error deleting discussion:", error.message);
+      } else {
+        alert("Discussion deleted!");
+        // Redirect to community page after deletion
+        window.location.href = "/community";
+      }
+    } catch (error) {
+      console.error("Error handling delete discussion:", error.message);
+    }
+  };
 
   if (!discussion) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div
-      className="relative flex px-10 gap-14 lg:px-24 py-14 text-nutricare-green"
-      id="discussion"
-    >
+    <div className="relative flex px-10 gap-14 lg:px-24 py-14 text-nutricare-green" id="discussion">
       <div className="lg:w-screen">
         <div className="flex justify-between items-center pb-4">
           <div className="w-40 lg:w-full">
@@ -139,9 +155,7 @@ const DiscussionDetail = () => {
               >
                 by{" "}
                 <span className="text-nutricare-orange">
-                  {discussion.profiles?.full_name
-                    ? discussion.profiles.full_name
-                    : "-"}
+                  {discussion.profiles?.full_name ? discussion.profiles.full_name : "-"}
                 </span>
               </Typography>
               <Typography
@@ -158,6 +172,16 @@ const DiscussionDetail = () => {
               </Typography>
             </div>
           </div>
+          {session && session.user && session.user.id === discussion.id_user && (
+            <div>
+              <Button
+                onClick={deleteDiscussionHandler}
+                className="bg-nutricare-orange hover:bg-red-500"
+              >
+                Delete Discussion
+              </Button>
+            </div>
+          )}
         </div>
         <div className="mb-8">
           {/* Menampilkan pesan warning */}
