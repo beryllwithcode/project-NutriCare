@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { Button, Textarea, Typography } from "@material-tailwind/react";
 import { useParams } from "react-router-dom";
@@ -5,6 +6,7 @@ import { supabase } from "../supabaseClient";
 
 const DiscussionDetail = () => {
   const { id } = useParams();
+
   function formatDiscussionDate(created_at) {
     const options = { day: "2-digit", month: "short", year: "numeric" };
     return new Date(created_at).toLocaleDateString("en-US", options);
@@ -30,9 +32,16 @@ const DiscussionDetail = () => {
   }, []);
 
   const [comment, setComment] = useState("");
+  const [warning, setWarning] = useState("");
 
   const newCommentHandler = async (event) => {
     event.preventDefault();
+
+    if (!comment.trim()) {
+      setWarning("Comment cannot be empty!");
+      return;
+    }
+
     try {
       const { error } = await supabase.from("discussion_replies").insert({
         id_user: session.user.id,
@@ -43,7 +52,8 @@ const DiscussionDetail = () => {
       if (error) {
         console.error(error);
       } else {
-        alert("Comment posted!");
+        alert("Your comment posted!");
+        setWarning(""); 
         fetchDiscussions();
         setComment("");
       }
@@ -54,6 +64,7 @@ const DiscussionDetail = () => {
 
   const [discussion, setDiscussion] = useState([]);
   const [replies, setReplies] = useState([]);
+
   const fetchDiscussions = async () => {
     try {
       const { data: discussionsData, error: discussionsError } = await supabase
@@ -103,7 +114,7 @@ const DiscussionDetail = () => {
 
   useEffect(() => {
     fetchDiscussions();
-  });
+  }, [fetchDiscussions, id]); // Tadependency
 
   if (!discussion) {
     return <div>Loading...</div>;
@@ -149,6 +160,11 @@ const DiscussionDetail = () => {
           </div>
         </div>
         <div className="mb-8">
+          {/* Menampilkan pesan warning */}
+          {warning && (
+            <div className="text-red-600 mb-2">{warning}</div>
+          )}
+
           <form onSubmit={newCommentHandler}>
             <div className="w-100">
               <Textarea
@@ -174,7 +190,7 @@ const DiscussionDetail = () => {
           </div>
           <div className="flex flex-col gap-8">
             {replies.map((reply) => (
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2" key={reply.id}>
                 <div className="flex gap-4 lg:gap-8">
                   <Typography
                     variant="paragraph"
