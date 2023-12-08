@@ -166,7 +166,10 @@ const Articles = () => {
                 </Typography>
               </CardBody>
               <CardFooter className="pt-2 bottom-0">
-                <a href={article.web_url} target="blank">
+                <a href={article.web_url} target="blank" rel="noopener noreferrer" 
+                onClick={(e) => {e.preventDefault();
+                window.open(article.web_url, "_blank", "noopener,noreferrer");
+                }}>
                   <Button
                     size="lg"
                     className="bg-nutricare-green hover:bg-nutricare-orange"
