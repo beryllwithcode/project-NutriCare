@@ -69,7 +69,7 @@ const Hero = () => {
 
 const Food = () => {
   const [foodsData, setFoodsData] = useState([]);
-
+  const scrollRef = useRef(null);
   useEffect(() => {
     window.addEventListener("beforeunload", clearLocalStorage);
     const storedFoods = localStorage.getItem("foods");
@@ -127,11 +127,22 @@ const Food = () => {
 
   return (
     <div
-      className="relative flex flex-col justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green"
+      className="relative flex justify-center bg-light-green-50 text-center px-10 lg:px-24 py-14 text-nutricare-green"
       id="foods"
     >
       {foodsData.length > 0 && (
-        <div className="grid place-content-center lg:grid-cols-3 gap-y-4">
+        <motion.div
+          initial={{ opacity: 0, y: "-100px" }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ root: scrollRef }}
+          transition={{
+            delay: 0.25,
+            duration: 0.75,
+            type: "spring",
+            stiffness: 150,
+          }}
+          className="grid place-content-center lg:grid-cols-3 gap-y-4 max-w-6xl gap-x-6"
+        >
           {foodsData.map((food) => (
             <Card className="lg:w-80 shadow-lg mx-auto">
               <CardHeader floated={false} color="blue-gray">
@@ -208,7 +219,7 @@ const Food = () => {
               </CardFooter>
             </Card>
           ))}
-        </div>
+        </motion.div>
       )}
     </div>
   );

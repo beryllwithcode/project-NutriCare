@@ -165,7 +165,7 @@ const Articles = () => {
             type: "spring",
             stiffness: 150,
           }}
-          className="grid grid-cols-1 mx-auto lg:mx-0 lg:grid-cols-4 gap-y-4"
+          className="grid grid-cols-1 mx-auto lg:grid-cols-4 gap-y-4 max-w-6xl gap-x-6"
           role="article"
         >
           {articles.map((article) => (
