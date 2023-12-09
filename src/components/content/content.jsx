@@ -208,16 +208,16 @@ const Test = () => {
 const Articles = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+
   const fetchArticlesData = () => {
-    fetch(
-      "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Body Mass Index&api-key=FYRej47F7peEopmAzuL72D3zkpUxkYxB"
-    )
+    fetch(process.env.REACT_APP_ARTICLE_API)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         if (data.response && data.response.docs) {
           setArticles(data.response.docs);
+          localStorage.setItem("article", JSON.stringify(data.response.docs));
         } else {
           // Handle the case where docs is undefined or null
           console.error("Error fetching articles data:", data);
@@ -236,8 +236,25 @@ const Articles = () => {
       });
   };
   useEffect(() => {
-    fetchArticlesData();
+    window.addEventListener("beforeunload", clearLocalStorage);
+
+    const storedArticles = localStorage.getItem("article");
+    if (storedArticles) {
+      setArticles(JSON.parse(storedArticles));
+      setLoading(false);
+    } else {
+      fetchArticlesData();
+    }
+
+    return () => {
+      window.removeEventListener("beforeunload", clearLocalStorage);
+    };
   }, []);
+
+  const clearLocalStorage = () => {
+    // Clear localStorage on page refresh
+    localStorage.removeItem("article");
+  };
 
   console.log(articles);
   const scrollRef = useRef(null);
@@ -369,7 +386,7 @@ const Articles = () => {
         {loading ? (
           <div className="hidden lg:block">Loading...</div>
         ) : (
-          <div className="lg:flex gap-4 mt-8 hidden">
+          <div className="lg:flex gap-4 mt-8 hidden max-w-6xl mx-auto">
             {articles.slice(0, 4).map((article) => (
               <Card
                 key={article.headline.main}
