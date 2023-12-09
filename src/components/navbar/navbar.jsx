@@ -15,6 +15,7 @@ import { supabase } from "../../supabaseClient";
 
 function NavbarDefault() {
   const [session, setSession] = useState(null);
+  const [profile, setProfile] = useState(null);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -38,7 +39,8 @@ function NavbarDefault() {
         if (error) {
           console.error("Error fetching user profile:", error.message);
         } else {
-          setSession({ ...session, profile: data });
+          // setSession({ ...session, profile: data });
+          setProfile(data);
         }
       } catch (error) {
         console.error("Error fetching user profile:", error.message);
@@ -69,6 +71,7 @@ function NavbarDefault() {
     if (error) {
       alert(error.error_description || error.message);
     } else {
+      setProfile(null);
       navigate("/log-in");
     }
   };
@@ -197,10 +200,9 @@ function NavbarDefault() {
             <Menu>
               <MenuHandler>
                 <Button className="hidden lg:inline-block bg-nutricare-green hover:bg-nutricare-orange">
-                  {session.profile?.full_name.length > 9
-                    ? session.profile?.full_name.slice(0, 9) + "..." ||
-                      "Loading..."
-                    : session.profile?.full_name || "Loading..."}
+                  {profile?.full_name.length > 9
+                    ? profile?.full_name.slice(0, 9) + "..." || "Loading..."
+                    : profile?.full_name || "Loading..."}
                 </Button>
               </MenuHandler>
               <MenuList>
@@ -273,9 +275,9 @@ function NavbarDefault() {
           {navList}
           {session ? (
             <Button className="bg-nutricare-green hover:bg-nutricare-orange">
-              {session.profile?.full_name.length > 9
-                ? session.profile?.full_name.slice(0, 9) + "..." || "Loading..."
-                : session.profile?.full_name || "Loading..."}
+              {profile?.full_name.length > 9
+                ? profile?.full_name.slice(0, 9) + "..." || "Loading..."
+                : profile?.full_name || "Loading..."}
             </Button>
           ) : (
             <>

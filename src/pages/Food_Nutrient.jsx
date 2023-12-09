@@ -71,29 +71,42 @@ const Food = () => {
   const [foodsData, setFoodsData] = useState([]);
 
   useEffect(() => {
-    fetchFoodsData()
-      .then((foodsResponse) => {
-        const promises = foodsResponse.map((foodItem) =>
-          fetchNutritionData(foodItem.id)
-        );
-        Promise.all(promises)
-          .then((nutritionResponses) => {
-            const foodsWithNutrition = foodsResponse.map((foodItem, index) => ({
-              ...foodItem,
-              nutrition: nutritionResponses[index],
-            }));
-            setFoodsData(foodsWithNutrition);
-          })
-          .catch((error) =>
-            console.error("Error fetching nutrition data for foods:", error)
+    window.addEventListener("beforeunload", clearLocalStorage);
+    const storedFoods = localStorage.getItem("foods");
+    if (storedFoods) {
+      setFoodsData(JSON.parse(storedFoods));
+    } else {
+      // If not, fetch discussions from Supabase
+      fetchFoodsData()
+        .then((foodsResponse) => {
+          const promises = foodsResponse.map((foodItem) =>
+            fetchNutritionData(foodItem.id)
           );
-      })
-      .catch((error) => console.error("Error fetching foods data:", error));
+          Promise.all(promises)
+            .then((nutritionResponses) => {
+              const foodsWithNutrition = foodsResponse.map(
+                (foodItem, index) => ({
+                  ...foodItem,
+                  nutrition: nutritionResponses[index],
+                })
+              );
+              setFoodsData(foodsWithNutrition);
+              localStorage.setItem("foods", JSON.stringify(foodsWithNutrition));
+            })
+            .catch((error) =>
+              console.error("Error fetching nutrition data for foods:", error)
+            );
+        })
+        .catch((error) => console.error("Error fetching foods data:", error));
+    }
+    return () => {
+      window.removeEventListener("beforeunload", clearLocalStorage);
+    };
   }, []);
 
   const fetchFoodsData = async () => {
     const response = await fetch(
-      "https://api.spoonacular.com/recipes/random?apiKey=2a0ac778c9e9427b874293f0f3f1aa4b&number=6"
+      `${process.env.REACT_APP_FOODS_API}/recipes/random?apiKey=${process.env.REACT_APP_FOODS_API_KEY}&number=6`
     );
     const data = await response.json();
     return data.recipes;
@@ -101,10 +114,15 @@ const Food = () => {
 
   const fetchNutritionData = async (foodId) => {
     const response = await fetch(
-      `https://api.spoonacular.com/recipes/${foodId}/nutritionWidget.json?apiKey=2a0ac778c9e9427b874293f0f3f1aa4b`
+      `${process.env.REACT_APP_FOODS_API}/recipes/${foodId}/nutritionWidget.json?apiKey=${process.env.REACT_APP_FOODS_API_KEY}`
     );
     const data = await response.json();
     return data;
+  };
+
+  const clearLocalStorage = () => {
+    // Clear localStorage on page refresh
+    localStorage.removeItem("foods");
   };
 
   return (

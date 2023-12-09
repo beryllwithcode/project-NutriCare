@@ -78,6 +78,16 @@ const Content = () => {
   const [session, setSession] = useState(null);
 
   useEffect(() => {
+    window.addEventListener("beforeunload", clearLocalStorage);
+
+    const storedDiscussions = localStorage.getItem("discussions");
+    if (storedDiscussions) {
+      setDiscussions(JSON.parse(storedDiscussions));
+    } else {
+      // If not, fetch discussions from Supabase
+      fetchDiscussions();
+    }
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
     });
@@ -85,7 +95,16 @@ const Content = () => {
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
+
+    return () => {
+      window.removeEventListener("beforeunload", clearLocalStorage);
+    };
   }, []);
+
+  const clearLocalStorage = () => {
+    // Clear localStorage on page refresh
+    localStorage.removeItem("discussions");
+  };
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -120,15 +139,19 @@ const Content = () => {
 
   const fetchDiscussions = async () => {
     try {
-      const { data: discussionsData, error: discussionsError } =
-        await supabase.from("discussion").select(`
+      const { data: discussionsData, error: discussionsError } = await supabase
+        .from("discussion")
+        .select(
+          `
             id,
             created_at,
             id_user,
             profiles (id, full_name),
             title,
             description
-          `);
+          `
+        )
+        .order("created_at", { ascending: false });
 
       if (discussionsError) {
         throw discussionsError;
@@ -154,14 +177,18 @@ const Content = () => {
       );
 
       setDiscussions(discussionsWithCounts || []);
+      localStorage.setItem(
+        "discussions",
+        JSON.stringify(discussionsWithCounts)
+      );
     } catch (error) {
       console.error("Error fetching discussions:", error.message);
     }
   };
 
-  useEffect(() => {
-    fetchDiscussions();
-  });
+  // useEffect(() => {
+  //   fetchDiscussions();
+  // },);
 
   const [open, setOpen] = React.useState(false);
 
@@ -183,7 +210,7 @@ const Content = () => {
           type: "spring",
           stiffness: 150,
         }}
-        className="w-screen"
+        className="mx-auto"
       >
         <div className="flex justify-between items-center mb-5 pb-4 border-b-4">
           <div className="w-40 lg:w-full">
@@ -207,9 +234,14 @@ const Content = () => {
               key={discussion.id}
               className="p-5 border-2 rounded-lg flex items-center justify-between"
             >
-              <div className="w-52 lg:w-full">
+              <div className="">
                 <Link to={`/discussion/${discussion.id}`}>
-                  <Typography variant="h5">{discussion.title}</Typography>
+                  <Typography
+                    variant="h5"
+                    className="break-words max-w-5xl pr-8"
+                  >
+                    {discussion.title}
+                  </Typography>
                 </Link>
                 <div className="flex gap-4 lg:gap-8">
                   <Typography variant="paragraph" className="text-gray-500">

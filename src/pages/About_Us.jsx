@@ -320,7 +320,7 @@ const Developers = () => {
             <Tooltip content="LinkedIn">
               <Typography
                 as="a"
-                href="#facebook"
+                href="https://www.linkedin.com/in/imam-syiva-hidayat-08567925b"
                 variant="lead"
                 className="text-nutricare-green"
                 target="_blank"
@@ -465,10 +465,7 @@ const Advisor = () => {
       >
         <Card className="w-64">
           <CardHeader floated={false} className="">
-            <img
-              src="https://docs.material-tailwind.com/img/team-3.jpg"
-              alt=""
-            />
+            <img src="/assets/shidqi.jpg" alt="" />
           </CardHeader>
           <CardBody className="text-center px-0">
             <Typography variant="h5" className="text-nutricare-orange">
@@ -482,10 +479,10 @@ const Advisor = () => {
             </Typography>
           </CardBody>
           <CardFooter className="flex justify-center gap-7 pt-2 pb-6">
-            <Tooltip content="Like">
+            <Tooltip content="LinkedIn">
               <Typography
                 as="a"
-                href="#facebook"
+                href="https://www.linkedin.com/in/shidqirifatpangestu/"
                 variant="lead"
                 className="text-nutricare-green"
                 target="_blank"
@@ -494,10 +491,10 @@ const Advisor = () => {
                 <i className="fab fa-linkedin" />
               </Typography>
             </Tooltip>
-            <Tooltip content="Follow">
+            <Tooltip content="Instagram">
               <Typography
                 as="a"
-                href="#twitter"
+                href="https://www.instagram.com/shidqirifat19/"
                 variant="lead"
                 className="text-nutricare-green"
                 target="_blank"
@@ -506,10 +503,10 @@ const Advisor = () => {
                 <i className="fab fa-instagram" />
               </Typography>
             </Tooltip>
-            <Tooltip content="Follow">
+            <Tooltip content="Github">
               <Typography
                 as="a"
-                href="#instagram"
+                href="https://github.com/shidqirifat"
                 variant="lead"
                 className="text-nutricare-green"
                 target="_blank"
