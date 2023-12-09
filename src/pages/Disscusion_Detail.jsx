@@ -135,21 +135,26 @@ const DiscussionDetail = () => {
         .delete()
         .eq("id_discussion", id);
 
-      if (error) {
-        console.error("Error deleting discussion:", error.message);
-      } else {
-        const { error } = await supabase
-          .from("discussion")
-          .delete()
-          .eq("id", id);
-        if (error) {
-          console.error("Error deleting discussion:", error.message);
+        const shouldDelete = window.confirm("Are you sure you want to delete this discussion?");
+        if (shouldDelete) {
+          if (error) {
+            console.error("Error deleting discussion:", error.message);
+          } else {
+            const { error } = await supabase
+              .from("discussion")
+              .delete()
+              .eq("id", id);
+            if (error) {
+              console.error("Error deleting discussion:", error.message);
+            } else {
+              window.location.href = "/community";
+              alert("Discussion deleted!");
+            }
+            // Redirect to the community page after deletion
+          }
         } else {
-          window.location.href = "/community";
-          alert("Discussion deleted!");
+          alert("Deletion canceled.");
         }
-        // Redirect to community page after deletion
-      }
     } catch (error) {
       console.error("Error handling delete discussion:", error.message);
     }
