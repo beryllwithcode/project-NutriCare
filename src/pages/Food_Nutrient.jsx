@@ -123,7 +123,7 @@ const Food = () => {
 
   const clearLocalStorage = () => {
     // Clear localStorage on page refresh
-    localStorage.clear();
+    localStorage.removeItem("foods");
   };
 
   return (

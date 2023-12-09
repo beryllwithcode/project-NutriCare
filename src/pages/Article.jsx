@@ -118,7 +118,7 @@ const Articles = () => {
 
   const clearLocalStorage = () => {
     // Clear localStorage on page refresh
-    localStorage.clear();
+    localStorage.removeItem("article");
   };
 
   const scrollRef = useRef(null);

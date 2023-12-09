@@ -9,7 +9,7 @@ import {
   Textarea,
   Typography,
 } from "@material-tailwind/react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 
 const DiscussionDetail = () => {
@@ -73,6 +73,7 @@ const DiscussionDetail = () => {
 
   const [discussion, setDiscussion] = useState([]);
   const [replies, setReplies] = useState([]);
+  const navigate = useNavigate();
 
   const fetchDiscussions = async () => {
     try {
@@ -135,26 +136,29 @@ const DiscussionDetail = () => {
         .delete()
         .eq("id_discussion", id);
 
-        const shouldDelete = window.confirm("Are you sure you want to delete this discussion?");
-        if (shouldDelete) {
+      const shouldDelete = window.confirm(
+        "Are you sure you want to delete this discussion?"
+      );
+      if (shouldDelete) {
+        if (error) {
+          console.error("Error deleting discussion:", error.message);
+        } else {
+          const { error } = await supabase
+            .from("discussion")
+            .delete()
+            .eq("id", id);
           if (error) {
             console.error("Error deleting discussion:", error.message);
           } else {
-            const { error } = await supabase
-              .from("discussion")
-              .delete()
-              .eq("id", id);
-            if (error) {
-              console.error("Error deleting discussion:", error.message);
-            } else {
-              window.location.href = "/community";
-              alert("Discussion deleted!");
-            }
-            // Redirect to the community page after deletion
+            localStorage.removeItem("discussions");
+            navigate("/community");
+            alert("Discussion deleted!");
           }
-        } else {
-          alert("Deletion canceled.");
+          // Redirect to the community page after deletion
         }
+      } else {
+        alert("Deletion canceled.");
+      }
     } catch (error) {
       console.error("Error handling delete discussion:", error.message);
     }
