@@ -210,7 +210,7 @@ const Content = () => {
           type: "spring",
           stiffness: 150,
         }}
-        className="w-screen"
+        className="mx-auto"
       >
         <div className="flex justify-between items-center mb-5 pb-4 border-b-4">
           <div className="w-40 lg:w-full">
@@ -234,9 +234,14 @@ const Content = () => {
               key={discussion.id}
               className="p-5 border-2 rounded-lg flex items-center justify-between"
             >
-              <div className="w-52 lg:w-full">
+              <div className="">
                 <Link to={`/discussion/${discussion.id}`}>
-                  <Typography variant="h5">{discussion.title}</Typography>
+                  <Typography
+                    variant="h5"
+                    className="break-words max-w-5xl pr-8"
+                  >
+                    {discussion.title}
+                  </Typography>
                 </Link>
                 <div className="flex gap-4 lg:gap-8">
                   <Typography variant="paragraph" className="text-gray-500">

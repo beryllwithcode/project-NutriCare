@@ -173,13 +173,21 @@ const DiscussionDetail = () => {
       className="relative flex px-10 gap-14 lg:px-24 py-14 text-nutricare-green"
       id="discussion"
     >
-      <div className="lg:w-screen">
+      <div className="mx-auto">
         <div className="flex justify-between items-center pb-4">
-          <div className="w-full">
+          <div className="">
             <div className="flex items-center justify-between">
               <div>
-                <Typography variant="h3">{discussion.title}</Typography>
-                <Typography variant="paragraph" className="mb-4">
+                <Typography
+                  variant="h3"
+                  className="break-all max-w-4xl break-words pr-8"
+                >
+                  {discussion.title}
+                </Typography>
+                <Typography
+                  variant="paragraph"
+                  className="mb-4 max-w-4xl break-words"
+                >
                   {discussion.description}
                 </Typography>
               </div>
