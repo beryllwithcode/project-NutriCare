@@ -6,7 +6,6 @@ import {
   CardFooter,
   CardHeader,
   Chip,
-  Input,
   Typography,
 } from "@material-tailwind/react";
 import { motion } from "framer-motion";

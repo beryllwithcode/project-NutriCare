@@ -163,7 +163,7 @@ function NavbarDefault() {
           <Typography
             as="li"
             variant="small"
-            className="flex lg:hidden items-center gap-x-2 p-1 font-semibold text-red-500 hover:text-red-500 border-b-2 border-transparent hover:border-red-500 transition-all duration-200"
+            className="flex lg:hidden items-center gap-x-2 p-1 font-semibold text-nutricare-merah hover:text-nutricare-merah border-b-2 border-transparent hover:border-nutricare-merah transition-all duration-200"
           >
             Logout
           </Typography>
@@ -187,7 +187,7 @@ function NavbarDefault() {
             alt="NutriCare"
           />
           <Typography
-            className="mr-4 cursor-pointer py-1.5 font-light text-orange-400 tracking-widest"
+            className="mr-4 cursor-pointer py-1.5 font-light text-nutricare-orange tracking-widest"
             variant="h3"
           >
             Nutri

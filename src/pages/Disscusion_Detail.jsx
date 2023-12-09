@@ -248,7 +248,9 @@ const DiscussionDetail = () => {
         </div>
         <div className="mb-8">
           {/* Menampilkan pesan warning */}
-          {warning && <div className="text-red-600 mb-2">{warning}</div>}
+          {warning && (
+            <div className="text-nutricare-merah mb-2">{warning}</div>
+          )}
 
           <form onSubmit={newCommentHandler}>
             <div className="w-100">
@@ -263,7 +265,7 @@ const DiscussionDetail = () => {
             <Button
               type="submit"
               disabled={session ? false : true}
-              className="bg-nutricare-green hover:bg-green-500 mt-2"
+              className="bg-nutricare-green hover:bg-nutricare-orange mt-2"
             >
               Post Comments
             </Button>

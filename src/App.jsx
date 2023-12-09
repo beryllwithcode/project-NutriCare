@@ -11,7 +11,6 @@ import SignIn from "./pages/Sign_in";
 import SignUp from "./pages/Sign_Up";
 import DiscussionDetail from "./pages/Disscusion_Detail";
 import AutoScrollTop from "./components/autoScrollTop";
-import ScrollToTop from "react-scroll-to-top";
 
 function App() {
   const location = useLocation();
