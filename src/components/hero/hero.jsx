@@ -48,21 +48,22 @@ const Hero = () => {
             className="text-5xl lg:text-6xl tracking-tight font-bold text-nutricare-green"
           >
             NutriCare: Empowering Your{" "}
-            <span className="text-orange-600">Health</span> Through{" "}
-            <span className="text-orange-600">Nutrition</span>
+            <span className="text-nutricare-orange">Health</span> Through{" "}
+            <span className="text-nutricare-orange">Nutrition</span>
           </motion.h1>
           <motion.p
             variants={item}
             className="mt-6 text-lg leading-8 text-nutricare-green"
           >
-            <span className="text-orange-600">NutriCare</span> is your one-stop
-            destination for achieving a healthier lifestyle through proper
-            nutrition. Our platform is designed to empower you with the
+            <span className="text-nutricare-orange">NutriCare</span> is your
+            one-stop destination for achieving a healthier lifestyle through
+            proper nutrition. Our platform is designed to empower you with the
             knowledge and tools needed to make informed decisions about your
             diet and overall well-being. Whether you're looking to manage your
             weight, improve your eating habits, or simply understand the
             nutritional content of your meals,{" "}
-            <span className="text-orange-600">NutriCare</span> has you covered.
+            <span className="text-nutricare-orange">NutriCare</span> has you
+            covered.
           </motion.p>
           <motion.div variants={item} className="mt-4 gap-x-6">
             <a href="#content">

@@ -23,7 +23,6 @@ describe("SignIn Component", () => {
       <MemoryRouter initialEntries={["/sign-in"]}>
         <Routes>
           {" "}
-          {/* Replace <Route> with <Routes> */}
           <Route path="/sign-in" element={<SignIn />} />
         </Routes>
       </MemoryRouter>
@@ -45,20 +44,17 @@ describe("SignIn Component", () => {
   });
 
   test("Handles Sign In form submission", async () => {
-    // Mock the signInWithPassword function
     supabase.auth.signInWithPassword.mockResolvedValue({ error: null });
 
     render(
       <MemoryRouter initialEntries={["/sign-in"]}>
         <Routes>
           {" "}
-          {/* Replace <Route> with <Routes> */}
           <Route path="/sign-in" element={<SignIn />} />
         </Routes>
       </MemoryRouter>
     );
 
-    // Fill in the form fields
     fireEvent.change(screen.getByLabelText(/Email/i), {
       target: { value: mockUser.email },
     });
@@ -66,10 +62,8 @@ describe("SignIn Component", () => {
       target: { value: mockUser.password },
     });
 
-    // Submit the form
     fireEvent.click(screen.getByRole("button", { name: /Sign In/i }));
 
-    // Wait for the form to be submitted
     await waitFor(() => {
       expect(supabase.auth.signInWithPassword).toHaveBeenCalledWith({
         email: mockUser.email,

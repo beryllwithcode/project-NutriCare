@@ -19,7 +19,8 @@ const Footer = () => {
                 className="mr-4 py-1.5 font-semibold tracking-widest"
                 variant="h3"
               >
-                <span className="font-light text-orange-400">Nutri</span>Care
+                <span className="font-light text-nutricare-orange">Nutri</span>
+                Care
               </Typography>
             </div>
             <Typography variant="paragraph">
@@ -30,7 +31,7 @@ const Footer = () => {
           </div>
           <div className="justify-between gap-4">
             <Typography className="mr-4 py-1.5 font-semibold" variant="h4">
-              About <span className="text-orange-400">Us</span>
+              About <span className="text-nutricare-orange">Us</span>
             </Typography>
             <ul>
               <li>F156YB030 - Beryll Pradana Ramadhan</li>
@@ -43,15 +44,16 @@ const Footer = () => {
           <div className="justify-between gap-4">
             <Typography className="mr-4 py-1.5 font-semibold " variant="h4">
               Random{" "}
-              <span className="font-semibold text-orange-400">Quote</span>
+              <span className="font-semibold text-nutricare-orange">Quote</span>
             </Typography>
             <Typography
               className="mr-4 py-1.5 font-semibold "
               variant="paragraph"
             >
-              "<span className="text-orange-400">Empowering</span> individuals
-              to take control of their health through informed choices, one{" "}
-              <span className="text-orange-400">nutrient</span> at a time"
+              "<span className="text-nutricare-orange">Empowering</span>{" "}
+              individuals to take control of their health through informed
+              choices, one{" "}
+              <span className="text-nutricare-orange">nutrient</span> at a time"
             </Typography>
           </div>
         </div>

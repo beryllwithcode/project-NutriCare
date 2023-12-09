@@ -15,7 +15,6 @@ jest.mock("../../supabaseClient", () => ({
   },
 }));
 
-// Mock the window.alert function
 const mockAlert = jest.fn();
 window.alert = mockAlert;
 
@@ -51,7 +50,6 @@ describe("SignUp Component", () => {
   });
 
   test("Handles Sign Up form submission with success", async () => {
-    // Mock the signUp function
     supabase.auth.signUp.mockResolvedValueOnce({
       data: { user: { id: "testUserId" } },
       error: null,
@@ -65,7 +63,6 @@ describe("SignUp Component", () => {
       </MemoryRouter>
     );
 
-    // Fill in the form fields
     fireEvent.change(screen.getByLabelText(/Email/i), {
       target: { value: mockUser.email },
     });
@@ -73,10 +70,8 @@ describe("SignUp Component", () => {
       target: { value: mockUser.password },
     });
 
-    // Submit the form
     fireEvent.click(screen.getByRole("button", { name: /Sign Up/i }));
 
-    // Wait for the form to be submitted
     await waitFor(() => {
       expect(supabase.auth.signUp).toHaveBeenCalledWith({
         email: mockUser.email,
@@ -84,12 +79,10 @@ describe("SignUp Component", () => {
       });
     });
 
-    // Check if the alert function was called with the success message
     expect(mockAlert).toHaveBeenCalledWith("Sign Up Success!");
   });
 
   test("Handles Sign Up form submission with error", async () => {
-    // Mock the signUp function
     const errorMessage = "Email already taken";
     supabase.auth.signUp.mockResolvedValueOnce({
       data: null,
@@ -104,7 +97,6 @@ describe("SignUp Component", () => {
       </MemoryRouter>
     );
 
-    // Fill in the form fields
     fireEvent.change(screen.getByLabelText(/Email/i), {
       target: { value: mockUser.email },
     });
@@ -112,10 +104,8 @@ describe("SignUp Component", () => {
       target: { value: mockUser.password },
     });
 
-    // Submit the form
     fireEvent.click(screen.getByRole("button", { name: /Sign Up/i }));
 
-    // Wait for the form to be submitted
     await waitFor(() => {
       expect(supabase.auth.signUp).toHaveBeenCalledWith({
         email: mockUser.email,
@@ -123,7 +113,6 @@ describe("SignUp Component", () => {
       });
     });
 
-    // Check if the alert function was called with the error message
     expect(mockAlert).toHaveBeenCalledWith(errorMessage);
   });
 });

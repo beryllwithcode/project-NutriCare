@@ -23,6 +23,7 @@ module.exports = withMT({
           greenTuaFade: "#B9CC93",
           linearStart: "#8FC666",
           linearEnd: "#3A6C14",
+          merah: "#EB5757",
         },
       },
     },
