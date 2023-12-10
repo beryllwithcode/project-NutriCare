@@ -104,7 +104,8 @@ const DiscussionDetail = () => {
             profiles (id, full_name)
           `
         )
-        .eq("id_discussion", id);
+        .eq("id_discussion", id)
+        .order("created_at", { ascending: false });
 
       if (repliesError) {
         throw repliesError;
