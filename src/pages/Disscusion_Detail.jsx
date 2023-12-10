@@ -2,6 +2,10 @@
 import React, { useEffect, useState } from "react";
 import {
   Button,
+  Dialog,
+  DialogBody,
+  DialogFooter,
+  DialogHeader,
   Menu,
   MenuHandler,
   MenuItem,
@@ -13,6 +17,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 
 const DiscussionDetail = () => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(!open);
   const { id } = useParams();
   const [dataFetched, setDataFetched] = useState(false);
 
@@ -124,6 +130,8 @@ const DiscussionDetail = () => {
     }
   };
 
+  const [deleteLoading, setDeleteLoading] = useState(null);
+
   useEffect(() => {
     if (!dataFetched) {
       fetchDiscussions();
@@ -131,34 +139,27 @@ const DiscussionDetail = () => {
   }, [dataFetched, fetchDiscussions, id]);
 
   const deleteDiscussionHandler = async () => {
+    setDeleteLoading(true);
     try {
       const { error } = await supabase
         .from("discussion_replies")
         .delete()
         .eq("id_discussion", id);
 
-      const shouldDelete = window.confirm(
-        "Are you sure you want to delete this discussion?"
-      );
-      if (shouldDelete) {
+      if (error) {
+        console.error("Error deleting discussion:", error.message);
+      } else {
+        const { error } = await supabase
+          .from("discussion")
+          .delete()
+          .eq("id", id);
         if (error) {
           console.error("Error deleting discussion:", error.message);
         } else {
-          const { error } = await supabase
-            .from("discussion")
-            .delete()
-            .eq("id", id);
-          if (error) {
-            console.error("Error deleting discussion:", error.message);
-          } else {
-            localStorage.removeItem("discussions");
-            navigate("/community");
-            alert("Discussion deleted!");
-          }
-          // Redirect to the community page after deletion
+          localStorage.removeItem("discussions");
+          setDeleteLoading(false);
+          navigate("/community");
         }
-      } else {
-        alert("Deletion canceled.");
       }
     } catch (error) {
       console.error("Error handling delete discussion:", error.message);
@@ -174,9 +175,9 @@ const DiscussionDetail = () => {
       className="relative flex px-10 gap-14 lg:px-24 py-14 text-nutricare-green"
       id="discussion"
     >
-      <div className="mx-auto">
+      <div className="mx-auto w-screen max-w-6xl">
         <div className="flex justify-between items-center pb-4">
-          <div className="">
+          <div className="w-full max-w-full">
             <div className="flex items-center justify-between">
               <div>
                 <Typography
@@ -198,7 +199,7 @@ const DiscussionDetail = () => {
                   <>
                     <div className="hidden lg:block">
                       <Button
-                        onClick={deleteDiscussionHandler}
+                        onClick={handleOpen}
                         className="bg-nutricare-orange hover:bg-red-500"
                       >
                         Delete Discussion
@@ -303,6 +304,30 @@ const DiscussionDetail = () => {
           </div>
         </div>
       </div>
+      <Dialog open={open} handler={handleOpen} size="xs">
+        <DialogHeader className="pb-2">Delete</DialogHeader>
+        <DialogBody className="py-0">
+          Are you sure you want to delete this discussion?
+        </DialogBody>
+        <DialogFooter>
+          <Button
+            variant="text"
+            color="green"
+            onClick={handleOpen}
+            className="mr-1"
+          >
+            <span>Cancel</span>
+          </Button>
+          <Button
+            variant="gradient"
+            color="red"
+            onClick={deleteDiscussionHandler}
+            disabled={deleteLoading}
+          >
+            <span>Delete</span>
+          </Button>
+        </DialogFooter>
+      </Dialog>
     </div>
   );
 };
