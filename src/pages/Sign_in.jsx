@@ -25,33 +25,46 @@ function SignIn() {
     if (email.length > 0) {
       if (!isValidEmail(email)) {
         setEmailError("Please enter a valid email");
+        setLoading(false);
+
         if (!password.length > 0) {
           setPasswordError("Please fill out this field.");
+          setLoading(false);
         } else {
           setPasswordError(null);
+          setLoading(false);
         }
         setLoading(false);
         setSignInError(null);
       } else {
         setEmailError(null);
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-
-        if (error) {
-          console.error(error.message);
-          if (error.message.includes("Invalid login credentials")) {
-            setSignInError("Login failed. Please check again!");
-            setOpen(true);
-          } else {
-            setSignInError(null);
-            // alert("Email is already registered. Please Sign In!");
-          }
-        } else {
-          navigate("/");
-        }
         setLoading(false);
+        if (!password.length > 0) {
+          setPasswordError("Please fill out this field.");
+          setLoading(false);
+        } else {
+          setPasswordError(null);
+          setLoading(false);
+
+          const { error } = await supabase.auth.signInWithPassword({
+            email,
+            password,
+          });
+
+          if (error) {
+            console.error(error.message);
+            if (error.message.includes("Invalid login credentials")) {
+              setSignInError("Login failed. Please check again!");
+              setOpen(true);
+            } else {
+              setSignInError(null);
+              // alert("Email is already registered. Please Sign In!");
+            }
+          } else {
+            navigate("/");
+          }
+          setLoading(false);
+        }
       }
     } else {
       setEmailError("Please fill out this field.");
