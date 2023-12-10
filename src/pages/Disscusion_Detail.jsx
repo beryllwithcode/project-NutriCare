@@ -175,29 +175,29 @@ const DiscussionDetail = () => {
       className="relative flex px-10 gap-14 lg:px-24 py-14 text-nutricare-green"
       id="discussion"
     >
-      <div className="mx-auto w-screen max-w-6xl">
+      <div className="mx-auto w-72 lg:w-screen lg:max-w-6xl">
         <div className="flex justify-between items-center pb-4">
           <div className="w-full max-w-full">
-            <div className="flex items-center justify-between">
+            <div className="flex justify-between">
               <div>
                 <Typography
                   variant="h3"
-                  className="break-all max-w-4xl break-words pr-8"
+                  className="break-all w-72 lg:w-full max-w-4xl break-words "
                 >
-                  {discussion.title}
+                  {discussion.title || "-"}
                 </Typography>
                 <Typography
                   variant="paragraph"
                   className="mb-4 max-w-4xl break-words"
                 >
-                  {discussion.description}
+                  {discussion.description || "-"}
                 </Typography>
               </div>
               {session &&
                 session.user &&
                 session.user.id === discussion.id_user && (
                   <>
-                    <div className="hidden lg:block">
+                    <div className="hidden lg:block py-2">
                       <Button
                         onClick={handleOpen}
                         className="bg-nutricare-orange hover:bg-red-500"
@@ -205,15 +205,12 @@ const DiscussionDetail = () => {
                         Delete Discussion
                       </Button>
                     </div>
-                    <Menu className="lg:hidden" placement="bottom-end">
+                    <Menu className="lg:hidden" placement="left-start">
                       <MenuHandler>
-                        <i className="fas fa-ellipsis-v px-2 lg:hidden"></i>
+                        <i className="fas fa-ellipsis-v px-1 py-2 lg:hidden"></i>
                       </MenuHandler>
                       <MenuList>
-                        <MenuItem
-                          className="text-red-500"
-                          onClick={deleteDiscussionHandler}
-                        >
+                        <MenuItem className="text-red-500" onClick={handleOpen}>
                           Delete
                         </MenuItem>
                       </MenuList>
@@ -237,13 +234,13 @@ const DiscussionDetail = () => {
                 variant="paragraph"
                 className="text-nutricare-green font-semibold"
               >
-                {discussion.created_at}
+                {discussion.created_at || "Jan 0, 0000"}
               </Typography>
               <Typography
                 variant="paragraph"
                 className="text-nutricare-green font-semibold"
               >
-                {replies.length} Comments
+                {replies.length || "0"} Comments
               </Typography>
             </div>
           </div>
@@ -275,7 +272,9 @@ const DiscussionDetail = () => {
         </div>
         <div>
           <div className="w-100 mb-4">
-            <Typography variant="h4">{replies.length} Comments</Typography>
+            <Typography variant="h4">
+              {replies.length || "0"} Comments
+            </Typography>
           </div>
           <div className="flex flex-col gap-8">
             {replies.map((reply) => (
@@ -286,18 +285,20 @@ const DiscussionDetail = () => {
                     className="text-nutricare-green font-semibold"
                   >
                     <span className="text-nutricare-orange">
-                      {reply.profiles.full_name}
+                      {reply.profiles.full_name || "User"}
                     </span>
                   </Typography>
                   <Typography
                     variant="paragraph"
                     className="text-nutricare-green font-semibold"
                   >
-                    {reply.created_at}
+                    {reply.created_at || "Jan 0, 0000"}
                   </Typography>
                 </div>
                 <div>
-                  <Typography variant="paragraph">{reply.reply}</Typography>
+                  <Typography variant="paragraph">
+                    {reply.reply || "-"}
+                  </Typography>
                 </div>
               </div>
             ))}
