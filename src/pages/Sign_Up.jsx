@@ -8,46 +8,129 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
-  const [passwordLengthError, setPasswordLengthError] = useState("");
-  const [signupError, setSignupError] = useState("");
+  const [nameError, setNameError] = useState(null);
+  const [emailError, setEmailError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
+  const [signupError, setSignupError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [open, setOpen] = React.useState(true);
 
   const handleSignUp = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
-    if (password.length < 6) {
-      setPasswordLengthError("Password must be at least 6 characters long.");
-      return;
-    } else {
-      setPasswordLengthError("");
+    // if (fullName.length > 0) {
+    //   setNameError(null);
+    //   if (email.length > 0) {
+    //     setEmailError(null);
+    //     if (password.length > 0) {
+    //       setPasswordError(null);
+    //       if (password.length < 6) {
+    //         setPasswordError("Password must be at least 6 characters long.");
+    //         setLoading(false);
+    //       } else {
+    //         setPasswordError(null);
+    //
+    //       }
+    //     } else {
+    //       setPasswordError("Please fill out this field.");
+    //       setLoading(false);
+    //     }
+    //   } else {
+    //     setEmailError("Please fill out this field.");
+    //     setLoading(false);
+    //   }
+    // } else {
+    //   setNameError("Please fill out this field.");
+    //   setLoading(false);
+    // }
+
+    function isValidEmail(email) {
+      return /\S+@\S+\.\S+/.test(email);
     }
 
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-      });
+    if (fullName.length > 0 && email.length > 0 && password.length > 0) {
+      setNameError(null);
+      setEmailError(null);
+      setPasswordError(null);
+      if (!isValidEmail(email)) {
+        setEmailError("Please enter a valid email");
+        setLoading(false);
 
-      if (error) {
-        console.error(error);
-        if (error.message.includes("Is the email not registered yet?")) {
-          setSignupError("");
+        if (password.length < 6) {
+          setPasswordError("Password must be at least 6 characters long.");
+          setLoading(false);
         } else {
-          // alert("Email is already registered. Please Sign In!");
-          setSignupError("Email is already registered. Please Sign In!");
+          setPasswordError(null);
         }
       } else {
-        await supabase.from("profiles").upsert([
-          {
-            id: data.user.id,
-            full_name: fullName,
-          },
-        ]);
-        alert("Registration successful!.");
-        navigate("/");
+        setEmailError(null);
+        setLoading(false);
+
+        if (password.length < 6) {
+          setPasswordError("Password must be at least 6 characters long.");
+          setLoading(false);
+        } else {
+          setPasswordError(null);
+          try {
+            const { data, error } = await supabase.auth.signUp({
+              email,
+              password,
+            });
+
+            if (error) {
+              console.error(error);
+              if (error.message.includes("User already registered")) {
+                setSignupError("Email is already registered. Please Sign In!");
+                setOpen(false);
+              } else {
+                setSignupError("");
+              }
+            } else {
+              await supabase.from("profiles").upsert([
+                {
+                  id: data.user.id,
+                  full_name: fullName,
+                },
+              ]);
+              alert("Registration successful!.");
+              navigate("/");
+              setLoading(false);
+            }
+          } catch (error) {
+            console.error("Error signing up:", error.message);
+          }
+        }
       }
-    } catch (error) {
-      console.error("Error signing up:", error.message);
+    } else {
+      if (!fullName.length > 0) {
+        setNameError("Please fill out this field.");
+        setLoading(false);
+      } else {
+        setNameError(null);
+      }
+      if (!email.length > 0) {
+        setEmailError("Please fill out this field.");
+        setLoading(false);
+      } else {
+        if (!isValidEmail(email)) {
+          setEmailError("Please enter a valid email");
+          setLoading(false);
+        } else {
+          setEmailError(null);
+        }
+      }
+      if (!password.length > 0) {
+        setPasswordError("Please fill out this field.");
+        setLoading(false);
+      } else {
+        if (password.length < 6) {
+          setPasswordError("Password must be at least 6 characters long.");
+          setLoading(false);
+        } else {
+          setPasswordError(null);
+        }
+      }
     }
   };
   return (
@@ -86,11 +169,13 @@ function SignUp() {
                 name="name"
                 type="name"
                 autoComplete="name"
-                required
                 onChange={(e) => setFullName(e.target.value)}
                 className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-nutricare-green sm:text-sm sm:leading-6"
               />
             </div>
+            {nameError && (
+              <p className="text-nutricare-merah text-sm mt-1">{nameError}</p>
+            )}
           </div>
           <div>
             <label
@@ -103,13 +188,15 @@ function SignUp() {
               <input
                 id="email"
                 name="email"
-                type="email"
+                type="text"
                 autoComplete="email"
-                required
                 onChange={(e) => setEmail(e.target.value)}
                 className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-nutricare-green sm:text-sm sm:leading-6"
               />
             </div>
+            {emailError && (
+              <p className="text-nutricare-merah text-sm mt-1">{emailError}</p>
+            )}
           </div>
 
           <div>
@@ -127,13 +214,12 @@ function SignUp() {
                 name="password"
                 type="password"
                 autoComplete="current-password"
-                required
                 onChange={(e) => setPassword(e.target.value)}
                 className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-nutricare-green sm:text-sm sm:leading-6"
               />
-              {passwordLengthError && (
+              {passwordError && (
                 <p className="text-nutricare-merah text-sm mt-1">
-                  {passwordLengthError}
+                  {passwordError}
                 </p>
               )}
             </div>
@@ -144,6 +230,7 @@ function SignUp() {
               type="submit"
               className="bg-nutricare-green hover:bg-nutricare-orange mt-8"
               fullWidth={true}
+              disabled={loading}
             >
               Sign Up
             </Button>
