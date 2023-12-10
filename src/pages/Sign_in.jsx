@@ -1,29 +1,68 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
-import { Button, Typography } from "@material-tailwind/react";
+import { Alert, Button, Typography } from "@material-tailwind/react";
 
 function SignIn() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
+  const [signInError, setSignInError] = useState(null);
+  const [open, setOpen] = React.useState(true);
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     event.preventDefault();
 
-    setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      alert(error.error_description || error.message);
-    } else {
-      navigate("/");
+    function isValidEmail(email) {
+      return /\S+@\S+\.\S+/.test(email);
     }
-    setLoading(false);
+
+    setLoading(true);
+
+    if (email.length > 0) {
+      if (!isValidEmail(email)) {
+        setEmailError("Please enter a valid email");
+        if (!password.length > 0) {
+          setPasswordError("Please fill out this field.");
+        } else {
+          setPasswordError(null);
+        }
+        setLoading(false);
+        setSignInError(null);
+      } else {
+        setEmailError(null);
+        const { error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+        if (error) {
+          console.error(error.message);
+          if (error.message.includes("Invalid login credentials")) {
+            setSignInError("Login failed. Please check again!");
+            setOpen(true);
+          } else {
+            setSignInError(null);
+            // alert("Email is already registered. Please Sign In!");
+          }
+        } else {
+          navigate("/");
+        }
+        setLoading(false);
+      }
+    } else {
+      setEmailError("Please fill out this field.");
+      if (!password.length > 0) {
+        setPasswordError("Please fill out this field.");
+      } else {
+        setPasswordError(null);
+      }
+      setLoading(false);
+      setSignInError(null);
+    }
   };
 
   return (
@@ -36,6 +75,19 @@ function SignIn() {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-4" onSubmit={handleLogin}>
+          {signInError && (
+            <>
+              <Alert
+                open={open}
+                onClose={() => setOpen(false)}
+                variant="ghost"
+                color="red"
+                className="text-sm"
+              >
+                {signInError}
+              </Alert>
+            </>
+          )}
           <div>
             <label
               htmlFor="email"
@@ -47,14 +99,16 @@ function SignIn() {
               <input
                 id="email"
                 name="email"
-                type="email"
+                type="text"
                 autoComplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
                 className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-nutricare-green sm:text-sm sm:leading-6"
               />
             </div>
+            {emailError && (
+              <p className="text-nutricare-merah text-sm mt-1">{emailError}</p>
+            )}
           </div>
 
           <div>
@@ -74,10 +128,14 @@ function SignIn() {
                 autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required
                 className="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-nutricare-green sm:text-sm sm:leading-6"
               />
             </div>
+            {passwordError && (
+              <p className="text-nutricare-merah text-sm mt-1">
+                {passwordError}
+              </p>
+            )}
           </div>
 
           <div>
