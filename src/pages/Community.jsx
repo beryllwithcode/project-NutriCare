@@ -221,6 +221,7 @@ const Content = () => {
             </Typography>
           </div>
           <Button
+            id="newDiscussionButton"
             onClick={handleOpen}
             disabled={session ? false : true}
             className="bg-nutricare-green w-32 lg:w-100 h-full"
