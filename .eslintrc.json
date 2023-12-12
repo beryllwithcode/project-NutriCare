@@ -32,14 +32,12 @@
   ],
   "settings": {
     "react": {
-      "version": "detect"
+      "version": "detect" 
     }
   },
   "rules": {
     "react/react-in-jsx-scope": "off",    
     "react/prop-types": [2, { "ignore": ["children", "showNavbarAndFooter"] }],
     "jsx-a11y/alt-text": 0
-
-
   }
 }
