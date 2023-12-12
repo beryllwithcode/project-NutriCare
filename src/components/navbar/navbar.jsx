@@ -82,7 +82,7 @@ function NavbarDefault() {
 
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 pt-1">
-      <NavLink to="/" activeClassName="active" onClick={closeNav}>
+      <NavLink to="/" activeclassname="active" onClick={closeNav}>
         <Typography
           as="li"
           variant="small"
@@ -93,7 +93,7 @@ function NavbarDefault() {
           Home
         </Typography>
       </NavLink>
-      <NavLink to="/bmi-test" activeClassName="active" onClick={closeNav}>
+      <NavLink to="/bmi-test" activeclassname="active" onClick={closeNav}>
         <Typography
           as="li"
           variant="small"
@@ -106,7 +106,7 @@ function NavbarDefault() {
           BMI Calculate
         </Typography>
       </NavLink>
-      <NavLink to="/article" activeClassName="active" onClick={closeNav}>
+      <NavLink to="/article" activeclassname="active" onClick={closeNav}>
         <Typography
           as="li"
           variant="small"
@@ -119,7 +119,7 @@ function NavbarDefault() {
           Article
         </Typography>
       </NavLink>
-      <NavLink to="/community" activeClassName="active" onClick={closeNav}>
+      <NavLink to="/community" activeclassname="active" onClick={closeNav}>
         <Typography
           as="li"
           variant="small"
@@ -132,7 +132,7 @@ function NavbarDefault() {
           Community
         </Typography>
       </NavLink>
-      <NavLink to="/food-nutrient" activeClassName="active" onClick={closeNav}>
+      <NavLink to="/food-nutrient" activeclassname="active" onClick={closeNav}>
         <Typography
           as="li"
           variant="small"
@@ -145,7 +145,7 @@ function NavbarDefault() {
           Food Nutrient
         </Typography>
       </NavLink>
-      <NavLink to="/about-us" activeClassName="active" onClick={closeNav}>
+      <NavLink to="/about-us" activeclassname="active" onClick={closeNav}>
         <Typography
           as="li"
           variant="small"
