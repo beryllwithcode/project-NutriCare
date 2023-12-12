@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import {
   Button,
@@ -246,7 +245,7 @@ const DiscussionDetail = () => {
           </div>
         </div>
         <div className="mb-8">
-          {/* Menampilkan pesan warning */}
+          {/* Displays a warning message */}
           {warning && (
             <div className="text-nutricare-merah mb-2">{warning}</div>
           )}

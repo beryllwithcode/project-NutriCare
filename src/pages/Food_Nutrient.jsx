@@ -50,7 +50,7 @@ const Hero = () => {
         </motion.div>
         <motion.img
           src="illustration/salad.svg"
-          alt="Anatomy"
+          alt="Salad Illustration"
           initial={{ opacity: 0, x: "100px" }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ root: scrollRef }}
@@ -70,9 +70,11 @@ const Hero = () => {
 const Food = () => {
   const [foodsData, setFoodsData] = useState([]);
   const scrollRef = useRef(null);
+
   useEffect(() => {
     window.addEventListener("beforeunload", clearLocalStorage);
     const storedFoods = localStorage.getItem("foods");
+
     if (storedFoods) {
       setFoodsData(JSON.parse(storedFoods));
     } else {
@@ -82,6 +84,7 @@ const Food = () => {
           const promises = foodsResponse.map((foodItem) =>
             fetchNutritionData(foodItem.id)
           );
+
           Promise.all(promises)
             .then((nutritionResponses) => {
               const foodsWithNutrition = foodsResponse.map(
@@ -90,6 +93,7 @@ const Food = () => {
                   nutrition: nutritionResponses[index],
                 })
               );
+
               setFoodsData(foodsWithNutrition);
               localStorage.setItem("foods", JSON.stringify(foodsWithNutrition));
             })
@@ -99,6 +103,7 @@ const Food = () => {
         })
         .catch((error) => console.error("Error fetching foods data:", error));
     }
+
     return () => {
       window.removeEventListener("beforeunload", clearLocalStorage);
     };
@@ -144,7 +149,7 @@ const Food = () => {
           className="grid place-content-center lg:grid-cols-3 gap-y-4 max-w-6xl gap-x-6"
         >
           {foodsData.map((food) => (
-            <Card className="lg:w-80 shadow-lg mx-auto">
+            <Card key={food.id} className="lg:w-80 shadow-lg mx-auto">
               <CardHeader floated={false} color="blue-gray">
                 <img
                   src={
@@ -152,7 +157,7 @@ const Food = () => {
                       ? food.image
                       : "https://ipsf.net/wp-content/uploads/2021/12/dummy-image-square.webp"
                   }
-                  alt="Article Thumbnail"
+                  alt="Food Thumbnail"
                 ></img>
                 <div className="absolute inset-0 h-full w-full" />
               </CardHeader>
@@ -178,9 +183,7 @@ const Food = () => {
                     />
                   </div>
                   <div>
-                    <Typography className="text-nutricare-green">
-                      Carbs
-                    </Typography>
+                    <Typography className="text-nutricare-green">Carbs</Typography>
                     <Chip
                       size="lg"
                       value={
@@ -190,9 +193,7 @@ const Food = () => {
                     />
                   </div>
                   <div>
-                    <Typography className="text-nutricare-green">
-                      Fat
-                    </Typography>
+                    <Typography className="text-nutricare-green">Fat</Typography>
                     <Chip
                       size="lg"
                       value={
@@ -202,9 +203,7 @@ const Food = () => {
                     />
                   </div>
                   <div>
-                    <Typography className="text-nutricare-green">
-                      Protein
-                    </Typography>
+                    <Typography className="text-nutricare-green">Protein</Typography>
                     <Chip
                       size="lg"
                       value={
