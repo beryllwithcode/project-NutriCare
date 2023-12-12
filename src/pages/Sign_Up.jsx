@@ -19,32 +19,6 @@ function SignUp() {
     event.preventDefault();
     setLoading(true);
 
-    // if (fullName.length > 0) {
-    //   setNameError(null);
-    //   if (email.length > 0) {
-    //     setEmailError(null);
-    //     if (password.length > 0) {
-    //       setPasswordError(null);
-    //       if (password.length < 6) {
-    //         setPasswordError("Password must be at least 6 characters long.");
-    //         setLoading(false);
-    //       } else {
-    //         setPasswordError(null);
-    //
-    //       }
-    //     } else {
-    //       setPasswordError("Please fill out this field.");
-    //       setLoading(false);
-    //     }
-    //   } else {
-    //     setEmailError("Please fill out this field.");
-    //     setLoading(false);
-    //   }
-    // } else {
-    //   setNameError("Please fill out this field.");
-    //   setLoading(false);
-    // }
-
     function isValidEmail(email) {
       return /\S+@\S+\.\S+/.test(email);
     }
@@ -82,9 +56,10 @@ function SignUp() {
               console.error(error);
               if (error.message.includes("User already registered")) {
                 setSignupError("Email is already registered. Please Sign In!");
-                setOpen(false);
+                setOpen(true);
               } else {
                 setSignupError("");
+                setOpen(false);
               }
             } else {
               await supabase.from("profiles").upsert([
@@ -158,7 +133,7 @@ function SignUp() {
           )}
           <div>
             <label
-              htmlFor="fullName"
+              htmlFor="name"
               className="block text-sm font-medium leading-6 text-nutricare-green"
             >
               Name
