@@ -58,6 +58,8 @@ test("Adding new discussion", async ({ page }) => {
 });
 
 test("Adding comment to the discussion", async ({ page }) => {
+  await page.waitForTimeout(3000);
+
   await page.goto("http://localhost:3000/");
   await expect(
     page.getByRole("button", { name: "Login" }).first()
@@ -81,6 +83,7 @@ test("Adding comment to the discussion", async ({ page }) => {
   await expect(page.locator("#discussion")).toContainText("Post by user");
   await page
     .getByRole("link", { name: "End to End Testing for Adding" })
+    .first()
     .click();
   await expect(page.getByPlaceholder(" ")).toBeVisible();
   await page.getByPlaceholder(" ").click();
@@ -124,6 +127,7 @@ test("Deleting discussion created", async ({ page }) => {
   await expect(page.getByText("Post by user")).toBeVisible();
   await page
     .getByRole("link", { name: "End to End Testing for Adding" })
+    .first()
     .click();
   await expect(page.locator("#discussion")).toContainText(
     "End to End Testing for Adding Discussion"
@@ -136,9 +140,10 @@ test("Deleting discussion created", async ({ page }) => {
     page.getByRole("button", { name: "Delete Discussion" })
   ).toBeVisible();
   await page.getByRole("button", { name: "Delete Discussion" }).click();
-  const dialog = await page.waitForEvent("dialog");
-  expect(dialog.message()).toBe(
-    "Are you sure you want to delete this discussion?"
-  );
-  await dialog.accept();
+  await expect(page.getByText("Are you sure you want to")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Delete" })).toBeVisible();
+  await page.getByRole("button", { name: "Delete" }).click();
+  await expect(
+    page.getByRole("link", { name: "End to End Testing for Adding" })
+  ).toBeHidden();
 });

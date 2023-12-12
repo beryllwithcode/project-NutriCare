@@ -1,5 +1,11 @@
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import {
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+  act,
+} from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import SignIn from "../Sign_in";
 import { supabase } from "../../supabaseClient";
@@ -55,19 +61,21 @@ describe("SignIn Component", () => {
       </MemoryRouter>
     );
 
-    fireEvent.change(screen.getByLabelText(/Email/i), {
-      target: { value: mockUser.email },
-    });
-    fireEvent.change(screen.getByLabelText(/Password/i), {
-      target: { value: mockUser.password },
-    });
+    await act(async () => {
+      fireEvent.change(screen.getByLabelText(/Email/i), {
+        target: { value: mockUser.email },
+      });
+      fireEvent.change(screen.getByLabelText(/Password/i), {
+        target: { value: mockUser.password },
+      });
 
-    fireEvent.click(screen.getByRole("button", { name: /Sign In/i }));
+      fireEvent.click(screen.getByRole("button", { name: /Sign In/i }));
 
-    await waitFor(() => {
-      expect(supabase.auth.signInWithPassword).toHaveBeenCalledWith({
-        email: mockUser.email,
-        password: mockUser.password,
+      await waitFor(() => {
+        expect(supabase.auth.signInWithPassword).toHaveBeenCalledWith({
+          email: mockUser.email,
+          password: mockUser.password,
+        });
       });
     });
   });
