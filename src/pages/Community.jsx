@@ -213,7 +213,7 @@ const Content = () => {
         className="mx-auto"
       >
         <div className="flex justify-between items-center mb-5 pb-4 border-b-4">
-          <div className="w-40 lg:w-full">
+          <div className="w-40 lg:w-full max-w-full">
             <Typography variant="h3">Let's Discuss</Typography>
             <Typography variant="paragraph">
               Discuss anything, ask questions, find supports, and connect with
@@ -233,13 +233,13 @@ const Content = () => {
           {discussions.map((discussion) => (
             <div
               key={discussion.id}
-              className="p-5 border-2 rounded-lg flex items-center justify-between"
+              className="p-5 border-2 rounded-lg flex gap-4 items-center justify-between w-72 lg:w-full max-w-full"
             >
               <div className="">
                 <Link to={`/discussion/${discussion.id}`}>
                   <Typography
                     variant="h5"
-                    className="break-words max-w-5xl pr-8"
+                    className="break-words w-48 lg:w-full max-w-4xl"
                   >
                     {discussion.title}
                   </Typography>

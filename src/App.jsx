@@ -22,15 +22,15 @@ function App() {
       <Layout showNavbarAndFooter={!isSignInOrSignUpPage}>
         <AutoScrollTop />
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/bmi-test" element={<BMITest />}></Route>
-          <Route path="/article" element={<Article />}></Route>
-          <Route path="/community" element={<Community />}></Route>
-          <Route path="/discussion/:id" element={<DiscussionDetail />}></Route>
-          <Route path="/food-nutrient" element={<FoodNutrient />}></Route>
-          <Route path="/about-us" element={<AboutUs />}></Route>
-          <Route path="/log-in" element={<SignIn />}></Route>
-          <Route path="/sign-up" element={<SignUp />}></Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/bmi-test" element={<BMITest />} />
+          <Route path="/article" element={<Article />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/discussion/:id" element={<DiscussionDetail />} />
+          <Route path="/food-nutrient" element={<FoodNutrient />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/log-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
         </Routes>
       </Layout>
     </>
