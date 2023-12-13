@@ -84,16 +84,14 @@ const DiscussionDetail = () => {
     try {
       const { data: discussionsData, error: discussionsError } = await supabase
         .from("discussion")
-        .select(
-          `
-                id,
-                created_at,
-                id_user,
-                profiles (id, full_name),
-                title,
-                description
-              `
-        )
+        .select(`
+          id,
+          created_at,
+          id_user,
+          profiles (id, full_name),
+          title,
+          description
+        `)
         .eq("id", id)
         .single();
 
@@ -103,12 +101,10 @@ const DiscussionDetail = () => {
 
       const { data: repliesData, error: repliesError } = await supabase
         .from("discussion_replies")
-        .select(
-          `
-            *,
-            profiles (id, full_name)
-          `
-        )
+        .select(`
+          *,
+          profiles (id, full_name)
+        `)
         .eq("id_discussion", id)
         .order("created_at", { ascending: false });
 
@@ -165,6 +161,56 @@ const DiscussionDetail = () => {
     }
   };
 
+  const [editComment, setEditComment] = useState({ id: null, editing: false, value: "" });
+
+  const editCommentHandler = (commentId, currentComment) => {
+    // Toggle the editing mode
+    setEditComment({
+      id: commentId,
+      editing: !editComment.editing,
+      value: currentComment,
+    });
+  };
+
+  const saveChangesHandler = async (commentId) => {
+    try {
+      const { error } = await supabase
+        .from("discussion_replies")
+        .update({ reply: editComment.value })
+        .eq("id", commentId);
+
+      if (error) {
+        console.error("Error updating comment:", error.message);
+      } else {
+        alert("Your comment has been updated!");
+        setEditComment({ id: null, editing: false, value: "" });
+        fetchDiscussions();
+      }
+    } catch (error) {
+      console.error("Error editing comment:", error.message);
+    }
+  };
+
+  const deleteCommentHandler = async (commentId) => {
+    if (window.confirm("Are you sure you want to delete this comment?")) {
+      try {
+        const { error } = await supabase
+          .from("discussion_replies")
+          .delete()
+          .eq("id", commentId);
+
+        if (error) {
+          console.error("Error deleting comment:", error.message);
+        } else {
+          alert("Your comment has been deleted!");
+          fetchDiscussions();
+        }
+      } catch (error) {
+        console.error("Error deleting comment:", error.message);
+      }
+    }
+  };
+
   if (!discussion) {
     return <div>Loading...</div>;
   }
@@ -181,7 +227,7 @@ const DiscussionDetail = () => {
               <div>
                 <Typography
                   variant="h3"
-                  className="break-all w-72 lg:w-full max-w-4xl break-words "
+                  className="break-all w-72 lg:w-full max-w-4xl break-words"
                 >
                   {discussion.title || "-"}
                 </Typography>
@@ -293,10 +339,47 @@ const DiscussionDetail = () => {
                   >
                     {reply.created_at || "Jan 0, 0000"}
                   </Typography>
+                  {session && session.user && session.user.id === reply.id_user && (
+                    <>
+                      <i
+                        onClick={() => editCommentHandler(reply.id, reply.reply)}
+                        className="fas fa-edit cursor-pointer text-nutricare-orange hover:text-nutricare-red"
+                      ></i>
+                      <i
+                        onClick={() => deleteCommentHandler(reply.id)}
+                        className="fas fa-trash-alt cursor-pointer text-nutricare-red hover:text-red-500"
+                      ></i>
+                    </>
+                  )}
                 </div>
-                <div>
-                  <Typography variant="paragraph">
-                    {reply.reply || "-"}
+                <div className="commentContainer">
+                  {/* Conditionally render either the original or edited comment */}
+                  <Typography variant="paragraph" className="commentText">
+                    {editComment.id === reply.id ? (
+                      // Render input for editing comment
+                      <div className="flex gap-2">
+                        <Textarea
+                          color="green"
+                          onChange={(e) =>
+                            setEditComment({
+                              ...editComment,
+                              value: e.target.value,
+                            })
+                          }
+                          value={editComment.value}
+                          label="Edit Comment"
+                        />
+                        <Button
+                          onClick={() => saveChangesHandler(reply.id)}
+                          className="bg-nutricare-green hover:bg-nutricare-orange"
+                        >
+                          <i className="fas fa-save"></i>
+                        </Button>
+                      </div>
+                    ) : (
+                      // Render original comment
+                      reply.reply || "-"
+                    )}
                   </Typography>
                 </div>
               </div>

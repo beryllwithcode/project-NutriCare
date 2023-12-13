@@ -16,3 +16,12 @@ a,
 button {
   -webkit-tap-highlight-color: transparent;
 }
+
+.commentContainer {
+  max-width: 100%;
+  overflow: auto;
+}
+
+.commentText {
+  overflow-wrap: break-word;
+}
