@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test("Login Success", async ({ page }) => {
-  await page.goto("http:localhost:3000/");
+  await page.goto("https://nutri-care.vercel.app/");
   await expect(
     page.getByRole("button", { name: "Login" }).first()
   ).toBeVisible();
@@ -29,7 +29,7 @@ test("Login Success", async ({ page }) => {
 test("Login Failed: please fill out this field for email and password", async ({
   page,
 }) => {
-  await page.goto("http:localhost:3000/");
+  await page.goto("https://nutri-care.vercel.app/");
   await expect(
     page.getByRole("button", { name: "Login" }).first()
   ).toBeVisible();
@@ -57,7 +57,7 @@ test("Login Failed: please fill out this field for email and password", async ({
 });
 
 test("Login Failed: Wrong Email", async ({ page }) => {
-  await page.goto("http://localhost:3000/");
+  await page.goto("https://nutri-care.vercel.app/");
   await expect(
     page.getByRole("button", { name: "Login" }).first()
   ).toBeVisible();
@@ -81,7 +81,7 @@ test("Login Failed: Wrong Email", async ({ page }) => {
 });
 
 test("Login Failed: Wrong Password", async ({ page }) => {
-  await page.goto("http://localhost:3000/");
+  await page.goto("https://nutri-care.vercel.app/");
   await expect(
     page.getByRole("button", { name: "Login" }).first()
   ).toBeVisible();

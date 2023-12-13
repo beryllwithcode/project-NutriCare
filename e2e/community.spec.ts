@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test("Cant add New Discussion when user didnt logged in", async ({ page }) => {
-  await page.goto("http://localhost:3000/");
+  await page.goto("https://nutri-care.vercel.app/");
   await expect(
     page.getByRole("button", { name: "Login" }).first()
   ).toBeVisible();
@@ -18,7 +18,7 @@ test("Cant add New Discussion when user didnt logged in", async ({ page }) => {
 });
 
 test("Adding new discussion", async ({ page }) => {
-  await page.goto("http://localhost:3000/");
+  await page.goto("https://nutri-care.vercel.app/");
   await expect(
     page.getByRole("button", { name: "Login" }).first()
   ).toBeVisible();
@@ -60,7 +60,7 @@ test("Adding new discussion", async ({ page }) => {
 test("Adding comment to the discussion", async ({ page }) => {
   await page.waitForTimeout(3000);
 
-  await page.goto("http://localhost:3000/");
+  await page.goto("https://nutri-care.vercel.app/");
   await expect(
     page.getByRole("button", { name: "Login" }).first()
   ).toBeVisible();
@@ -108,7 +108,7 @@ test("Adding comment to the discussion", async ({ page }) => {
 test("Deleting discussion created", async ({ page }) => {
   await page.waitForTimeout(3000);
 
-  await page.goto("http://localhost:3000/");
+  await page.goto("https://nutri-care.vercel.app/");
   await expect(
     page.getByRole("button", { name: "Login" }).first()
   ).toBeVisible();

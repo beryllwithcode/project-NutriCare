@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test("Sign Up Successfully", async ({ page }) => {
-  await page.goto("http://localhost:3000/");
+  await page.goto("https://nutri-care.vercel.app/");
   await expect(
     page.getByRole("button", { name: "Signup" }).first()
   ).toBeVisible();
@@ -38,7 +38,7 @@ test("Sign Up Successfully", async ({ page }) => {
 
 test("Sign Up Failed: Please fill out this field", async ({ page }) => {
   await page.waitForTimeout(3000);
-  await page.goto("http://localhost:3000/");
+  await page.goto("https://nutri-care.vercel.app/");
   await expect(
     page.getByRole("button", { name: "Signup" }).first()
   ).toBeVisible();
@@ -79,7 +79,7 @@ test("Sign Up Failed: Email is already registered. Please Sign In!", async ({
   page,
 }) => {
   await page.waitForTimeout(3000);
-  await page.goto("http://localhost:3000/");
+  await page.goto("https://nutri-care.vercel.app/");
   await expect(
     page.getByRole("button", { name: "Signup" }).first()
   ).toBeVisible();
