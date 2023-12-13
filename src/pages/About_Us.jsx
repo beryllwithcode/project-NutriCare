@@ -168,7 +168,7 @@ const Developers = () => {
         </Card>
         <Card className="w-64">
           <CardHeader floated={false} className="">
-            <img src="/assets/BER.png" alt="Bernard Andrean Sianturi" />
+            <img src="/assets/ber.png" alt="Bernard Andrean Sianturi" />
           </CardHeader>
           <CardBody className="pb-2 text-center">
             <Typography
