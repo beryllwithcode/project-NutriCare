@@ -1,5 +1,4 @@
 # Capstone Project - NutriCare
-<<<<<<< develops
 
 [![GitHub Issues](https://img.shields.io/github/issues/BeryllPradanaRamadhan/capstone-NutriCare.svg)](https://github.com/BeryllPradanaRamadhan/project-NutriCare/issues)
 [![GitHub Last Commit](https://img.shields.io/github/last-commit/BeryllPradanaRamadhan/capstone-NutriCare.svg)](https://github.com/BeryllPradanaRamadhan/project-NutriCare/commits)
