@@ -1,0 +1,20 @@
+<svg width="1728" height="560" viewBox="0 0 1728 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M930.542 560C876.042 489.949 842 390.417 842 280C842 169.583 876.042 70.0508 930.542 0L0 0V560H930.542Z" fill="url(#paint0_linear_7_281)"/>
+<mask id="mask0_7_281" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="1728" height="560">
+<rect width="1728" height="560" fill="#EDF5DB"/>
+</mask>
+<g mask="url(#mask0_7_281)">
+<circle cx="1018" cy="164" r="10" fill="#EDF5DB"/>
+<circle cx="1066" cy="379" r="16" fill="#EDF5DB"/>
+<circle cx="1308" cy="20" r="33" fill="#EDF5DB"/>
+<path d="M1021 591C923.654 488.958 787.369 223.099 1021 -24" stroke="#EDF5DB" stroke-width="45"/>
+<path d="M1074 591C976.654 488.958 840.369 223.099 1074 -24" stroke="#EDF5DB" stroke-width="20"/>
+<path d="M1105 591C1007.65 488.958 871.369 223.099 1105 -24" stroke="#EDF5DB" stroke-width="10"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_7_281" x1="465.271" y1="0" x2="465.271" y2="560" gradientUnits="userSpaceOnUse">
+<stop stop-color="#EDF5DB"/>
+<stop offset="1" stop-color="#CCE98F"/>
+</linearGradient>
+</defs>
+</svg>

@@ -3,19 +3,32 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/core": "^7.23.5",
+    "@babel/preset-env": "^7.23.5",
+    "@babel/preset-react": "^7.23.3",
+    "@material-tailwind/react": "^2.1.4",
+    "@supabase/supabase-js": "^2.39.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "dotenv": "^16.3.1",
+    "framer-motion": "^10.16.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "react-scroll-to-top": "^3.0.0",
+    "scroll-carousel": "^1.2.7",
+    "scroll-carousel-react": "^1.0.0",
+    "tailwindcss": "^3.3.6"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "jest",
+    "eject": "react-scripts eject",
+    "e2e": "playwright test",
+    "e2e:generate": "playwright codegen"
   },
   "eslintConfig": {
     "extends": [
@@ -34,5 +47,20 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "@types/node": "^20.10.4",
+    "babel-jest": "^29.7.0",
+    "eslint": "^8.55.0",
+    "eslint-plugin-jest": "^27.6.0",
+    "eslint-plugin-react": "^7.33.2",
+    "jest": "^27.5.1",
+    "jest-fetch-mock": "^3.0.3"
   }
 }
