@@ -77,6 +77,7 @@ test("Adding comment to the discussion", async ({ page }) => {
       .getByRole("button")
   ).toBeVisible();
   await page.getByRole("link", { name: "Community" }).first().click();
+  await page.waitForTimeout(3000);
   await expect(page.locator("#discussion")).toContainText(
     "End to End Testing for Adding Discussion"
   );
@@ -94,6 +95,7 @@ test("Adding comment to the discussion", async ({ page }) => {
     dialog.dismiss().catch(() => {});
   });
   await expect(page.getByRole("heading", { name: "Comments" })).toBeVisible();
+  await page.waitForTimeout(3000);
   await expect(
     page
       .locator("p")
@@ -104,6 +106,8 @@ test("Adding comment to the discussion", async ({ page }) => {
 });
 
 test("Deleting discussion created", async ({ page }) => {
+  await page.waitForTimeout(3000);
+
   await page.goto("http://localhost:3000/");
   await expect(
     page.getByRole("button", { name: "Login" }).first()
@@ -121,6 +125,7 @@ test("Deleting discussion created", async ({ page }) => {
       .getByRole("button")
   ).toBeVisible();
   await page.getByRole("link", { name: "Community" }).first().click();
+  await page.waitForTimeout(5000);
   await expect(
     page.getByRole("link", { name: "End to End Testing for Adding" })
   ).toBeVisible();
@@ -143,6 +148,8 @@ test("Deleting discussion created", async ({ page }) => {
   await expect(page.getByText("Are you sure you want to")).toBeVisible();
   await expect(page.getByRole("button", { name: "Delete" })).toBeVisible();
   await page.getByRole("button", { name: "Delete" }).click();
+
+  await page.waitForTimeout(5000);
   await expect(
     page.getByRole("link", { name: "End to End Testing for Adding" })
   ).toBeHidden();
