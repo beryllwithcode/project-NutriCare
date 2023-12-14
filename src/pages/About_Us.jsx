@@ -465,7 +465,7 @@ const Advisor = () => {
       >
         <Card className="w-64">
           <CardHeader floated={false} className="">
-            <img src="/assets/shidqi.jpg" alt="" />
+            <img src="/assets/shidqi.JPG" alt="" />
           </CardHeader>
           <CardBody className="text-center px-0">
             <Typography variant="h5" className="text-nutricare-orange">
