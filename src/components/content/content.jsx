@@ -53,7 +53,7 @@ const Services = () => {
             autoplay={true}
             autoplaySpeed={5}
             speed={0}
-            onReady={() => console.log("I am ready")}
+            smartSpeed={false}
             className="h-full mt-8"
             margin={40}
           >
