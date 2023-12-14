@@ -52,7 +52,7 @@ const Services = () => {
           <ScrollCarousel
             autoplay={true}
             autoplaySpeed={5}
-            speed={0}
+            speed={1}
             smartSpeed={false}
             className="h-full mt-8"
             margin={40}
