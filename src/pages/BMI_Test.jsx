@@ -229,6 +229,8 @@ function Test() {
                 Age (years)
               </Typography>
               <Input
+                type="number"
+                min={0}
                 placeholder="ex: 20"
                 className="!border-nutricare-green focus:!border-nutricare-green"
                 labelProps={{
@@ -242,6 +244,8 @@ function Test() {
                 Height (cm)
               </Typography>
               <Input
+                type="number"
+                min={0}
                 placeholder="ex: 170"
                 className="!border-nutricare-green focus:!border-nutricare-green"
                 labelProps={{
@@ -256,6 +260,8 @@ function Test() {
                 Weight (kg)
               </Typography>
               <Input
+                type="number"
+                min={0}
                 placeholder="ex: 60"
                 className="!border-nutricare-green focus:!border-nutricare-green"
                 labelProps={{
