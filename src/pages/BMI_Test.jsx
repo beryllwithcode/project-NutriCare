@@ -126,7 +126,7 @@ function Test() {
   const [bmiColor, setBmiColor] = useState("");
 
   const calculateBmi = () => {
-    if (heightValue && weightValue) {
+    if (heightValue && weightValue && ageValue && genderValue) {
       const heightInMeters = heightValue / 100;
       const bmi = (weightValue / (heightInMeters * heightInMeters)).toFixed(2);
 
