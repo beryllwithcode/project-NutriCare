@@ -185,7 +185,7 @@ function Test() {
     } else {
       setBmiMessage("");
       setBmiIllustration("pana.png");
-      setBmiColor("greenTuaFade");
+      setBmiColor("bg-nutricare-greenTuaFade");
       setCalorieNeeds("");
       setProteinsNeeds("");
       setFatNeeds("");
